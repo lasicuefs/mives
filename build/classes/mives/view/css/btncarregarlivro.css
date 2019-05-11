@@ -1,0 +1,10 @@
+.label{
+	-fx-background-image: url(../imagens/carregarLivro.png);
+	-fx-background-size: 81px 63px;
+	-fx-background-color: #3F3F3F;
+	-fx-background-position: center;
+	-fx-min-height: 81px;
+    -fx-min-width: 63px;
+	-fx-background-repeat: no-repeat;
+}
+

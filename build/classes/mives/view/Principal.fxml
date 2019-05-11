@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.web.*?>
+<?import java.net.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane id="pane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="753.0" style="-fx-background-color: #3F3F3F;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mives.controller.FXMLPrincipalController">
+   <right>
+      <Accordion fx:id="accordionDireito" stylesheets="@css/accordion_estilo.css" BorderPane.alignment="CENTER">
+        <panes>
+          <TitledPane alignment="CENTER" animated="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="316.0" prefWidth="306.0" text="VERSOS ENCONTRADOS">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="265.0" prefWidth="254.0">
+                     <children>
+                        <BarChart fx:id="graficoBarras" layoutY="-95.0" prefHeight="465.0" prefWidth="297.0" style="-fx-background-color: #3F3F3F;" stylesheets="@css/barchart.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <xAxis>
+                            <CategoryAxis minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="226.0" side="BOTTOM" style="-fx-background-color: #3F3F3F;" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis prefHeight="251.0" prefWidth="21.0" side="LEFT" style="-fx-background-color: #3F3F3F;" />
+                          </yAxis>
+                           <rotationAxis>
+                              <Point3D />
+                           </rotationAxis>
+                        </BarChart>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets></AnchorPane>
+            </content>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+          </TitledPane>
+          <TitledPane alignment="CENTER" animated="false" nodeOrientation="RIGHT_TO_LEFT" text="ESTATÍSTICAS">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox layoutX="-1.0" prefHeight="307.0" prefWidth="301.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="301.0">
+                                 <children>
+                                    <Label fx:id="labelArquivo" text="arquivo" textFill="#d8d8d8" />
+                                    <Label text=" - Nome do arquivo processado: " textFill="#d8d8d8">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="200.0">
+                                 <children>
+                                    <Label fx:id="labelNumeroFrases" text="XX" textFill="#d8d8d8" />
+                                    <Label text=" - Número de Frases processadas: " textFill="#d8d8d8">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="200.0">
+                                 <children>
+                                    <Label fx:id="labelEstruturas" text="XX" textFill="#d8d8d8" />
+                                    <Label text=" - Número de Estruturas identificadas: " textFill="#d8d8d8" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="200.0">
+                                 <children>
+                                    <Label fx:id="labelMetros" text="10 - 12" textFill="#d8d8d8" />
+                                    <Label text=" - Metros buscados: " textFill="#d8d8d8" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="200.0">
+                                 <children>
+                                    <Label fx:id="labelTipos" text="F. Completas" textFill="#d8d8d8" />
+                                    <Label text=" - Tipo de Busca: " textFill="#d8d8d8" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children></AnchorPane>
+            </content>
+               <font>
+                  <Font size="14.0" />
+               </font>
+          </TitledPane>
+        </panes>
+         <padding>
+            <Insets bottom="20.0" left="2.0" right="2.0" />
+         </padding>
+      </Accordion>
+   </right>
+   <left>
+      <Accordion fx:id="accordionEsquerdo" maxWidth="1.7976931348623157E308" prefHeight="530.0" prefWidth="319.0" stylesheets="@css/accordion_estilo.css" BorderPane.alignment="CENTER">
+        <panes>
+          <TitledPane fx:id="t1" alignment="CENTER" contentDisplay="RIGHT" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" text="DODECASSÍLABOS">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="listaSites" layoutX="1.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="233.0" prefWidth="310.0" AnchorPane.leftAnchor="1.0">
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </ListView>
+                     </children></AnchorPane>
+            </content>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+          </TitledPane>
+          <TitledPane alignment="CENTER" animated="false" nodeOrientation="RIGHT_TO_LEFT" text="HENDECASSÍLABOS">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" />
+            </content>
+               <font>
+                  <Font size="14.0" />
+               </font>
+          </TitledPane>
+          <TitledPane alignment="CENTER" animated="false" nodeOrientation="RIGHT_TO_LEFT" style="-fx-background-color: #3F3F3F;" text="DECASSÍLABOS">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="461.0" prefWidth="309.0" style="-fx-background-color: #3F3F3F;">
+                     <children>
+                        <VBox layoutX="-2.0" prefHeight="465.0" prefWidth="314.0">
+                           <children>
+                              <TreeView fx:id="decassilabosTree" layoutX="-2.0" prefHeight="600.0" prefWidth="314.0" stylesheets="@css/treeviewestilo.css" />
+                           </children>
+                        </VBox>
+                     </children></AnchorPane>
+            </content>
+               <font>
+                  <Font size="14.0" />
+               </font>
+          </TitledPane>
+        </panes>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="20.0" left="2.0" right="2.0" />
+         </padding>
+      </Accordion>
+   </left>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #3F3F3F; -fx-box-border: transparent;" BorderPane.alignment="CENTER">
+         <bottom>
+            <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="24.0" prefWidth="226.0" style="-fx-background-color: #FFFFFF; -fx-border-color: transparent;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="botaoAnterior" contentDisplay="CENTER" mnemonicParsing="false" onAction="#anterior" prefHeight="25.0" prefWidth="82.0" stylesheets="@css/botaoNavegacao.css" text="Anterior" textFill="WHITE">
+                     <FlowPane.margin>
+                        <Insets right="30.0" />
+                     </FlowPane.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets></Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#proximo" prefHeight="25.0" prefWidth="77.0" stylesheets="@css/botaoNavegacao.css" text="Próximo" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" right="20.0" top="5.0" />
+               </padding>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </FlowPane>
+         </bottom>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+         <center>
+            <StackPane style="-fx-background-color: white;">
+               <children>
+                  <WebView fx:id="browser" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <StackPane.margin>
+                        <Insets left="20.0" right="20.0" top="30.0" />
+                     </StackPane.margin>
+                  </WebView>
+                  <ProgressIndicator fx:id="carregando" progress="0.0" />
+               </children>
+            </StackPane>
+         </center>
+      </BorderPane>
+   </center>
+   <top>
+      <BorderPane prefHeight="30.0" prefWidth="753.0" BorderPane.alignment="CENTER">
+         <top>
+            <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="755.0" style="-fx-background-color: black;" stylesheets="@css/menubarestilo.css" BorderPane.alignment="CENTER">
+              <menus>
+                <Menu mnemonicParsing="false" style="-fx-text-fill: pink;" text="Arquivo">
+                  <items>
+                        <MenuItem fx:id="menuSalvar" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Analisar">
+                  <items>
+                        <Menu mnemonicParsing="false" text="Gráficos">
+                          <items>
+                          <MenuItem mnemonicParsing="false" onAction="#gerarGraficoDistancia" text="Distribuição de Sentenças" />
+                              <MenuItem mnemonicParsing="false" onAction="#gerarGraficoDistTonica" text="Frequência de Tônicas." />
+                          </items>
+                        </Menu>
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Exportar">
+                  <items>
+                        <Menu mnemonicParsing="false" text="Dispersão de Sentenças">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Geral" />
+                              <MenuItem mnemonicParsing="false" text="Por tipo" />
+                          </items>
+                        </Menu>
+                        <MenuItem mnemonicParsing="false" onAction="#distanciasMetrificadas" text="Distâncias entre sentenças metrificadas" />
+                        <MenuItem mnemonicParsing="false" onAction="#dsitribuicaDeTonicas" text="Distribuição de tônicas" />
+                        <MenuItem mnemonicParsing="false" onAction="#frasesDoTexto" text="Frases do texto" />
+                    <MenuItem mnemonicParsing="false" onAction="#mapaConfiguracao" text="Mapa de Configuração " />
+                        <MenuItem mnemonicParsing="false" onAction="#ocorrenciaPorFrase" text="Ocorrência por frase" />
+                        <Menu mnemonicParsing="false" text="Sentenças">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#sentecasTXT" text="Em TXT" />
+                              <MenuItem mnemonicParsing="false" onAction="#sentencasXml" text="Em XML" />
+                          </items>
+                        </Menu>
+                        <MenuItem mnemonicParsing="false" onAction="#sentencasETipos" text="Sentenças e tipos identificados" />
+                        <MenuItem mnemonicParsing="false" onAction="#versosClassificacao" text="Versos e classificação" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+         <bottom>
+            <GridPane prefHeight="38.0" prefWidth="753.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="250.0" style="-fx-font-family: Ubuntu; -fx-font-weight: bold;" text="TEXTO PROCESSADO" textAlignment="CENTER" textFill="#d8d8d8" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <TextField fx:id="searchtext" onAction="#buscarNoTexto" stylesheets="@css/textfild.css" GridPane.columnIndex="4">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TextField>
+                  <Button fx:id="botonResult" mnemonicParsing="false" onAction="#apresentarResultados" prefHeight="25.0" prefWidth="140.0" stylesheets="@css/botaoNavegacao.css" text="Visualizar resultados" textFill="WHITE" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </GridPane>
+         </bottom>
+      </BorderPane>
+   </top>
+</BorderPane>

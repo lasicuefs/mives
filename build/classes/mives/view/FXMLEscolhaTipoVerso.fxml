@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="600.0" style="-fx-background-color: #3F3F3F;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mives.controller.FXMLEscolhaTipoVersoController">
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="39.0" prefWidth="600.0" spacing="50.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button graphicTextGap="80.0" mnemonicParsing="false" stylesheets="@css/labelpassos.css" />
+            <Button graphicTextGap="80.0" mnemonicParsing="false" stylesheets="@css/labelpassos.css" />
+            <Button graphicTextGap="80.0" mnemonicParsing="false" stylesheets="@css/labelpassos.css" />
+            <Button graphicTextGap="80.0" mnemonicParsing="false" stylesheets="@css/labelpassos.css" />
+            <Button mnemonicParsing="false" stylesheets="@css/labelpassos.css" />
+            <Button mnemonicParsing="false" stylesheets="@css/labelpassos.css" />
+         </children>
+      </HBox>
+   </bottom>
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label stylesheets="@css/label_wizard.css" text="   VERSOS" textFill="#d8d8d8">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children></HBox>
+   </top>
+   <center>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="377.0" prefWidth="234.0" spacing="10.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="69.0" prefWidth="234.0">
+                     <children>
+                        <Label stylesheets="@css/label_botoes.css" text="LIMITES DO VERSO" textFill="#d8d8d8">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="55.0" prefWidth="234.0">
+                     <children>
+                        <Label stylesheets="@css/labelgeral.css" text="Mínimo" textFill="#8cc5f4" />
+                        <ComboBox fx:id="comboInicio" onAction="#carregarComboboxFim" prefHeight="6.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF;" stylesheets="@css/checkbox.css" visibleRowCount="12" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="55.0" prefWidth="234.0">
+                     <children>
+                        <Label stylesheets="@css/labelgeral.css" text="Máximo" textFill="#8cc5f4" />
+                        <ComboBox fx:id="comboFim" onAction="#capturarMetros" prefWidth="150.0" style="-fx-background-color: #FFFFFF;" stylesheets="@css/checkbox.css" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="67.0" prefWidth="234.0">
+                     <children>
+                        <VBox prefHeight="101.0" prefWidth="235.0" spacing="10.0">
+                           <children>
+                              <Label stylesheets="@css/label_botoes.css" text="TIPO DE BUSCA" textFill="#d8d8d8">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <RadioButton fx:id="radioCompleta" mnemonicParsing="false" onAction="#definiSentencaCompleta" stylesheets="@css/labelgeral.css" text="Sentenças completas" textFill="#8cc5f4" />
+                              <RadioButton fx:id="radioInicio" mnemonicParsing="false" onAction="#definiInicioSentenca" stylesheets="@css/labelgeral.css" text="Ínicio de sentenças" textFill="#8cc5f4" />
+                              <RadioButton fx:id="radioFinal" mnemonicParsing="false" onAction="#definirFinalSentenca" stylesheets="@css/labelgeral.css" text="Final de sentenças" textFill="#8cc5f4" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="377.0" prefWidth="234.0">
+               <children>
+                  <Label minHeight="117.0" prefHeight="117.0" prefWidth="154.0" stylesheets="@css/mensagemcarregarlivro.css" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </center>
+</BorderPane>

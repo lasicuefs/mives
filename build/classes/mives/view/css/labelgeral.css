@@ -1,0 +1,11 @@
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('Ubuntu-Regular.ttf');
+}
+
+.label{
+    -fx-font-family: 'Ubuntu';
+    -fx-font-size: 12px;
+    -fx-font-weight: normal;
+}

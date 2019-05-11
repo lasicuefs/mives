@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="600.0" style="-fx-background-color: #3F3F3F;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mives.controller.FXMLResumoController">
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="39.0" prefWidth="600.0" spacing="50.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button graphicTextGap="80.0" mnemonicParsing="false" stylesheets="@css/labelpassos.css" />
+            <Button graphicTextGap="80.0" mnemonicParsing="false" stylesheets="@css/labelpassos.css" />
+            <Button graphicTextGap="80.0" mnemonicParsing="false" stylesheets="@css/labelpassos.css" />
+            <Button graphicTextGap="80.0" mnemonicParsing="false" stylesheets="@css/labelpassos.css" />
+            <Button mnemonicParsing="false" stylesheets="@css/labelpassos.css" />
+            <Button mnemonicParsing="false" stylesheets="@css/labelpassos.css" />
+         </children>
+      </HBox>
+   </bottom>
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label stylesheets="@css/label_wizard.css" text="   RESUMO" textFill="#d8d8d8">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children></HBox>
+   </top>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER">
+               <children>
+                  <VBox prefHeight="187.0" prefWidth="332.0" spacing="8.0">
+                     <children>
+                        <Label fx:id="labelNomeArquivo" prefHeight="17.0" prefWidth="302.0" stylesheets="@css/labelgeral.css" text="Nome do Arquivo: " textFill="#d8d8d8" />
+                        <Label fx:id="labelBuscaEm" prefHeight="17.0" prefWidth="304.0" stylesheets="@css/labelgeral.css" text="Buscar em:" textFill="#d8d8d8" />
+                        <Label fx:id="labelMetros" prefHeight="17.0" prefWidth="337.0" stylesheets="@css/labelgeral.css" text="Metros a serem buscados: " textFill="#d8d8d8" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button minHeight="96.0" mnemonicParsing="false" prefHeight="96.0" prefWidth="146.0" stylesheets="@css/btnmensagemfinal.css" textAlignment="CENTER" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
