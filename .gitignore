@@ -3,7 +3,7 @@
 
 
 #outros
-.iml
+*.iml
 .idea/
 
 # User-specific stuff
