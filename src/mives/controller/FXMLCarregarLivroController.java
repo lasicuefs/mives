@@ -11,7 +11,6 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.input.MouseEvent;
@@ -28,12 +27,9 @@ public class FXMLCarregarLivroController implements Initializable {
 
     @FXML
     private Label labelNomeArquivo;
-
-    @FXML
+    
+     @FXML
     private Label labelProcessamentoConcluido;
-
-    @FXML
-    public Button btnCarregar;
 
     FXMLCarregarLivroControllerHelper helper;
 
@@ -44,6 +40,8 @@ public class FXMLCarregarLivroController implements Initializable {
         helper = new FXMLCarregarLivroControllerHelper(this);
         this.labelProcessamentoConcluido.setVisible(false);
     }
+
+
 
     @FXML
     public void testeProgressBar(MouseEvent ev) {

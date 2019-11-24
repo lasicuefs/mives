@@ -35,8 +35,6 @@ public class FXMLCarregarLivroControllerHelper {
     }
 
     public void iniciarCarregarLivro() {
-        
-        carregarLivro.btnCarregar.setDisable(true);
 
         Thread t = new Thread(task);
         t.start();
@@ -92,7 +90,9 @@ public class FXMLCarregarLivroControllerHelper {
                                 temNumero = true;
                             } catch (NumberFormatException nf) {
                                 nf.printStackTrace();
-                                                              pagina.setNumero(Integer.parseInt(linha.toString().trim().replaceAll("?", "")));
+                                System.out.println("CORRIGINDO ERRO: " + linha);
+
+                                pagina.setNumero(Integer.parseInt(linha.toString().trim().replaceAll("?", "")));
                                 livro.getPaginas().put(pagina.getNumero(), pagina);
                                 temNumero = true;
                                 System.out.println("Erro solucionado");

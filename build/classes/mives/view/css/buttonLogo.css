@@ -1,0 +1,12 @@
+.button  {
+
+    -fx-min-height: 102px;
+    -fx-min-width: 79px;
+    -fx-background-image: url(../imagens/logo.png);
+    -fx-background-size: 100px 100px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center 8px;
+    -fx-background-color:  #3F3F3F;
+
+}
+

@@ -1,0 +1,16 @@
+.button  {
+
+    -fx-min-height: 132px;
+    -fx-min-width: 128px;
+    -fx-background-image: url(../imagens/definirparametroinativo.png);
+    -fx-background-size: 88px 79px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-color:  #3F3F3F;
+	
+
+}
+
+.button:hover {
+  -fx-background-image: url(../imagens/definirparametroativo.png);
+}

@@ -79,20 +79,20 @@ public class FXMLProcessandoLivroController implements Initializable, PageWizard
 
     public void testeAnalisar() {
         MainControllerHelper.controller.nextPage(null);
-        
     }
 
     @Override
     public void update(int progresso) {
         float total = Livro.getInstance().getNumeroDeSegmentos();
-
+//        System.out.println("TOTAL DE SEGMENTOS..........................: " + total);
+//        System.out.println("PROGRESSO: " + progresso);
 
         barraProcessarLivro.setProgress((float) ((progresso * 100.0) / total));
-   
+        // System.out.println("Progresso:.... " + ((progresso * 100.0) / total));
         if (((progresso * 100.0) / total) == 100.0) {
             btnAnalisarResultado.setDisable(false);
         }
-
+//        System.out.println("ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO");
     }
 
 }

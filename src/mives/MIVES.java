@@ -63,17 +63,13 @@ public class MIVES extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
-        primaryStage.setTitle("Mining Verse Structure - MIVES V 1.0 - Beta");
+        primaryStage.setTitle("Mining Verse Structure - MIVES");
         primaryStage.setResizable(true);
         primaryStage.show();
     }
 
     private void closeWindowEvent(WindowEvent event) {
-        try {
-            PrincipalHelper.arquivoDeDestino.delete();
-        } catch (Exception ex) {
-            System.out.println("Erro ao tentar deletar arquivo temporário");
-        }
+        PrincipalHelper.arquivoDeDestino.delete();
     }
 
     public void carregarDLL() {

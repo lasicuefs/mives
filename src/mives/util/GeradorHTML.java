@@ -106,14 +106,12 @@ public class GeradorHTML {
         conteudo.append("<head>\n");
         conteudo.append("<title>Meu Teste</title>\n");
 
-//        conteudo.append("<style>");
-//        conteudo.append("   @import url('https://fonts.googleapis.com/css?family=Ubuntu');");
-//        conteudo.append("</style>");
+        conteudo.append("<style>");
+        conteudo.append("   @import url('https://fonts.googleapis.com/css?family=Ubuntu');");
+        conteudo.append("</style>");
+        
+        
         conteudo.append("<style type=\"text/css\">\n");
-        conteudo.append("@font-face{\n");
-        conteudo.append("   font-family: 'Ubuntu';\n");
-        conteudo.append("   src: url(\"Ubuntu-Regular.ttf\");\n");
-        conteudo.append("}\n");
         conteudo.append("body{\n");
         conteudo.append("   color:#333333;\n");
         conteudo.append("   font-family: Courier, monospace;\n");
@@ -241,7 +239,7 @@ public class GeradorHTML {
                         marcador = "<p>";
                     }
                     conteudo.append(linha.getLinhaComEscansao());
-                    if (linha.getLinhaComEscansao() != null && linha.getLinhaComEscansao().contains(".<<")//Se contém marcação e
+                    if (linha.getLinhaComEscansao().contains(".<<")//Se contém marcação e
                             && linha.getLinhaComEscansao().trim().charAt(linha.getLinhaComEscansao().trim().length() - 1) == '>') {
                         conteudo.append("</p>\n<p>");
                     }

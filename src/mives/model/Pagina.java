@@ -340,7 +340,7 @@ public class Pagina {
                 pulouLinha = true;
             }
         } catch (IndexOutOfBoundsException ex) {
-            //  System.out.println("O erro é aqui!!!");
+            System.out.println("O erro é aqui!!!");
         }
         linhaSeguinte = linhasOriginais.get(numeroDaLinhaSeguinte);
         if (numeroDaLinhaSeguinte == linhasOriginais.size() - 1 || linhaSeguinte.toString().trim().length() == 0) {
@@ -697,33 +697,48 @@ public class Pagina {
                 continue inicio;
             }
             for (Integer i : linha.getFrasesAssociadas()) {
-                if (frases.get(i).getVerso() != null && !(frases.get(i).getVerso().isSubstituicao())) {
+                System.out.println("Linha: " + linha.getLinha());
+                System.out.println("Número de frases Associadas: " + linha.getFrasesAssociadas().size());
+                if (frases.get(i).getVerso() != null) {
                     //  substituirCaracteres(indiceDaLinha);
                     if (!Livro.getInstance().getTipoDeBusca().equals("Frases Completas.") && !Livro.getInstance().getTipoDeBusca().equals("Início de Frase.")) {
-                        if (linha.getLinha().replaceAll("-", "").toLowerCase().contains(frases.get(i).getVerso().getPalavras().replaceAll("-", "").toLowerCase())) {
+                        if (linha.getLinha().replaceAll("-", "").toLowerCase().contains(frases.get(i).getVerso().getPalavras().toLowerCase())) {
                             marcarVersosFinalV2(indiceDaLinha, 0, i);
+                            System.out.println("Entrei aqui 1: " + frases.get(i).getVerso().getPalavras());
                         } else {
-                            int indiceComeca = comecaNestaLinha(indiceDaLinha, linha, frases.get(i), 0);
-
+                            System.out.println("Entrei aqui 2: " + frases.get(i).getVerso().getPalavras());
+                            System.out.println("Enviando linha para bucar origem: " + linha.getLinha());
+                            System.out.println("Verso: " + frases.get(i).getVerso().getPalavras());
+                            int indiceComeca = comecaNestaLinha(indiceDaLinha, linha, frases.get(i));
+                            System.out.println("LINHA DE ORIGEM: " + indiceDaLinha);
+                            System.out.println("ESTA NESTA LINHA: " + indiceComeca);
                             int aux = indiceDaLinha;
                             while (indiceComeca == 0 && aux > 0) {
-
+                                System.out.println("Procuranto origem");
                                 aux--;
-
-                                indiceComeca = comecaNestaLinha(aux, linha, frases.get(i), 0);
+                                indiceComeca = comecaNestaLinha(aux, linha, frases.get(i));
                             }
                             if (indiceComeca != 0) {
-
-                                indiceDaLinha = marcarVersosFinalV2(indiceComeca, comeca, i);
+                                System.out.println("Entrei aqui 3: " + frases.get(i).getVerso().getPalavras());
+                                marcarVersosFinalV2(indiceComeca, comeca, i);
 
                             } else {
+                                System.out.println("Entrei aqui 4: " + frases.get(i).getVerso().getPalavras());
                                 linha.setLinhaComEscansao(linha.getLinha());
                             }
                             comeca = 0;
                         }
-
+                        System.out.println("Não consegui marcar: " + frases.get(i).getVerso().getPalavras());
+                        System.out.println("Marcando verso final");
                     } else {
+//                        System.out.println("LOCAL: " + frases.get(i).getVerso().getLocal());
+//                        if (frases.get(i).getVerso().getLocal().toLowerCase().equals("Início de frase.".toLowerCase())) {
+//                            System.out.println("ENVIANDO PARA MARCAR NO INÍCIO....");
+//                            marcarVersosInicio(indiceDaLinha);
+//                        } else {
                         marcarVersos(indiceDaLinha);
+//                        }
+
                     }
 
                 } else {
@@ -742,7 +757,11 @@ public class Pagina {
     }
     int comeca = 0;
 
-    private int comecaNestaLinha(Integer indice, Linha linha, Frase frase, int controle) {
+    private int comecaNestaLinha(Integer indice, Linha linha, Frase frase) {
+
+        System.out.println("ComecaNestaLinha.........................");
+        System.out.println("Recebendo para procurar na linha: " + linhas.get(indice).getLinha());
+        System.out.println("O verso: " + frase.getVerso().getPalavras());
 
         StringTokenizer v = new StringTokenizer(frase.getVerso().getPalavras());
         String vetorVerso[] = new String[v.countTokens()];
@@ -755,9 +774,17 @@ public class Pagina {
             i++;
         }
 
+        for (String s : vetorVerso) {
+            System.out.println(s);
+        }
+
+        //    int comecaAqui = indice;
         String primeiraPalavraVerso = vetorVerso[0];
 
         int t;
+
+//        for (t = indice; t < linhas.size(); t++) {
+//            indice = t;
         StringTokenizer l = new StringTokenizer(linhas.get(indice).getLinha());
         String vetorLinha[] = new String[l.countTokens()];
 
@@ -767,13 +794,25 @@ public class Pagina {
             i++;
         }
 
+//        for (String s : vetorLinha) {
+//            System.out.println(s);
+//        }
         i = 0;
 
         for (String g : vetorLinha) {
             i++;
+//            System.out.println("Valor de g: " + g);
+//            System.out.println("Valord e i: " + i);
+//            System.out.println("Tamanho do vetor: " + vetorLinha.length);
+
             if (i == vetorLinha.length && g.replace("-", "").equals(primeiraPalavraVerso.replace("-", ""))) {//A última palavra da linha dá início ao verso
 
+//                System.out.println("ENTREI...ENTREI...ENTREI...ENTREI...ENTREI===> " + g);
                 if (i == vetorLinha.length) {
+                    //      comecaAqui = indice;
+//                    System.out.println("ESTOU NA ÚLTIMA PALAVRA");
+//                    System.out.println("ÚLTIMA PALAVRA: " + g);
+//                    System.out.println("Linha de início: " + linhas.get(indice).getLinha());
                     if (linhas.size() > indice) {
                         int linhaAtual = 0;
                         indice++;
@@ -784,6 +823,7 @@ public class Pagina {
                         comeca = vetorLinha.length - 1;
                         StringTokenizer token = new StringTokenizer(linhas.get(indice).getLinha());
                         String aux = token.nextToken();
+//                        System.out.println("PRIMEIRA PALAVRA DA PRÓXIMA LINHA: " + aux);
                         if (aux.replaceAll("-", "").toLowerCase().equals(vetorVerso[1].toLowerCase().replace("-", ""))) {
                             return indice - linhaAtual - 1;
                         }
@@ -794,13 +834,23 @@ public class Pagina {
             if (g.replace("-", "").equals(primeiraPalavraVerso.replace("-", ""))) {//O verso começa no meio da linha
                 int indiceLinha = i;
                 int indiceVerso = 1;
+//                System.out.println("Achei:............ ");
+//                System.out.println("Primeira palavra encontrada: " + g);
+//                System.out.println("Próxima palavra do verso a ser analisada: " + vetorVerso[indiceVerso]);
+
+                // System.out.println("Proxima palavra da linha a ser analisada: " + vetorLinha[indiceLinha]);
                 while (indiceVerso < vetorVerso.length && indiceLinha < vetorLinha.length
                         && removerCaracteres(vetorLinha[indiceLinha]).equals(removerCaracteres(vetorVerso[indiceVerso]))) {
+//                    System.out.println("É igual: " + vetorLinha[indiceLinha]);
                     indiceLinha++;
                     indiceVerso++;
                 }
 
+//                System.out.println("indiceLinha == vetorLinha.length? " + (indiceLinha == vetorLinha.length));
                 if (linhas.get(indice).getLinha().toLowerCase().contains(frase.getVerso().getPalavras().toLowerCase())) {
+//                    System.out.println("RICARDO");
+//                    System.out.println("RICARDO: " + linhas.get(indice).getLinha());
+//                    System.out.println("RICARDO: " + frase.getVerso().getPalavras());
                     comeca = i;
                     return indice;
                 }
@@ -813,11 +863,19 @@ public class Pagina {
                             linhaAtual++;
                         }
 
+//                        System.out.println("Linha: " + linha.getLinha());
+//                        System.out.println("Verso procurado: " + frase.getVerso().getPalavras());
                         if (indice < linhas.size()) {
+//                            System.out.println("Entrei.....");
+//                            System.out.println("Linha: " + linha.getLinha());
+//                            System.out.println("Verso procurado: " + frase.getVerso().getPalavras());
                             comeca = i;
                             StringTokenizer token = new StringTokenizer(linhas.get(indice).getLinha());
                             String aux = token.nextToken();
+//                            System.out.println("PRIMEIRA PALAVRA DA PRÓXIMA LINHA: " + aux);
+//                            System.out.println("Começa aqui? " + (removerCaracteres(aux).equals(removerCaracteres(vetorVerso[indiceVerso]))));
                             if (removerCaracteres(aux).replace("-", "").equals(removerCaracteres(vetorVerso[indiceVerso].replace("-", "")))) {
+
                                 return indice - linhaAtual - 1;
                             }
                         }
@@ -827,17 +885,20 @@ public class Pagina {
         }
         //Não está nesta linha procure na próxima
         if (indice < linhas.size() - 1) {
+//            System.out.println("Chamada recursiva.....................................");
+//            System.out.println("Verso: " + frase.getVerso().getPalavras());
+//            System.out.println("Linha: " + linhas.get(indice + 1).getLinha());
+//            System.out.println("Índice linha: " + indice);
+
             if (linhas.get(indice + 1).getLinha().toLowerCase().replaceAll("-", "").contains(frase.getVerso().getPalavras().toLowerCase())) {
                 comeca = posicaoInicialDoVerso(linhas.get(indice + 1).getLinha().toLowerCase(), frase.getVerso().getPalavras().toLowerCase());
+//                System.out.println("Começa na linha: " + comeca);
                 return indice + 1;
             }
-            int retorno = 0;
-            if (controle > 10) {
-                return 0;
-            }
-            retorno = comecaNestaLinha(indice + 1, linhas.get(indice + 1), frase, controle + 1);
-            return retorno;
 
+            int retorno = comecaNestaLinha(indice + 1, linhas.get(indice + 1), frase);
+//            System.out.println("Retorno: " + retorno);
+            return retorno;
         } else {
 
             return 0;
@@ -992,25 +1053,33 @@ public class Pagina {
 //
 //        }
 //    }
+
     /**
      * Versão: Nova versão MIVES Marca no HTML o trecho de texto onde o verso
      * foi encontrado em 21/05/2018
      *
      * @param indiceDaLinha
      */
-    private int marcarVersosFinalV2(int indiceDaLinha, int origem, int indiceVerso) {
+    private void marcarVersosFinalV2(int indiceDaLinha, int origem, int indiceVerso) {
 
         StringBuilder retorno = new StringBuilder();
 
         Linha linhaBase = linhas.get(indiceDaLinha);
+
         if (frases.get(indiceVerso).getVerso().isSubstituicao()) {
-            return indiceDaLinha;
+            return;
         }
         // link++; 07/09/2018
         String verso = frases.get(indiceVerso).getVerso().toString();
+        System.out.println("Linha base: " + linhaBase.getLinha());
+        System.out.println("Frase: " + frases.get(indiceVerso).getPalavras());
+
         frases.get(indiceVerso).getVerso().setLink(link);//Inserido em: 09/09/2018
 
+        System.out.println("Verso: " + verso);
+
         if (linhaBase.getLinha().contains(verso)) {
+            System.out.println("Tentativa 01");
             if (linhaBase.isSubstituicao()) {
                 retorno.append(linhaBase.getLinhaComEscansao().replace(verso, "<a id=\"" + link + "\"><span id=\"" + link + "\" style=\"background-color: #8CC5F4\">" + verso + "</span>"));
             } else {
@@ -1020,53 +1089,69 @@ public class Pagina {
             String aux = "<a id=\"" + link + "\"><span id=\"" + link + "\" style=\"background-color: #8CC5F4\">";
             StringTokenizer auxToken = new StringTokenizer(aux);
             linhaBase.setDiferencaDeInserir(auxToken.countTokens() - 1);
+            System.out.println("Retorno: " + retorno.toString());
             frases.get(indiceVerso).getVerso().setSubstituicao(true);
             linhaBase.setSubstituicao(true);
             linhaBase.setLinhaComEscansao(retorno.toString());
             link++;
-            return indiceDaLinha;
+            return;
         }
-        if (linhaBase.getLinha().toLowerCase().contains(verso.toLowerCase())) {//Estranho isso aqui...
+        if (linhaBase.getLinha().toLowerCase().contains(verso.toLowerCase())) {
+            System.out.println("Consegui agora vai");
             int inicio = linhaBase.getLinha().toLowerCase().indexOf(verso.toLowerCase());
             retorno.append(linhaBase.getLinha());
             retorno.replace(inicio, inicio + verso.length(), "<a id=\"" + link + "\"><span id=\"" + link + "\" style=\"background-color: #8CC5F4\">" + verso + "</span>");
+//            retorno.append(linhaBase.getLinha().replace(verso.toLowerCase(), "<a id=\"" + link + "\"><span style=\"background-color: #8CC5F4\">" + verso + "</span>"));
+//            retorno.append(linhaBase.getLinha().replace(verso.toLowerCase(), "<a id=\"" + link + "\"><span style=\"background-color: #8CC5F4\">" + verso + "</span>"));
             frases.get(indiceVerso).getVerso().setSubstituicao(true);
             linhaBase.setSubstituicao(true);
             linhaBase.setLinhaComEscansao(retorno.toString());
             link++;
-            return indiceDaLinha;
+            return;
         } else {
+            origem--;
             StringTokenizer l;// = new StringTokenizer(linhaBase.getLinha());
             if (linhaBase.isSubstituicao()) {
                 l = new StringTokenizer(linhaBase.getLinhaComEscansao());
+                System.out.println("Valor de Origem 1 - Antes: " + origem);
                 origem += linhaBase.getDiferencaDeInserir();
+                System.out.println("Valor de Origem 1 - Depois: " + origem);
             } else {
                 l = new StringTokenizer(linhaBase.getLinha());
-                StringTokenizer stVerso = new StringTokenizer(verso);
-                StringTokenizer stLinha = new StringTokenizer(linhaBase.getLinha());
-
-                if (!Utilitario.preencherVetorToken(stLinha)[origem].trim().toLowerCase().equalsIgnoreCase(Utilitario.preencherVetorToken(stVerso)[0])) {
-                    origem--;
-                }
+                origem++;
+                System.out.println("Valor de Origem 2: " + origem);
             }
+            //  StringTokenizer l = new StringTokenizer(linhaBase.getLinha());
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            System.out.println("Linha base: " + linhaBase.getLinha());
+            System.out.println("Origem na palavra: " + comeca);
+            System.out.println("Verso: " + verso);
+
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
             int i = 0;
             while (i < origem && l.hasMoreTokens()) {
+                System.out.println("Origem: " + origem);
+                System.out.println("Linha Base: " + linhaBase.getLinha());
                 i++;
                 String add = l.nextToken() + " ";
+                System.out.println("ADICIONANDO: " + add);
                 retorno.append(add);
             }
-
+            System.out.println("COMEÇANDO A INSERIR....");
             retorno.append("<a id=\"" + link + "\"><span id=\"" + link + "\" style=\"background-color: #8CC5F4\">" + l.nextToken() + " ");
+            System.out.println("Retorno: " + retorno.toString());
             int indiceInserido = 0;
+            //     System.out.println("Existem um próximo??? -> " + l.hasMoreTokens());
 
             while (l.hasMoreTokens() && indiceInserido <= new StringTokenizer(verso).countTokens()) {
                 retorno.append(l.nextToken() + " ");
+                System.out.println("Retorno: " + retorno.toString());
+                System.out.println("Indice inserido: " + indiceInserido);
                 indiceInserido++;
             }
             if (indiceInserido == 0) {
                 indiceInserido = 1;
-            } else {
-                indiceInserido++;
             }
             retorno.append("</span>");
 
@@ -1075,6 +1160,7 @@ public class Pagina {
 
             }
             linhaBase.setSubstituicao(true);
+            System.out.println("retorno com linha de escansão: " + retorno.toString());
             linhaBase.setLinhaComEscansao(retorno.toString());
             frases.get(indiceVerso).getVerso().setSubstituicao(true);
             indiceDaLinha++;
@@ -1089,12 +1175,33 @@ public class Pagina {
                 arrayVerso[i] = st.nextToken();
                 i++;
             }
+//
+//            StringTokenizer stLinha = new StringTokenizer(linhas.get(indiceDaLinha).getLinha());
+//            String arrayLinha[] = new String[stLinha.countTokens()];
+//            i = 0;
+//            while (stLinha.hasMoreTokens()) {
+//                arrayLinha[i] = stLinha.nextToken();
+//                i++;
+//            }
+//
             StringBuilder resto = new StringBuilder();
+//            if (indiceInserido < arrayVerso.length && arrayVerso[indiceInserido].equalsIgnoreCase(auxTemp)) {
+//                System.out.println("vamos vamos vamos vamos vamos vamos vamos vamos vamos");
+//            indiceInserido++;
+//            }
+
             while (indiceInserido < arrayVerso.length) {
                 resto.append(arrayVerso[indiceInserido] + " ");
                 indiceInserido++;
             }
+
+            // StringBuilder resto = new StringBuilder();
+            System.out.println("OLHA O RESTO AQUI: " + resto.toString());
+
+            //  String novaLinha = linhas.get(indiceDaLinha).getLinha().replace(linhas.get(indiceDaLinha).getLinha(), "<span style=\"background-color: #8CC5F4\">" + resto.toString() + "</span> ");
             String novaLinha = linhas.get(indiceDaLinha).getLinha().replace(resto.toString().trim(), "<span id=\"" + link + "\" style=\"background-color: #8CC5F4\">" + resto.toString().trim() + "</span> ");
+            System.out.println("SUBSTITUINDO NA LINHA: " + linhas.get(indiceDaLinha).getLinha());
+            System.out.println("NOVA LINHA: " + novaLinha);
             linhas.get(indiceDaLinha).setLinhaComEscansao(novaLinha);
 
             linhas.get(indiceDaLinha).setSubstituicao(true);
@@ -1102,7 +1209,6 @@ public class Pagina {
         }
         link++;
 
-        return indiceDaLinha;
     }
 
     boolean acrescentarUm = false;
@@ -1132,9 +1238,9 @@ public class Pagina {
 //                System.out.println("Valor de nf: " + nf);
 //                System.out.println("linha de origem da frase: " + frases.get(nf).getLinhaDeOrigem());
                 while (frases.get(nf).getVerso().getLocal().equals("Início de frase.") && indiceDaLinha != frases.get(nf).getLinhaDeOrigem()) {
-//                    System.out.println("Indice da linha: " + indiceDaLinha);
-//                    System.out.println("Indice da linha de origem: " + (frases.get(nf).getLinhaDeOrigem()));
-//                    System.out.println("Linha obtida: " + linhas.get((frases.get(nf).getLinhaDeOrigem())).getLinha());
+                    System.out.println("Indice da linha: " + indiceDaLinha);
+                    System.out.println("Indice da linha de origem: " + (frases.get(nf).getLinhaDeOrigem()));
+                    System.out.println("Linha obtida: " + linhas.get((frases.get(nf).getLinhaDeOrigem())).getLinha());
                     indiceDaLinha++;
                     linhaBase = linhas.get(indiceDaLinha);
                     //Ajustar isso aqui redundante
@@ -1146,11 +1252,11 @@ public class Pagina {
                 }
 
                 if (posicaoInicial + (verso.length() + linhaBase.getDiferencaDeInserir()) <= linha.length()) {
-//                    System.out.println("Esta na mesma linha/Linha base: " + linhaBase.getLinha());
-//                    System.out.println("Numero da linha de origem: " + frases.get(nf).getLinhaDeOrigem());
-//                    System.out.println("Linha selecionada: " + linhas.get(frases.get(nf).getLinhaDeOrigem()).getLinha());
-//                    System.out.println("Verso: " + verso);
-//                    System.out.println("Posição Inicial: " + posicaoInicial);
+                    System.out.println("Esta na mesma linha/Linha base: " + linhaBase.getLinha());
+                    System.out.println("Numero da linha de origem: " + frases.get(nf).getLinhaDeOrigem());
+                    System.out.println("Linha selecionada: " + linhas.get(frases.get(nf).getLinhaDeOrigem()).getLinha());
+                    System.out.println("Verso: " + verso);
+                    System.out.println("Posição Inicial: " + posicaoInicial);
 
                     //O problema da substituição errada no caso de exitir dois versos na mesma linha está aqui neste ponto
 //                    auxLink = marcarNaMesmaLista(linha, linhaBase, posicaoInicial + incrementoDaSubstituicao, verso, true);
@@ -1158,10 +1264,7 @@ public class Pagina {
 //                    //10.09.2018
 //                    incrementoDaSubstituicao += linhaBase.getLinhaComEscansao().length() - linha.length();
                     if (posicaoInicial != 0) {
-                     //   System.out.println("Posição inicial: " + posicaoInicial);
-                     //   System.out.println("Linha: " + linha);
-                     //   System.out.println("Verso: " + verso);
-                        auxLink = marcarNaMesmaLista(linha, linhaBase, posicaoInicial + 1, verso, true);
+                        auxLink = marcarNaMesmaLista(linha, linhaBase, posicaoInicial + 2, verso, true);
                     } else {
                         auxLink = marcarNaMesmaLista(linha, linhaBase, posicaoInicial, verso, true);
                     }
@@ -1172,24 +1275,18 @@ public class Pagina {
                         return;
                     }
                 } else {//Não está na mesma linha
-//                    System.out.println("Não está na mesma linha");
-//                    System.out.println("Linha: " + linha);
-//                    System.out.println("Verso: " + verso);
-//                    System.out.println("Posição inicial : " + posicaoInicial);
-//                    System.out.println("Linha base: " + linhaBase.getLinha());
+                    System.out.println("Não está na mesma linha");
+                    System.out.println("Linha: " + linha);
+                    System.out.println("Verso: " + verso);
+                    System.out.println("Posição inicial : " + posicaoInicial);
+                    System.out.println("Linha base: " + linhaBase.getLinha());
                     int oQueJaFoiInserido = linhaBase.getLinha().length() - posicaoInicial;
-//                    System.out.println("O que já foi inserido");
-//                    System.out.println(" 1- Enviando para marcar: " + verso.substring(0, oQueJaFoiInserido));
+                    System.out.println("O que já foi inserido");
+                    System.out.println(" 1- Enviando para marcar: " + verso.substring(0, oQueJaFoiInserido));
                     auxLink = marcarNaMesmaLista(linha, linhaBase, posicaoInicial, verso.substring(0, oQueJaFoiInserido), false);//O que deve ser inserido até onde a linha permitir
                     frases.get(nf).getVerso().setLink(auxLink);
-                 //   System.out.println("auxLink Antes: " + auxLink);
                     frases.get(nf).getVerso().setSubstituicao(true);//Em 27/09 - Objetivo marcar o verso que foi substituíto e não produzir equivócos no na geração das estruturas de versificação
-                    try {
-                        verso = verso.substring(oQueJaFoiInserido - 2, verso.length() - 1);//Ainda falta inserir isso aqui...
-                    } catch (StringIndexOutOfBoundsException ex) {
-                        verso = verso.substring(oQueJaFoiInserido - 1, verso.length() - 1);//Ainda falta inserir isso aqui...
-                    }
-                 //   System.out.println("Ainda falta inserir: " + verso);
+                    verso = verso.substring(oQueJaFoiInserido + 1, verso.length());//Ainda falta inserir isso aqui...
                     int indiceDaLinhaAux = indiceDaLinha + 1;//Pegar a próxima linha
                     posicaoInicial = 0;//Na próxima linha, começcar pelo índice 0.
                     while (verso.length() > 0) {//Enquanto não terminar de inserir tudo
@@ -1197,17 +1294,15 @@ public class Pagina {
                         linhaBase = linhas.get(indiceDaLinhaAux);//Pegue a próxima linha
                         linha = linhaBase.getLinha();
                         if (verso.length() > linha.length()) {
-                         //   System.out.println(" 2- Enviando para marcar: " + verso);
-                            //  auxLink = marcarNaMesmaLista(linhaBase.getLinha(), linhaBase, posicaoInicial, verso.substring(0, linha.length()), true);//O que deve ser inserido até onde a linha permitir 
-                            auxLink = marcarNaMesmaLista(linhaBase.getLinha(), linhaBase, posicaoInicial, verso, true);//O que deve ser inserido até onde a linha permitir 
+                            System.out.println(" 2- Enviando para marcar: " + verso.substring(0, linha.length()));
+                            auxLink = marcarNaMesmaLista(linhaBase.getLinha(), linhaBase, posicaoInicial, verso.substring(0, linha.length()), true);//O que deve ser inserido até onde a linha permitir 
                             frases.get(nf).getVerso().setLink(auxLink);
                             frases.get(nf).getVerso().setSubstituicao(true);//Em 27/09 - Objetivo marcar o verso que foi substituíto e não produzir equivócos no na geração das estruturas de versificação
                             verso = verso.substring(0, linha.length());
-                            verso = "";
                             indiceDaLinhaAux++;
                             frases.get(nf).setIsReplace(true);
                         } else {
-                         //   System.out.println(" 3- Enviando para marcar: " + verso);
+                            System.out.println(" 3- Enviando para marcar: " + verso);
                             auxLink = marcarNaMesmaLista(linhaBase.getLinha(), linhaBase, posicaoInicial, verso, true);//O que deve ser inserido até onde a linha permitir 
                             frases.get(nf).getVerso().setLink(auxLink);
                             frases.get(nf).getVerso().setSubstituicao(true);//Em 27/09 - Objetivo marcar o verso que foi substituíto e não produzir equivócos no na geração das estruturas de versificação
@@ -1242,8 +1337,15 @@ public class Pagina {
                     linha = linhaBase.getLinhaComEscansao();
                 }
 
+                System.out.println("getLinhaDeOrigem: " + linhas.get((frases.get(nf).getLinhaDeOrigem())).getLinha());
+                System.out.println("getLinhaDeOrigem: " + frases.get(nf).getLinhaDeOrigem());
+                System.out.println("indiceDaLinha: " + indiceDaLinha);
+
                 int posicaoInicial = frases.get(nf).getIndiceDeOrigemDaCadeiaNaLinha();
                 while (frases.get(nf).getVerso().getLocal().toLowerCase().equals("Início de frase.".toLowerCase()) && indiceDaLinha != frases.get(nf).getLinhaDeOrigem()) {
+                    System.out.println("Indice da linha: " + indiceDaLinha);
+                    System.out.println("Indice da linha de origem: " + (frases.get(nf).getLinhaDeOrigem()));
+                    System.out.println("Linha obtida: " + linhas.get((frases.get(nf).getLinhaDeOrigem())).getLinha());
                     indiceDaLinha++;
                     linhaBase = linhas.get(indiceDaLinha);
                     //Ajustar isso aqui redundante
@@ -1255,6 +1357,12 @@ public class Pagina {
                 }
 
                 if (posicaoInicial + (verso.length() + linhaBase.getDiferencaDeInserir()) <= linha.length()) {
+                    System.out.println("Esta na mesma linha/Linha base: " + linhaBase.getLinha());
+                    System.out.println("Numero da linha de origem: " + frases.get(nf).getLinhaDeOrigem());
+                    System.out.println("Linha selecionada: " + linhas.get(frases.get(nf).getLinhaDeOrigem()).getLinha());
+                    System.out.println("Verso: " + verso);
+                    System.out.println("Posição Inicial: " + posicaoInicial);
+
                     if (posicaoInicial != 0) {
                         if (frases.get(nf).getVerso().getLocal().toLowerCase().equals("Início de frase.".toLowerCase())) {
                             auxLink = marcarNaMesmaLista(linha, linhaBase, posicaoInicial + 1, verso, true);
@@ -1270,7 +1378,14 @@ public class Pagina {
                         return;
                     }
                 } else {//Não está na mesma linha
+                    System.out.println("Não está na mesma linha");
+                    System.out.println("Linha: " + linha);
+                    System.out.println("Verso: " + verso);
+                    System.out.println("Posição inicial : " + posicaoInicial);
+                    System.out.println("Linha base: " + linhaBase.getLinha());
                     int oQueJaFoiInserido = linhaBase.getLinha().length() - posicaoInicial;
+                    System.out.println("O que já foi inserido");
+                    System.out.println(" 1- Enviando para marcar: " + verso.substring(0, oQueJaFoiInserido));
                     auxLink = marcarNaMesmaLista(linha, linhaBase, posicaoInicial, verso.substring(0, oQueJaFoiInserido), false);//O que deve ser inserido até onde a linha permitir
                     frases.get(nf).getVerso().setLink(auxLink);
                     verso = verso.substring(oQueJaFoiInserido + 1, verso.length());//Ainda falta inserir isso aqui...
@@ -1281,12 +1396,14 @@ public class Pagina {
                         linhaBase = linhas.get(indiceDaLinhaAux);//Pegue a próxima linha
                         linha = linhaBase.getLinha();
                         if (verso.length() > linha.length()) {
+                            System.out.println(" 2- Enviando para marcar: " + verso.substring(0, linha.length()));
                             auxLink = marcarNaMesmaLista(linhaBase.getLinha(), linhaBase, posicaoInicial, verso.substring(0, linha.length()), true);//O que deve ser inserido até onde a linha permitir 
                             frases.get(nf).getVerso().setLink(auxLink);
                             verso = verso.substring(0, linha.length());
                             indiceDaLinhaAux++;
                             frases.get(nf).setIsReplace(true);
                         } else {
+                            System.out.println(" 3- Enviando para marcar: " + verso);
                             auxLink = marcarNaMesmaLista(linhaBase.getLinha(), linhaBase, posicaoInicial, verso, true);//O que deve ser inserido até onde a linha permitir 
                             frases.get(nf).getVerso().setLink(auxLink);
                             verso = "";
@@ -1304,18 +1421,25 @@ public class Pagina {
 
     private int marcarNaMesmaLista(String linha, Linha linhaBase, int posicaoInicial, String verso, boolean incrementarLink) {
         StringBuilder retorno = new StringBuilder(linha);
-        /*if (linhaBase.isSubstituicao()) {
+        if (linhaBase.isSubstituicao()) {
             if (acrescentarUm) {
                 posicaoInicial += linhaBase.getDiferencaDeInserir() + 1;
                 acrescentarUm = false;
             } else {
                 posicaoInicial += linhaBase.getDiferencaDeInserir() + 1;
             }
-        }*/
+        }
+//        System.out.println("id=\"" + link + ": " + verso);
+//        System.out.println("MarcarNaMesmaLinha....");
+//        System.out.println("Diferenca de inserir: " + linhaBase.getDiferencaDeInserir());
+//        System.out.println("Linha recebida: " + linha);
+//        System.out.println("Posiccao inicial: " + posicaoInicial);
+//        System.out.println("Ponto de partida: " + retorno.substring(0, posicaoInicial));
+//        System.out.println("Posição final: " + (posicaoInicial + (verso.length() - 1)));
+//        System.out.println("Comprimento do retorno: " + (retorno.length() - 1));
+
         try {
-           // System.out.println("Marcando verso: " + verso);
             retorno.replace(posicaoInicial, posicaoInicial + (verso.length()), "<a id=\"" + link + "\"><span id=\"" + link + "\" style=\"background-color: #8CC5F4\">" + verso + "</span>");
-         //   System.out.println("Marcando verso Retorno: " + retorno.toString());
         } catch (StringIndexOutOfBoundsException se) {
             System.out.println("Erro ao tentar substituir: " + verso);
         }
@@ -1327,8 +1451,10 @@ public class Pagina {
             link++;
 
         }
+        System.out.println("Novo Valor de Link: " + link);
 
         linhaBase.setSubstituicao(true);
+        //linhaBase.setDiferencaDeInserir(verso.length() - verso.length());//Rever isso aqui
         linhaBase.setDiferencaDeInserir(linhaBase.getDiferencaDeInserir() + incremento.length() - 1);//Rever isso aqui
         linhaBase.setLinhaComEscansao(retorno.toString());
         return linkRetorno;
@@ -1493,7 +1619,7 @@ public class Pagina {
         try {
 
             for (Linha linha : linhas) {
-                //  System.out.println(linha.getLinhaComEscansao());
+                System.out.println(linha.getLinhaComEscansao());
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

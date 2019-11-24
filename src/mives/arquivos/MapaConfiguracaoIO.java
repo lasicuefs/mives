@@ -303,9 +303,9 @@ public class MapaConfiguracaoIO {
 //            print.close();
 //            fileWriterDestino.close();
 //        } catch (FileNotFoundException exception) {
-
+//            System.out.println(exception.getMessage());
 //        } catch (IOException ioe) {
-
+//            System.out.println(ioe.getMessage());
 //
 //        }
     }
