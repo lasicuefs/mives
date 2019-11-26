@@ -5,6 +5,8 @@
 #outros
 *.iml
 .idea/
+build/
+nbproject/
 
 # User-specific stuff
 .idea/**/workspace.xml
