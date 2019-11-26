@@ -1507,7 +1507,7 @@ public class EscansaoCustomizada2 {
 
         for (int i = 0; i < temp.length; i++) {
             if (i < (temp.length - 1)) {
-                if (isVogal(temp[i].charAt(temp[i].length() - 1)) //se a última letra da sílaba for uma vogal
+                if (temp[i].length() > 0 && isVogal(temp[i].charAt(temp[i].length() - 1)) //se a última letra da sílaba for uma vogal
                         && (isVogal(temp[i + 1].replace("#", "").charAt(0)) //a próxima comecar por uma vogal
                         || (buscarLetra(temp[i + 1].replace("#", "").charAt(0), new char[]{'h', 'H'})))) {//ou verifica se a próxima palavra começa com h ou H
                     if (verificarSinerese(temp[i], temp[i + 1])) {
