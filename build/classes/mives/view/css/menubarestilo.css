@@ -1,0 +1,37 @@
+.menu-bar {
+    -fx-background-color: #3F3F3F;
+    -fx-opacity: 0.5;
+    -fx-text-fill: #D8D8D8;
+}
+
+.menu-button .label{
+	-fx-text-fill: #D8D8D8;	
+}
+
+.menu-item .label{
+    -fx-text-fill: #D8D8D8;
+}
+
+.menu-bar .menu-button:hover, .menu-bar .menu-button:focused, .menu-bar .menu-button:showing {
+    -fx-background: -fx-accent;
+    -fx-background-color: #3F3F3F;
+    -fx-opacity: 0.5;
+   /* -fx-text-fill: -fx-selection-bar-text;*/
+   -fx-text-fill: #D8D8D8;
+}
+
+
+.menu-item {
+    -fx-background-color: #3F3F3F;
+    -fx-padding: 0em 0em 0em 0em;
+    /*-fx-text-fill: greenyellow;*/
+}
+
+.context-menu {
+    -fx-skin: "com.sun.javafx.scene.control.skin.ContextMenuSkin";
+    -fx-background-color:#3F3F3F;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 0 6 6 6, 0 5 5 5, 0 4 4 4;
+    -fx-padding: 0.333333em 0.083333em 0.666667em 0.083333em; /* 4 1 8 1 */
+    -fx-opacity: 0.9;
+}

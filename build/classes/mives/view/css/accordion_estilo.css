@@ -1,0 +1,154 @@
+
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('Ubuntu-Regular.ttf');
+}
+
+
+.accordion > .titled-pane {
+	-fx-padding: 0 0 0.8em 0;  
+	
+}
+
+.titled-pane
+{
+	-fx-skin: "com.sun.javafx.scene.control.skin.TitledPaneSkin";  
+	-fx-background-color:#3F3F3F;
+	-fx-text-fill: #D8D8D8;
+	-fx-border-color:#D8D8D8,#D8D8D8, #D8D8D8;
+	-fx-border-radius: 20;
+	-fx-border-inserts: 5;
+	-fx-border-width: 0;
+	-fx-border-style: solid inside;
+	-fx-font-weight: bold; 
+	-fx-font-family: 'Ubuntu';
+	
+}
+
+
+.titled-pane:focused 
+{
+	-fx-text-fill: #D8D8D8;
+	
+	
+}
+
+.titled-pane > .title 
+{
+	/*-fx-background-insets: 0, 1, 2;*/
+	-fx-background-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0;
+	-fx-background-color: #3F3F3F;
+	-fx-border-radius: 20;
+	-fx-border-color: #D8D8D8;
+	-fx-border-width: 2;
+	-fx-background-insets: 0 20 0 20;
+
+	
+}
+
+.titled-pane > .anchorPane > .font > .label {
+    -fx-font-size: 14pt;
+   /*-fx-font-family: "Segoe UI Semibold";*/
+    /*-fx-font-family: 'Ubuntu';*/
+    -fx-text-fill: white;
+    -fx-opacity: 0.6;
+
+	
+}
+
+.titled-pane > .title > .text{
+	/* -fx-font-family: 'Ubuntu';
+	 -fx-font-weight: bold; */
+}
+
+.titled-pane:focused > .title 
+{
+	/*-fx-color: -fx-focus-color;*/
+	-fx-text-align: center;
+	/*-fx-font-family: 'Ubuntu';*/
+}
+
+.titled-pane:expanded > .title > .arrow-button{
+	-fx-background-image: url(../imagens/ic_remove_white_24dp.png);
+	-fx-background-size: 14px 14px;
+}
+
+/*Verificar isso aqui realmente funciona*/
+.titled-pane:condense > .title > .arrow-button{
+	-fx-background-image: url(../imagens/ic_remove_white_24dp.png);
+	-fx-background-size: 14px 14px;
+}
+
+/*
+.titled-pane:focused > .title > .arrow-button 
+{
+	-fx-background-image: url(./ic_remove_white_24dp.png);
+	-fx-background-size: 14px 14px;
+}*/
+
+.titled-pane > .title > .arrow-button 
+{
+	-fx-background-color: null;
+	-fx-background-insets: 0;
+	-fx-background-radius: 0;
+	-fx-padding: 0.0em 0.25em 0.0em 0.0em; /* 0 3 0 0 */
+	/*-fx-background-image: url(../imagens/ic_add_white_24dp.png);*/
+	-fx-background-image: url(../imagens/soma.png);
+	
+	-fx-background-size: 20px 14px;
+	-fx-background-position: center;
+}
+
+.titled-pane > .title > .arrow-button .arrow 
+{
+	-fx-background-color:null;
+	-fx-background-insets: 1 0 -1 0, 0;
+	-fx-padding: 0.25em 0.3125em 0.25em 0.3125em; /* 3 3.75 3 3.75 */
+	-fx-shape: "M 0 0 h 7 l -3.5 4 z";
+}
+
+.titled-pane:collapsed > .title > .arrow-button .arrow 
+{
+	-fx-rotate: -90;
+}
+
+.titled-pane > *.content 
+{
+	-fx-background-insets: 0 0 20 1;
+	-fx-padding: 0.167em;
+	-fx-background-color: #3F3F3F;
+	-fx-border-radius: 20;
+	-fx-border-color: transparent;
+	-fx-font-family: 'Ubuntu';
+	-fx-font-weight: normal;
+	
+}
+
+.titled-pane:focused > .title > .arrow-button .arrow 
+{
+	-fx-background-color: null;
+}
+
+.titled-pane> .anchor-pane{
+   -fx-border-color: blue;
+}
+
+.pane {
+	-fx-padding: 0 0 0.5em 0;
+	
+}
+
+/* set the collapse icon*/
+.Accordion--default v-pane-header::after {
+    -fx-background-image: url(../imagens/ic_add_white_24dp.png);
+	-fx-background-size: 14px 14px;
+}
+
+/* set the expand icon*/
+.accordion.is-expanded::after{
+   -fx-background-image: url(../imagens/ic_remove_white_24dp.png);
+	-fx-background-size: 14px 14px;
+}
+
+

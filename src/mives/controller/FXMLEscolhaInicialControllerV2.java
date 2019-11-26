@@ -59,13 +59,13 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
         fileChooser.setTitle("MIVES - Abrir arquivo de texto para processamento.");
         fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Arquivo de texto", "txt"));
 
-
+        System.out.println("Estou aqui");
         try {
             File file = fileChooser.showOpenDialog(null);
             if (file != null) {
                 FXMLCarregarLivroController.arquivo = file;
                 MainControllerHelper.controller.nextPage(e);
-        
+                System.out.println("Já estou aqui");
             } else {
                 System.out.println("valor invãlido");
             }
@@ -130,7 +130,7 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
 
     @FXML
     public void addDicionario(ActionEvent e) {
-  
+        System.out.println("oioioioioiioio");
         Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
         dialogoInfo.setTitle("MIVES");
         dialogoInfo.setHeaderText("Adicionar termos ao dicionário");

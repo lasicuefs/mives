@@ -80,9 +80,7 @@ public class FXMLMainController implements Initializable, PageWizard {
     public void update() {
         if (MivesWizardData.isHabilitarBotaoFinalizar()) {
             btnFinalizar.setDisable(false);
-            btnProximo.setDisable(true);
         }
-    
     }
     
 }

@@ -65,9 +65,6 @@ public class MainControllerHelper {
             Revista.notificar();
 
             navTo(curPageIdx + 1);
-//            if(curPageIdx + 1 == 6){
-//                controller.btnFinalizar.setDisable(true);
-//            }
         }
     }
 
@@ -121,11 +118,12 @@ public class MainControllerHelper {
 
     public void processarLivro() {
 //        try {
-
+//            System.out.println("Processando Livro");
 //            MivesController.getInstance().minerarVersosCustomizados(Livro.getInstance(),
 //                    MivesWizardData.INICIOFRASE, MivesWizardData.FINALFRASE, MivesWizardData.FRASECOMPLETA,
 //                    MivesWizardData.TIPODEVERSOINICIO, MivesWizardData.TIPODEVERSOFINAL,
 //                    true, true, true, true, true);
+//            System.out.println("Livro processado");
 //        } catch (LivroException ex) {
 //            Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
 //        }
@@ -150,13 +148,11 @@ public class MainControllerHelper {
             return null;
 
         }
-        
-        
 
         @Override
         protected void succeeded() {
             super.succeeded();
-            controller.btnFinalizar.setDisable(true);
+            controller.btnFinalizar.setDisable(false);
 
         }
 

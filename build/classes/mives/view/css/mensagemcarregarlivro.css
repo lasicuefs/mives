@@ -1,0 +1,11 @@
+.label  {
+
+    -fx-min-height: 148px;
+    -fx-min-width: 98px;
+    -fx-background-image: url(../imagens/mensageminicial.png);
+    -fx-background-size: 148px 98px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center 8px;
+    -fx-background-color:  #3F3F3F;
+
+}

@@ -104,7 +104,7 @@ public class FXMLEscolhaTipoVersoController implements Initializable {
     private void definirGruposRadioButton() {
 
         radioCompleta.setToggleGroup(group);
-     //   radioCompleta.setSelected(true);
+        radioCompleta.setSelected(true);
         radioInicio.setToggleGroup(group);
         radioFinal.setToggleGroup(group);
 

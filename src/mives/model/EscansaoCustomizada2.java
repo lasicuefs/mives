@@ -69,7 +69,7 @@ public class EscansaoCustomizada2 {
         if (palavraAtual.charAt(0) == '#') {
             palavraAtual = palavraAtual.replace("#", "");
         }
-//        System.out.println("PALAVRA ANTERIOR:>>>>> " + palavraAnterior);
+
         if (isVogal(palavraAnterior.replace(",", "").replace(".", "").charAt(palavraAnterior.replace(",", "").replace(".", "").length() - 1)) // && !(arrayVerso[i].contains("#"))) - Alteração realizada em 06/07 referente a utilização da vírgula - removida para faciliar o caso de elisão.
                 //E a próxima começar com vogal
                 && (isVogal(palavraAtual.replace("#", "").charAt(0)) //a próxima comecar por uma vogal - A VOGAL PRECISA SER ÁTONA
@@ -206,9 +206,9 @@ public class EscansaoCustomizada2 {
             numeroDeTokensDaFrase = vetorPalavrasDaFrase.length - 1;
             while (numeroDeTokensDaFrase >= 0 && continuarBusca) {
                 temp = vetorPalavrasDaFrase[numeroDeTokensDaFrase];//Pegue a última palavra
-                //    System.out.println("ENVIANDO PARA O SEPARADOR 1: " + temp);
+            //    System.out.println("ENVIANDO PARA O SEPARADOR 1: " + temp);
                 temp = separador.separarSilabasTextoV1(temp).toString().trim();//separe a sílaba
-                //    System.out.println("RECEBENDO DO SEPARADOR: " + temp);
+            //    System.out.println("RECEBENDO DO SEPARADOR: " + temp);
                 if (numPalavrasVerso == 0) {
                     palavraTemp = contarSilabasPalavraNew(temp, 0, true);//Considerar contagem até a tônica da palavra
                     numSilabasPoeticas += palavraTemp.getQtdSilabasPoeticas();
@@ -1507,7 +1507,7 @@ public class EscansaoCustomizada2 {
 
         for (int i = 0; i < temp.length; i++) {
             if (i < (temp.length - 1)) {
-                if (isVogal(temp[i].charAt(temp[i].length() - 1)) //se a última letra da sílaba for uma vogal
+                if (temp[i].length() > 0 && isVogal(temp[i].charAt(temp[i].length() - 1)) //se a última letra da sílaba for uma vogal
                         && (isVogal(temp[i + 1].replace("#", "").charAt(0)) //a próxima comecar por uma vogal
                         || (buscarLetra(temp[i + 1].replace("#", "").charAt(0), new char[]{'h', 'H'})))) {//ou verifica se a próxima palavra começa com h ou H
                     if (verificarSinerese(temp[i], temp[i + 1])) {

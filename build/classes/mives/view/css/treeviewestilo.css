@@ -1,0 +1,15 @@
+.tree-view{
+	-fx-font-family: "Ubuntu";
+}
+.tree-view, .tree-cell {
+    -fx-background-color: #3F3F3F;
+    -fx-text-fill: white;
+	-fx-font-weight:normal;
+}
+
+.tree-cell:selected {
+    -fx-font-weight: bold;
+	-fx-text-fill: #8CC5F4;
+}
+
+

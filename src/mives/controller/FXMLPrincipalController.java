@@ -143,20 +143,22 @@ public class FXMLPrincipalController implements Initializable {
         helper.sendHtmlToWebView("20");
     }
 
-//    public void listarVersosEClassificacoes() {
-//        helper.listarVersosEClassificacoes();
-//    }
-//    public void carregarArquivoExemplo() {
-//        webEngine = browser.getEngine();
-//        // Enable Javascript.
-//        webEngine.setJavaScriptEnabled(true);
-//        webEngine.load("file:///C://Users//Ricardo//Documents//arquivo.html");
-//    }
+    public void listarVersosEClassificacoes() {
+        helper.listarVersosEClassificacoes();
+    }
+
+    public void carregarArquivoExemplo() {
+        webEngine = browser.getEngine();
+        // Enable Javascript.
+        webEngine.setJavaScriptEnabled(true);
+        webEngine.load("file:///C://Users//Ricardo//Documents//arquivo.html");
+    }
+
     //Remover - Utilizado apenas para teste
     public void proximo() {
         idAtual++;
         helper.avancar(idAtual);
-
+//        System.out.println(" testeClick2()");
 //        helper.sendHtmlToWebView("20");
     }
 
@@ -164,7 +166,7 @@ public class FXMLPrincipalController implements Initializable {
         idAtual--;
         helper.voltar(idAtual);
 
-
+//        System.out.println("TesteClick");
 //        helper.sendHtmlToWebView("1");
     }
 
@@ -180,15 +182,16 @@ public class FXMLPrincipalController implements Initializable {
         helper.buscarNoTexto();
     }
 
-//    public void carregarTextoExemplo() {
-//        // helper.carregarTextoExemplo();
-//
-//        helper.carregarHtml();
-//        helper.gerarArvores();
-//        helper.carregarGraficosOcorrencias();
-//
-//        //  webEngine.load("file:///C://Users//Ricardo//Documents//AMargem.html");
-//    }
+    public void carregarTextoExemplo() {
+        // helper.carregarTextoExemplo();
+
+        helper.carregarHtml();
+        helper.gerarArvores();
+        helper.carregarGraficosOcorrencias();
+
+        //  webEngine.load("file:///C://Users//Ricardo//Documents//AMargem.html");
+    }
+
     public void gerarGraficoDistancia() {
         helper.gerarGraficoDistancia();
     }
@@ -260,7 +263,7 @@ public class FXMLPrincipalController implements Initializable {
                         public void handleEvent(org.w3c.dom.events.Event evt) {
                             String ident = ((Element) evt.getTarget()).getAttribute("id");
                             idAtual = Integer.parseInt(ident);
-
+//                            System.out.println("id: " + ident);
                         }
                     };
 
@@ -293,6 +296,24 @@ public class FXMLPrincipalController implements Initializable {
             ex.printStackTrace();
         }
 
+//        JFileChooser salvar = new JFileChooser();
+//        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+//                "XML", "xml");
+//        salvar.setDialogType(JFileChooser.SAVE_DIALOG);
+//        salvar.setDialogTitle("Salvar arquivo Processado");
+//        salvar.setFileFilter(filter);
+//        int resultado = salvar.showSaveDialog(this);
+//        if (resultado != JFileChooser.APPROVE_OPTION) {
+//            return;
+//        } else {
+//            File caminho = salvar.getSelectedFile();
+//            LivroIO livroIO = new LivroIO();
+//            livro.setMapaConfiguracao(MapaConfiguracao.getInstacia());
+//            livroIO.salvarComo(livro, caminho);
+//        }
     }
 
+//    public void apagarArquivo() {
+//        helper.apagarArquivo();
+//    }
 }

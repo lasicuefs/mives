@@ -461,6 +461,10 @@ public class LivroIO {
             System.out.println("Preparando para ler....");
             livro = (Livro) xStream.fromXML(fis);
             System.out.println("Leitura finalizadas");
+//            System.out.println("MAPA CONFIGURAÇÃO SINERESE: " + mapaConfiguracao.getSinerese().size());
+//            System.out.println("MAPA CONFIGURAÇÃO DIERESE: " + mapaConfiguracao.getDierese().size());
+//            System.out.println("MAPA CONFIGURAÇÃO ELISÃO: " + mapaConfiguracao.getElisao().size());
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LivroIO.class
                     .getName()).log(Level.SEVERE, null, ex);

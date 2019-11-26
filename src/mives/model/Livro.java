@@ -247,7 +247,6 @@ public class Livro {
     public void gerarLinhasEscandidas() {
         for (Integer chave : paginas.keySet()) {
             paginas.get(chave).gerarLinhasEscandidas();
-            paginas.get(chave).imprimeLinhasEscadidadas();
         }
         this.setFoiProcessado(true);
     }

@@ -92,14 +92,14 @@ public class PrincipalHelper {
             arquivoDeDestino = new File(System.getProperty("user.dir") + "/src/temp/" + System.currentTimeMillis() + ".html");
 //            File arquivoDeDestino = new File("H:\\Barrikl\\arquivo" + System.currentTimeMillis() + ".html");
             String nome = arquivoDeDestino.getName();
-
+            System.out.println("Nome do arquivo: " + nome);
             fileWriterDestino = new FileWriter(arquivoDeDestino); //Escrever no novo arquivo
             bufferedWriterDestino = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(arquivoDeDestino), StandardCharsets.UTF_8));
             bufferedWriterDestino.write(conteudo.toString());
             bufferedWriterDestino.close();
             bufferedWriterDestino.close();
             fileWriterDestino.close();
-
+            //  System.out.println("file:///" + System.getProperty("user.dir") + "/src/temp/" + nome);
             principal.webEngine.load("file:///" + System.getProperty("user.dir") + "/src/temp/" + nome);
 //            principal.webEngine.load("file:///H://Barrikl//" + nome);
         } catch (IOException ex) {
@@ -266,11 +266,9 @@ public class PrincipalHelper {
 
     public void preencherEstatisticas() {
         principal.labelArquivo.setText(Livro.getInstance().getArquivoDeOrigem().getName());
-        principal.labelNumeroFrases.setText((Livro.getInstance().getNumeroDeSegmentos() - 1) + "");
-        //  principal.labelTipos.setText(MivesWizardData.getLocalBusca());
-        principal.labelMetros.setText(Livro.getInstance().getTiposBuscados());
+        principal.labelTipos.setText(MivesWizardData.getLocalBusca());
+        principal.labelTipos.setText(Livro.getInstance().getTiposBuscados());
         principal.labelEstruturas.setText(Livro.getInstance().getSentencas().size() + "");
-        principal.labelTipos.setText(Livro.getInstance().getTipoDeBusca());
     }
 
     class nodeArvore {
@@ -291,14 +289,14 @@ public class PrincipalHelper {
 
     private void gerarEstruturaArvore() {
         ArrayList<Sentenca> sentencas = Livro.getInstance().comporSentencas();
-//        System.out.println("TOTAL DE SENTENÇAS: " + sentencas.size());
+        System.out.println("TOTAL DE SENTENÇAS: " + sentencas.size());
         int link = -1;
         for (Sentenca sentenca : sentencas) {
 //            link++;
-//            System.out.println("Sentença: " + sentenca.getSegmento());
+            System.out.println("Sentença: " + sentenca.getSegmento());
             String verso = sentenca.getEstruturaDeVesificacao().get(0).getPalavrasVerso();
             link = sentenca.getLink();
-//            System.out.println("Valor de link: " + link);
+            System.out.println("Valor de link: " + link);
             for (EstruturaVersificacao estruturaVersificacao : sentenca.getEstruturaDeVesificacao()) {
                 if (!(estrutraArvore.containsKey(estruturaVersificacao.getNumeroDeSilabas()))) {
                     ArrayList<nodeArvore> nodes = new ArrayList<>();
@@ -338,11 +336,11 @@ public class PrincipalHelper {
             k++;
         }
         ordenarVetor(tipos);
-//        System.out.println("Tamanho do vetor de tipos: " + tipos.length);
+        System.out.println("Tamanho do vetor de tipos: " + tipos.length);
 
         for (int i : tipos) {
-//            System.out.println("TIPO ENVIADO: " + i);
-//            System.out.println("Quantidade de enviados: " + estrutraArvore.get(i).size());
+            System.out.println("TIPO ENVIADO: " + i);
+            System.out.println("Quantidade de enviados: " + estrutraArvore.get(i).size());
             TreeItem<NodeTree> rootItem = montarArvoreV2(estrutraArvore.get(i));
             adicionarTitledPane(rootItem, i);
         }
@@ -359,7 +357,7 @@ public class PrincipalHelper {
                 (obs, o, n) -> {
                     try {
                         sendHtmlToWebView(n.getValue().getValor());
-                        //   System.out.println("n: " + n.getValue().getValor());
+                        System.out.println("n: " + n.getValue().getValor());
                     } catch (Exception exe) {
 
                     }
@@ -402,7 +400,8 @@ public class PrincipalHelper {
         TreeItem<NodeTree> tonicas;
         TreeItem<NodeTree> classificacao;
 
-        // System.out.println("TAMANHO DE NODES: " + nodes.size());
+        System.out.println("TAMANHO DE NODES: " + nodes.size());
+
         for (nodeArvore node : nodes) {
             verso = new TreeItem<NodeTree>(new NodeTree(node.verso, node.link));
             versoEscandido = new TreeItem<NodeTree>(new NodeTree(node.estrutura.getSentecaEscandida(), node.link));
@@ -425,7 +424,7 @@ public class PrincipalHelper {
 
     public void gerarVetorDeNavegacao() {
         numeroMaximoDeSegmentos = Livro.getInstance().getNumeroDeSegmentos();
-        //  System.out.println("Número de Segmentos gerados no vetor: " + numeroMaximoDeSegmentos);
+        System.out.println("Número de Segmentos gerados no vetor: " + numeroMaximoDeSegmentos);
     }
 
     public void avancar(int id) {
@@ -448,7 +447,7 @@ public class PrincipalHelper {
         if (principal.webEngine != null) {
             JSObject jSObject = (JSObject) principal.webEngine.executeScript("window");
             Object retorno = jSObject.call("jumpToHtmlId", jumpToHtmlId);
-            //   System.out.println("Retorno: " + retorno.toString());
+            System.out.println("Retorno: " + retorno.toString());
         }
     }
 
@@ -465,7 +464,7 @@ public class PrincipalHelper {
                     } catch (Exception en) {
 
                     }
-                    // System.out.println("n: " + n.toString());
+                    System.out.println("n: " + n.toString());
                 });
 
     }
@@ -481,11 +480,11 @@ public class PrincipalHelper {
             k++;
         }
         ordenarVetor(tipos);
-//        System.out.println("IMPRIMINDO TIPOS ORDENADOS...............................................");
+        System.out.println("IMPRIMINDO TIPOS ORDENADOS...............................................");
         for (int j = 0; j < tipos.length; j++) {
-            //     System.out.println(tipos[j]);
+            System.out.println(tipos[j]);
         }
-//        System.out.println("FIM - IMPRIMINDO TIPOS ORDENADOS...............................................");
+        System.out.println("FIM - IMPRIMINDO TIPOS ORDENADOS...............................................");
         principal.graficoBarras.setBarGap(7.5);
 
         principal.graficoBarras.setLegendSide(Side.BOTTOM);
@@ -548,7 +547,7 @@ public class PrincipalHelper {
             File file = new File(fileChooser.showOpenDialog(null).getPath());
             URL url = file.toURL();
             if (url != null) {
-                //  System.out.println("File: " + url.toString());
+                System.out.println("File: " + url.toString());
                 principal.webEngine.load(url.toString());
             } else {
                 System.out.println("valor invãlido");
