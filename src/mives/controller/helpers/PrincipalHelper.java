@@ -70,12 +70,37 @@ public class PrincipalHelper {
 
     public static File arquivoDeDestino = null;
 
+    public void exportarHtml(File arquivoDeDestino) {
+        FileWriter fileWriterDestino;
+        BufferedWriter bufferedWriterDestino;
+        // File arquivoDeDestino;
+        try {
+            // arquivoDeDestino = new File(System.getProperty("user.dir") + "/src/temp/" + System.currentTimeMillis() + ".html");
+            String nome = arquivoDeDestino.getName();
+            // System.out.println("Nome do arquivo: " + nome);
+            fileWriterDestino = new FileWriter(arquivoDeDestino); //Escrever no novo arquivo
+            bufferedWriterDestino = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(arquivoDeDestino), StandardCharsets.UTF_8));
+            bufferedWriterDestino.write(conteudo.toString());
+            bufferedWriterDestino.close();
+            bufferedWriterDestino.close();
+            fileWriterDestino.close();
+            //  System.out.println("file:///" + System.getProperty("user.dir") + "/src/temp/" + nome);
+            //      principal.webEngine.load("file:///" + System.getProperty("user.dir") + "/src/temp/" + nome);
+//            principal.webEngine.load("file:///H://Barrikl//" + nome);
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    GeradorHTML geradorHTML;
+    StringBuilder conteudo;
+
     public void carregarHtml() {
         MivesController.getInstance().gerarLinhasEscandidas();
         String tipoBusca = Livro.getInstance().getTipoDeBusca();
 
-        GeradorHTML geradorHTML = new GeradorHTML();
-        StringBuilder conteudo = geradorHTML.construirScript();
+        geradorHTML = new GeradorHTML();
+        conteudo = geradorHTML.construirScript();
 
         geradorHTML.montarParagrafo(conteudo);
 
