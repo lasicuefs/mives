@@ -45,69 +45,69 @@ import org.w3c.dom.events.EventTarget;
  * @author Ricardo
  */
 public class FXMLPrincipalController implements Initializable {
-
+    
     @FXML
     public WebView browser;
-
+    
     public WebEngine webEngine;
-
+    
     @FXML
     public Button botaoAnterior;
-
+    
     @FXML
     public Accordion accordionEsquerdo;
-
+    
     @FXML
     public Accordion accordionDireito;
-
+    
     @FXML
     public TextField searchtext;
-
+    
     @FXML
     public ProgressIndicator carregando;
-
+    
     @FXML
     public BarChart graficoBarras;
-
+    
     @FXML
     public ListView<String> listaSites;
-
+    
     @FXML
     public TreeView<NodeTree> decassilabosTree;
-
+    
     @FXML
     Button botonResult;
-
+    
     @FXML
     MenuBar menuBar;
-
+    
     @FXML
     MenuItem menuSalvar;
-
+    
     private PrincipalHelper helper;
-
+    
     @FXML
     public Label labelArquivo;
-
+    
     @FXML
     public Label labelNumeroFrases;
-
+    
     @FXML
     public Label labelEstruturas;
-
+    
     @FXML
     public Label labelMetros;
-
+    
     @FXML
     public Label labelTipos;
-
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         menuBar.setDisable(true);
         searchtext.setPromptText("Entre com o texto para realçar");
         carregando.setVisible(false);
         helper = new PrincipalHelper(this);
-
+        
         exibirMargens();
 //        helper.carregarGraficosOcorrencias();
         helper.carregarAncoras();
@@ -116,13 +116,13 @@ public class FXMLPrincipalController implements Initializable {
 
         // carregarTextoExemplo();
     }
-
+    
     int index = 0;
-
+    
     public void testeLink() {
         helper.sendHtmlToWebView("Headline2");
     }
-
+    
     public final String[] sites = {
         "HeadlineFim",
         "Headline2",
@@ -138,15 +138,15 @@ public class FXMLPrincipalController implements Initializable {
         "java.com",
         "google.com"
     };
-
+    
     public void irParaFim() {
         helper.sendHtmlToWebView("20");
     }
-
+    
     public void listarVersosEClassificacoes() {
         helper.listarVersosEClassificacoes();
     }
-
+    
     public void carregarArquivoExemplo() {
         webEngine = browser.getEngine();
         // Enable Javascript.
@@ -161,7 +161,7 @@ public class FXMLPrincipalController implements Initializable {
 //        System.out.println(" testeClick2()");
 //        helper.sendHtmlToWebView("20");
     }
-
+    
     public void anterior() {
         idAtual--;
         helper.voltar(idAtual);
@@ -177,11 +177,11 @@ public class FXMLPrincipalController implements Initializable {
 //        areaDeTexto.setWrapText(true);2603042@15fev
     }
     String texto = "";
-
+    
     public void buscarNoTexto() {//Realizar modificação aqui
         helper.buscarNoTexto();
     }
-
+    
     public void carregarTextoExemplo() {
         // helper.carregarTextoExemplo();
 
@@ -191,51 +191,68 @@ public class FXMLPrincipalController implements Initializable {
 
         //  webEngine.load("file:///C://Users//Ricardo//Documents//AMargem.html");
     }
-
+    
     public void gerarGraficoDistancia() {
         helper.gerarGraficoDistancia();
     }
-
+    
     public void gerarGraficoDistTonica() {
         helper.gerarGraficoDistTonica();
     }
-
+    
     public void distanciasMetrificadas() {
         helper.distanciasMetrificadas();
     }
-
+    
+    public void exportarParaHTML() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("MIVES - Exporta resumo em HTML...");
+        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("HTML", "html"));
+        try {
+            File file = fileChooser.showSaveDialog(null);
+            if (file != null) {
+                helper.exportarHtml(file);
+                
+            } else {
+                return;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
     public void dsitribuicaDeTonicas() {
         helper.dsitribuicaDeTonicas();
     }
-
+    
     public void frasesDoTexto() {
         helper.frasesDoTexto();
     }
-
+    
     public void mapaConfiguracao() {
         helper.mapaConfiguracao();
     }
-
+    
     public void ocorrenciaPorFrase() {
         helper.ocorrenciaPorFrase();
     }
-
+    
     public void sentecasTXT() {
         helper.sentecasTXT();
     }
-
+    
     public void sentencasXml() {
         helper.sentencasXml();
     }
-
+    
     public void sentencasETipos() {
         helper.sentencasETipos();
     }
-
+    
     public void versosClassificacao() {
         helper.versosClassificacao();
     }
-
+    
     public void apresentarResultados() {
         helper.carregarHtml();
         helper.gerarArvores();
@@ -245,20 +262,20 @@ public class FXMLPrincipalController implements Initializable {
         testarGerarEvento();
         helper.gerarVetorDeNavegacao();
         helper.preencherEstatisticas();
-
+        
     }
-
+    
     public static int idAtual = 0;
-
+    
     public void testarGerarEvento() {
         webEngine.getLoadWorker().stateProperty().addListener(new ChangeListener<State>() {
-
+            
             @Override
             public void changed(ObservableValue<? extends State> observable, State oldValue, State newValue) {
                 if (newValue == Worker.State.SUCCEEDED) {
                     // note next classes are from org.w3c.dom domain
                     EventListener listener = new EventListener() {
-
+                        
                         @Override
                         public void handleEvent(org.w3c.dom.events.Event evt) {
                             String ident = ((Element) evt.getTarget()).getAttribute("id");
@@ -266,7 +283,7 @@ public class FXMLPrincipalController implements Initializable {
 //                            System.out.println("id: " + ident);
                         }
                     };
-
+                    
                     Document doc = webEngine.getDocument();
                     Element el = doc.getElementById("a");
                     NodeList lista = doc.getElementsByTagName("a");
@@ -277,7 +294,7 @@ public class FXMLPrincipalController implements Initializable {
             }
         });
     }
-
+    
     public void salvar() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("MIVES - Salvar arquivo de configuração...");
@@ -288,7 +305,7 @@ public class FXMLPrincipalController implements Initializable {
                 LivroIO livroIO = new LivroIO();
                 Livro.getInstance().setMapaConfiguracao(MapaConfiguracao.getInstacia());
                 livroIO.salvarComo(Livro.getInstance(), file);
-
+                
             } else {
                 return;
             }
