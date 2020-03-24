@@ -242,6 +242,7 @@
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#sentecasTXT" text="Em TXT" />
                               <MenuItem mnemonicParsing="false" onAction="#sentencasXml" text="Em XML" />
+                              <MenuItem mnemonicParsing="false" onAction="#sentencasXmlGeral" text="XML Geral" />
                           </items>
                         </Menu>
                         <MenuItem mnemonicParsing="false" onAction="#sentencasETipos" text="Sentenças e tipos identificados" />

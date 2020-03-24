@@ -258,6 +258,22 @@ public class PrincipalHelper {
 
     }
 
+    public void sentencasXmlGeral() {
+        SentencasO sentencasO = new SentencasO(Livro.getInstance().comporSentencasGeral());
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("MIVES - Exportar Sentenças para XML");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text XML(*.xml)", "*.xml"));
+        fileChooser.setInitialFileName("*.xml");
+        try {
+            File file = fileChooser.showSaveDialog(null);
+            sentencasO.salvarComo(file);
+
+        } catch (Exception ex) {
+            Logger.getLogger(PrincipalHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
     public void sentencasETipos() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("MIVES - Exportar Matriz de Sentenças para TXT");
@@ -318,10 +334,10 @@ public class PrincipalHelper {
         int link = -1;
         for (Sentenca sentenca : sentencas) {
 //            link++;
-            System.out.println("Sentença: " + sentenca.getSegmento());
+//            System.out.println("Sentença: " + sentenca.getSegmento());
             String verso = sentenca.getEstruturaDeVesificacao().get(0).getPalavrasVerso();
             link = sentenca.getLink();
-            System.out.println("Valor de link: " + link);
+//            System.out.println("Valor de link: " + link);
             for (EstruturaVersificacao estruturaVersificacao : sentenca.getEstruturaDeVesificacao()) {
                 if (!(estrutraArvore.containsKey(estruturaVersificacao.getNumeroDeSilabas()))) {
                     ArrayList<nodeArvore> nodes = new ArrayList<>();

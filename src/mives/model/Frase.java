@@ -37,6 +37,7 @@ public class Frase {
     private ArrayList<Verso> versosExtra = new ArrayList<>();
     private boolean existeVerso = false;
     private int indiceDeOrigemDaCadeiaNaLinha;
+    private int numeroDaFrase;
     /**
      * Outras possibilidades de escansão testadas no mesmo segmento frásico.
      */
@@ -186,5 +187,19 @@ public class Frase {
      */
     public void setIsReplace(boolean isReplace) {
         this.isReplace = isReplace;
+    }
+
+    /**
+     * @return the numeroDaFrase
+     */
+    public int getNumeroDaFrase() {
+        return numeroDaFrase;
+    }
+
+    /**
+     * @param numeroDaFrase the numeroDaFrase to set
+     */
+    public void setNumeroDaFrase(int numeroDaFrase) {
+        this.numeroDaFrase = numeroDaFrase;
     }
 }

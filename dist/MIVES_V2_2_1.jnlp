@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="MIVES_V2_2_1.jar" size="2750062" download="eager" />
+    <jar href="MIVES_V2_2_1.jar" size="2751508" download="eager" />
     <jar href="lib\LapSeparatorJNI.j4n.jar" size="1164" download="eager" />
     <jar href="lib\hamcrest-api-1.0.jar" size="5681" download="eager" />
     <jar href="lib\hamcrest-junit-2.0.0.0.jar" size="14347" download="eager" />

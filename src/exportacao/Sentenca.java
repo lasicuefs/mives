@@ -15,6 +15,8 @@ public class Sentenca {
 
     private String segmento;
     private int link;
+ 
+    private int numeroDaFrase;
     
 
     private ArrayList<EstruturaVersificacao> estruturaDeVesificacao;
@@ -51,5 +53,21 @@ public class Sentenca {
     public void setLink(int link) {
         this.link = link;
     }
+
+    /**
+     * @return the numeroDaFrase
+     */
+    public int getNumeroDaFrase() {
+        return numeroDaFrase;
+    }
+
+    /**
+     * @param numeroDaFrase the numeroDaFrase to set
+     */
+    public void setNumeroDaFrase(int numeroDaFrase) {
+        this.numeroDaFrase = numeroDaFrase;
+    }
+
+    
 
 }

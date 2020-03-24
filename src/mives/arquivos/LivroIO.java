@@ -5,7 +5,6 @@
  */
 package mives.arquivos;
 
-
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import exportacao.EstruturaVersificacao;
@@ -28,6 +27,7 @@ import mives.model.Frase;
 import mives.model.Livro;
 import mives.model.Pagina;
 import mives.model.Verso;
+import mives.util.Utilitario;
 
 /**
  *
@@ -307,9 +307,12 @@ public class LivroIO {
                 ArrayList<Frase> frases = livro.getPaginas().get(chave).getFrases();
                 for (Frase fra : frases) {
                     if (fra.toString().length() != 0) {
-                        bufferedWriterDestino.write(contador + ": " + fra.toString());
-                        bufferedWriterDestino.newLine();
-                        contador++;
+                        if (Utilitario.existeUmaPalavra(fra.toString())) {
+                            bufferedWriterDestino.write(contador + ": " + fra.toString());
+                            bufferedWriterDestino.newLine();
+                            contador++;
+                        }
+
                     }
                 }
             }

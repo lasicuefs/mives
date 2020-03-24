@@ -204,4 +204,14 @@ public class Utilitario {
         return monossilabosAtonos.contains(token.toLowerCase());
 
     }
+
+    public static boolean existeUmaPalavra(String palavra) {
+        char[] letras = palavra.toUpperCase().toCharArray();
+        for (int i = 0; i < letras.length; i++) {
+            if(letras[i]>=65 && letras[i]<=90){
+                return true;
+            }
+        }
+        return false;
+    }
 }

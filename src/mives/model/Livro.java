@@ -25,6 +25,7 @@ import javax.swing.JOptionPane;
 import mives.util.EstatisticaTipo;
 import mives.util.Segmento;
 import mives.util.SerieGraficoDistancia;
+import mives.util.Utilitario;
 
 /**
  *
@@ -1117,6 +1118,84 @@ public class Livro {
         return sentencas;
     }
 
+    boolean sentencasCompostasCompletas = true;
+
+    /**
+     * Date: 24 de março de 2020 Gerar uma array de sentenças com informações
+     * complementares. Como por exemplo o número do segmento.
+     *
+     * @return
+     */
+    public ArrayList<Sentenca> comporSentencasGeral() {
+//        System.out.println("Estou aqui...");
+        //24/03/2020
+        //this.gerarNumeracaoDeSentecas();
+
+        ArrayList<Sentenca> sentencas = new ArrayList<>();
+
+        int contador = 1;
+        if (sentencasCompostasCompletas) {
+            Sentenca sentenca;
+//            System.out.println("Número de Sentenças:");
+            for (Integer numeroPagina : paginas.keySet()) {
+                Pagina pagina = paginas.get(numeroPagina);
+                for (Frase frase : pagina.getFrases()) {
+
+                    if (frase.existeVerso() && frase.getVerso().isSubstituicao()) {
+                        sentenca = new Sentenca();
+                        //24/03/2020
+                        sentenca.setNumeroDaFrase(contador);
+//                        System.out.println(sentenca.getNumeroDaFrase());
+
+                        sentenca.setSegmento(frase.toString());
+                        sentenca.setLink(frase.getVerso().getLink());
+                        EstruturaVersificacao estruturaVersificacao = new EstruturaVersificacao();
+                        sentenca.getEstruturaDeVesificacao().add(estruturaVersificacao);
+                        estruturaVersificacao.setNumeroDeSilabas(frase.getVerso().getNumeroDeSilabas());
+                        estruturaVersificacao.setPosicaoDasTonicas(frase.getVerso().getPosicionamentoDasTonicas());
+                        estruturaVersificacao.setSentecaEscandida(frase.getVerso().getVersoEscandido());
+                        estruturaVersificacao.setPalavrasVerso(frase.getVerso().getPalavras());
+
+                        if (frase.getVersosExtra().size() > 0) {
+                            for (Verso ve : frase.getVersosExtra()) {
+                                estruturaVersificacao = new EstruturaVersificacao();
+                                sentenca.getEstruturaDeVesificacao().add(estruturaVersificacao);
+                                estruturaVersificacao.setNumeroDeSilabas(ve.getNumeroDeSilabas());
+                                estruturaVersificacao.setPosicaoDasTonicas(ve.getPosicionamentoDasTonicas());
+                                estruturaVersificacao.setSentecaEscandida(ve.getVersoEscandido());
+                                estruturaVersificacao.setPalavrasVerso(ve.getPalavras());
+                                if (ve.getOutrasFormas() != null) {
+                                    estruturaVersificacao = new EstruturaVersificacao();
+                                    sentenca.getEstruturaDeVesificacao().add(estruturaVersificacao);
+                                    estruturaVersificacao.setNumeroDeSilabas(ve.getOutrasFormas().getVersoBase().getNumeroDeSilabas());
+                                    estruturaVersificacao.setPosicaoDasTonicas(ve.getOutrasFormas().getVersoBase().getPosicionamentoDasTonicas());
+                                    estruturaVersificacao.setSentecaEscandida(ve.getOutrasFormas().getVersoBase().getVersoEscandido());
+                                    estruturaVersificacao.setPalavrasVerso(ve.getOutrasFormas().getVersoBase().getPalavras());
+                                    for (Verso of : ve.getOutrasFormas().getVersosExtras()) {
+                                        estruturaVersificacao = new EstruturaVersificacao();
+                                        sentenca.getEstruturaDeVesificacao().add(estruturaVersificacao);
+                                        estruturaVersificacao.setNumeroDeSilabas(of.getNumeroDeSilabas());
+                                        estruturaVersificacao.setPosicaoDasTonicas(of.getPosicionamentoDasTonicas());
+                                        estruturaVersificacao.setSentecaEscandida(of.getVersoEscandido());
+                                        estruturaVersificacao.setPalavrasVerso(of.getPalavras());
+                                    }
+                                }
+                            }
+                        }
+                        sentencas.add(sentenca);
+
+                    }
+                    if (Utilitario.existeUmaPalavra(frase.toString())) {
+                        contador++;
+                    }
+                }
+
+            }
+            sentencasCompostasCompletas = false;
+        }
+        return sentencas;
+    }
+
     public void imprimirMatrizDeTiposEncontrados(int inicioDoIntervalo, int fimDoIntervalo) {
 
         System.out.print("Palavras\tCaracteres\t");
@@ -1218,6 +1297,22 @@ public class Livro {
 
         }
         return serieDistancia;
+    }
+
+    private void gerarNumeracaoDeSentecas() {
+        ArrayList<Frase> frases;
+        int contador = 1;
+
+        for (Integer chave : this.getPaginas().keySet()) {
+            frases = this.getPaginas().get(chave).getFrases();
+            for (Frase frase : frases) {
+                if (frase.getVerso() != null) {
+                    frase.setNumeroDaFrase(contador);
+
+                }
+                contador++;
+            }
+        }
     }
 
 }
