@@ -33,6 +33,7 @@ public class FXMLEscolhaTipoVersoControllerHelper {
                     "10.Decassílabo",
                     "11.Hendecassílabo",
                     "12.Dodecassílabo"
+                    ,"13.Bárbaro" //modificado Angeçp
             );
 
     public FXMLEscolhaTipoVersoControllerHelper(FXMLEscolhaTipoVersoController controller) {

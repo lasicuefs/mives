@@ -429,6 +429,7 @@ public class PrincipalHelper {
         metro.put(10, "Decassílabo");
         metro.put(11, "Hendecassílabo");
         metro.put(12, "Dodecassílabo");
+        metro.put(13, "Bárbaro"); //modificado Angelo
     }
 
     public TreeItem<NodeTree> montarArvoreV2(ArrayList<nodeArvore> nodes) {

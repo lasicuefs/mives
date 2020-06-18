@@ -217,6 +217,7 @@ public class Mineracao implements ProcessarLivroObservable {
                 progresso++;
                 String linhaBase = f.toString();
                 fraseCorrespondente++;
+                System.out.println("Progresso:"+progresso+"/"+fraseCorrespondente+" LinhaBase:"+linhaBase);
                 linha = "";
                 if (buscaNoInicio) {
                     // vTemp = this.extrairPalavrasFraseInicialCustomizada2(linhaBase, tipoDeVersoInicio);

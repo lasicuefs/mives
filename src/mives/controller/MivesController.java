@@ -166,6 +166,7 @@ public class MivesController {
         tipos.put("10.Decassílabo", 10);
         tipos.put("11.Hendecassílabo", 11);
         tipos.put("12.Dodecassílabo", 12);
+        tipos.put("13.Bárbaro", 13); // modificado Angelo
 
     }
 

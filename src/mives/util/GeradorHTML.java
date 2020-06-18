@@ -281,6 +281,7 @@ public class GeradorHTML {
         conteudo.append("<span id=\"bm-decassilabo\"></span><br>\n");
         conteudo.append("<span id=\"bm-hendecassilabo\"></span><br>\n");
         conteudo.append("<span id=\"bm-dodecassilabo\"></span>\n");
+        conteudo.append("<span id=\"bm-barbaro\"></span>\n"); //modificado Angelo
 
         conteudo.append("</div>\n");
         conteudo.append("</div>\n");
@@ -349,8 +350,10 @@ public class GeradorHTML {
                     conteudo.append(" \"decassilabo\" : \"Decassilabo: " + sentenca.getEstruturaDeVesificacao().get(i).getSentecaEscandida().replaceAll("'", " ").replaceAll("\"", "") + "\"");
                 } else if (sentenca.getEstruturaDeVesificacao().get(i).getNumeroDeSilabas() == 11) {
                     conteudo.append(" \"hendecassilabo\" : \"Hendecassílabo: " + sentenca.getEstruturaDeVesificacao().get(i).getSentecaEscandida().replaceAll("'", " ").replaceAll("\"", "") + "\"");
-                } else {
-                    conteudo.append(" \"dodecassilabo\" : \"Dedecassílabo: " + sentenca.getEstruturaDeVesificacao().get(i).getSentecaEscandida().replaceAll("'", " ").replaceAll("\"", "") + "\"");
+                } else if (sentenca.getEstruturaDeVesificacao().get(i).getNumeroDeSilabas() == 12){ //modificado Angelo
+                    conteudo.append(" \"dodecassilabo\" : \"Dodecassílabo: " + sentenca.getEstruturaDeVesificacao().get(i).getSentecaEscandida().replaceAll("'", " ").replaceAll("\"", "") + "\"");
+                } else if (sentenca.getEstruturaDeVesificacao().get(i).getNumeroDeSilabas() == 13){ //modificado Angelo
+                    conteudo.append(" \"barbaro\" : \"Bárbaro: " + sentenca.getEstruturaDeVesificacao().get(i).getSentecaEscandida().replaceAll("'", " ").replaceAll("\"", "") + "\"");
                 }
 
             }
