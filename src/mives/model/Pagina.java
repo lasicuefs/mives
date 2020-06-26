@@ -685,6 +685,58 @@ public class Pagina {
         this.frases = frases;
     }
 
+    /**
+     * 26 de junho de 2020 O objetivo deste método é realizar a marcação dos
+     * versos encontrados pelo sistema nas frases extraídas na etapa de
+     * pré-processamento feito pelo mives. Dessa forma, a problemática de lidar
+     * com as inconsistências do texto original, produzidas no momento da
+     * conversão do PDF para o TXT, podem ser contornadas.
+     *
+     * @param livro
+     */
+    public void gerarLinhasEscandidasV2() {
+        int contador = 1;
+
+        ArrayList<Frase> frases = getFrases();
+        int indexFrase = -1;
+        for (Frase frase : frases) {
+            indexFrase++;
+            if (frase.toString().length() != 0) {//Existem uma frase?
+                if (Utilitario.existeUmaPalavra(frase.toString())) {//Não é apenas um número de página.
+                    if (frase.getVerso() != null) {//existe verso associado a frase?  
+                        marcarVerso(contador, frase);
+                    } else {
+                        frase.setFraseSaida(contador + ": " + frase.toString());
+                    }
+                    contador++;
+                }
+
+            }
+        }
+
+    }
+
+    /**
+     * Insere marcações HTML na frase em que foi identificado um verso no final.
+     *
+     * @param contador
+     * @param frase
+     */
+    private void marcarVerso(int contador, Frase frase) {
+
+        //Analisar remover essa linha
+        if (frase.getVerso().isSubstituicao()) {
+            return;
+        }
+        String fraseSaida;
+        frase.getVerso().setLink(link);
+        String verso = frase.getVerso().toString();
+        fraseSaida = frase.toString().replace(verso, "<a id=\"" + link + "\"><span id=\"" + link + "\" style=\"background-color: #8CC5F4\">" + verso + "</span>");
+        frase.getVerso().setSubstituicao(true);
+        frase.setFraseSaida(contador + ": " + fraseSaida);
+        link++;
+    }
+
     public void gerarLinhasEscandidas() {
         int numeroDeLinhasDaPagina = linhas.size();
         inicio:
@@ -697,8 +749,8 @@ public class Pagina {
                 continue inicio;
             }
             for (Integer i : linha.getFrasesAssociadas()) {
-//                System.out.println("Linha: " + linha.getLinha());
-//                System.out.println("Número de frases Associadas: " + linha.getFrasesAssociadas().size());
+                System.out.println("Linha: " + linha.getLinha());
+                System.out.println("Número de frases Associadas: " + linha.getFrasesAssociadas().size());
                 if (frases.get(i).getVerso() != null) {
                     //  substituirCaracteres(indiceDaLinha);
                     if (!Livro.getInstance().getTipoDeBusca().equals("Frases Completas.") && !Livro.getInstance().getTipoDeBusca().equals("Início de Frase.")) {
@@ -1053,7 +1105,6 @@ public class Pagina {
 //
 //        }
 //    }
-
     /**
      * Versão: Nova versão MIVES Marca no HTML o trecho de texto onde o verso
      * foi encontrado em 21/05/2018

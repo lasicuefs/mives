@@ -15,6 +15,7 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
+import mives.model.Frase;
 import mives.model.Linha;
 import mives.model.Livro;
 import mives.model.Pagina;
@@ -28,6 +29,8 @@ public class GeradorHTML {
 
     private HashMap<Integer, Pagina> paginas;
     private ArrayList<Linha> linhas;
+    private ArrayList<Frase> frases;//Em 26/06/2020
+
     File arquivoDeDestino;
     Livro livro;
     ArrayList<Verso> versos;
@@ -97,6 +100,69 @@ public class GeradorHTML {
         }
     }
 
+    public StringBuilder construirScriptV2() {
+        StringBuilder conteudo = new StringBuilder();
+
+        conteudo.append("<!DOCTYPE html>\n");
+        conteudo.append("<html>\n");
+
+        conteudo.append("<head>\n");
+        conteudo.append("<meta charset=\"UTF-8\">\n");
+        conteudo.append("<title>Meu Teste</title>\n");
+        conteudo.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/saidamives.css\">\n");
+
+        conteudo.append("</head>\n");
+
+        conteudo.append("<body id=\"body\">\n");
+        conteudo.append("<div class=\"boxmessage\" id=\"bm\">\n");
+        conteudo.append("<div id=\"bm-child\">\n");
+        conteudo.append("<div class=\"seta-1\"></div>\n");
+        conteudo.append("<b><span id=\"bm-title\"></span></b>\n");
+
+        conteudo.append("<div id=\"versos\">\n");
+        conteudo.append("<div id=\"bm-1\">\n");
+        conteudo.append("<span id=\"bm-monossilabo\"></span><br>\n");
+        conteudo.append("</div>\n");
+        conteudo.append("<div id=\"bm-2\">\n");
+        conteudo.append("<span id=\"bm-dissilabo\"></span><br>\n");
+        conteudo.append(" </div>\n");
+        conteudo.append("<div id=\"bm-4\">\n");
+        conteudo.append("<span id=\"bm-tetrassilabo\"></span><br>\n");
+        conteudo.append("</div id=\"bm-1\">\n");
+        conteudo.append("<div id=\"bm-5\">\n");
+        conteudo.append("<span id=\"bm-pentassilabo\"></span><br>\n");
+        conteudo.append(" </div>\n");
+        conteudo.append("<div id=\"bm-6\">\n");
+        conteudo.append("<span id=\"bm-hexassilabo\"></span><br>\n");
+        conteudo.append("</div>\n");
+        conteudo.append("<div id=\"bm-7\">\n");
+        conteudo.append("<span id=\"bm-heptassilabo\"></span><br>\n");
+        conteudo.append("</div>\n");
+        conteudo.append(" <div id=\"bm-8\">\n");
+        conteudo.append(" <span id=\"bm-octossilabo\"></span><br>\n");
+        conteudo.append(" </div>\n");
+        conteudo.append("<div id=\"bm-9\">\n");
+        conteudo.append(" <span id=\"bm-eneassilabo\"></span><br>\n");
+        conteudo.append("</div>\n");
+
+        conteudo.append("<div id=\"bm-10\">\n");
+        conteudo.append("<span id=\"bm-decassilabo\"></span><br>\n");
+        conteudo.append("</div>\n");
+        conteudo.append("<div id=\"bm-11\">\n");
+        conteudo.append("<span id=\"bm-hendecassilabo\"></span><br>\n");
+        conteudo.append("</div>\n");
+        conteudo.append("<div id=\"bm-12\">\n");
+        conteudo.append("<span id=\"bm-dodecassilabo\"></span>\n");
+        conteudo.append("</div>\n");
+        conteudo.append("</div>\n");
+
+        conteudo.append("</div>\n");
+        conteudo.append("</div>\n");
+
+        return conteudo;
+    }
+
+    @Deprecated
     public StringBuilder construirScript() {
 
         StringBuilder conteudo = new StringBuilder();
@@ -109,8 +175,7 @@ public class GeradorHTML {
         conteudo.append("<style>");
         conteudo.append("   @import url('https://fonts.googleapis.com/css?family=Ubuntu');");
         conteudo.append("</style>");
-        
-        
+
         conteudo.append("<style type=\"text/css\">\n");
         conteudo.append("body{\n");
         conteudo.append("   color:#333333;\n");
@@ -255,6 +320,84 @@ public class GeradorHTML {
         }
         System.gc();
         conteudo.append("\n</body>\n");
+        conteudo.append("\n<script>\n");
+
+        for (Sentenca sentenca : Livro.getInstance().comporSentencas()) {
+            conteudo.append("\n arrayMessages.push('{\"title\" : \"" + sentenca.getEstruturaDeVesificacao().get(0).getPalavrasVerso().replaceAll("'", " ").replaceAll("\"", "") + "\",");
+            int qtd = sentenca.getEstruturaDeVesificacao().size();
+            for (int i = 0; i < qtd; i++) {
+                if (i > 0 && (i < qtd)) {
+                    conteudo.append(",");
+                }
+                if (sentenca.getEstruturaDeVesificacao().get(i).getNumeroDeSilabas() == 1) {
+                    conteudo.append(" \"monossilabo\" : \"Monossilabo: " + sentenca.getEstruturaDeVesificacao().get(i).getSentecaEscandida().replaceAll("'", " ").replaceAll("\"", "") + "\"");
+                } else if (sentenca.getEstruturaDeVesificacao().get(i).getNumeroDeSilabas() == 2) {
+                    conteudo.append(" \"dissilabo\" : \"Dissilabo: " + sentenca.getEstruturaDeVesificacao().get(i).getSentecaEscandida().replaceAll("'", " ").replaceAll("\"", "") + "\"");
+                } else if (sentenca.getEstruturaDeVesificacao().get(i).getNumeroDeSilabas() == 4) {
+                    conteudo.append(" \"tetrassilabo\" : \"Tetrassilabo: " + sentenca.getEstruturaDeVesificacao().get(i).getSentecaEscandida().replaceAll("'", " ").replaceAll("\"", "") + "\"");
+                } else if (sentenca.getEstruturaDeVesificacao().get(i).getNumeroDeSilabas() == 5) {
+                    conteudo.append(" \"pentassilabo\" : \"Pentassilabo: " + sentenca.getEstruturaDeVesificacao().get(i).getSentecaEscandida().replaceAll("'", " ").replaceAll("\"", "") + "\"");
+                } else if (sentenca.getEstruturaDeVesificacao().get(i).getNumeroDeSilabas() == 6) {
+                    conteudo.append(" \"hexassilabo\" : \"Hexassilabo: " + sentenca.getEstruturaDeVesificacao().get(i).getSentecaEscandida().replaceAll("'", " ").replaceAll("\"", "") + "\"");
+                } else if (sentenca.getEstruturaDeVesificacao().get(i).getNumeroDeSilabas() == 7) {
+                    conteudo.append(" \"heptassilabo\" : \"Heptassilabo: " + sentenca.getEstruturaDeVesificacao().get(i).getSentecaEscandida().replaceAll("'", " ").replaceAll("\"", "") + "\"");
+                } else if (sentenca.getEstruturaDeVesificacao().get(i).getNumeroDeSilabas() == 8) {
+                    conteudo.append(" \"octossilabo\" : \"Octossilabo: " + sentenca.getEstruturaDeVesificacao().get(i).getSentecaEscandida().replaceAll("'", " ").replaceAll("\"", "") + "\"");
+                } else if (sentenca.getEstruturaDeVesificacao().get(i).getNumeroDeSilabas() == 9) {
+                    conteudo.append(" \"eneassilabo\" : \"Eneassilabo: " + sentenca.getEstruturaDeVesificacao().get(i).getSentecaEscandida().replaceAll("'", " ").replaceAll("\"", "") + "\"");
+                } else if (sentenca.getEstruturaDeVesificacao().get(i).getNumeroDeSilabas() == 10) {
+                    conteudo.append(" \"decassilabo\" : \"Decassilabo: " + sentenca.getEstruturaDeVesificacao().get(i).getSentecaEscandida().replaceAll("'", " ").replaceAll("\"", "") + "\"");
+                } else if (sentenca.getEstruturaDeVesificacao().get(i).getNumeroDeSilabas() == 11) {
+                    conteudo.append(" \"hendecassilabo\" : \"Hendecassílabo: " + sentenca.getEstruturaDeVesificacao().get(i).getSentecaEscandida().replaceAll("'", " ").replaceAll("\"", "") + "\"");
+                } else {
+                    conteudo.append(" \"dodecassilabo\" : \"Dedecassílabo: " + sentenca.getEstruturaDeVesificacao().get(i).getSentecaEscandida().replaceAll("'", " ").replaceAll("\"", "") + "\"");
+                }
+
+            }
+            conteudo.append("}'); \n");
+            //conteudo.append(" \"decassilabo\" : \"Decassilabo: " + sentenca.getEstruturaDeVesificacao().get(0).getSentecaEscandida() + "\"}'); \n");
+        }
+        conteudo.append("\n</script>\n");
+        conteudo.append("</html>\n");
+        return conteudo;
+
+    }
+
+    public StringBuilder montarParagrafoV2(StringBuilder conteudo) {
+        int flag = 0;
+        boolean escrevi = false;
+        Pagina pagina;
+
+        for (Integer chave : paginas.keySet()) {
+            pagina = paginas.get(chave);
+            String marcador = null;
+            conteudo.append("<p style=\"text-align: center;\"> --" + pagina.getNumero() + "--</p>");
+
+            frases = pagina.getFrases();
+            conteudo.append("<p>\n");
+            for (Frase frase : frases) {
+                conteudo.append(frase.getFraseSaida() + "<br>\n");
+            }
+            conteudo.append("</p>\n");
+        }
+        System.gc();
+        conteudo.append("\n</body>\n");
+
+        conteudo.append(" <script src=\"js/jquery-3.3.1.min.js\"></script>\n");
+        conteudo.append("<script type=\"text/javascript\" src=\"js/jquery.highlight-5.js\"></script>\n");
+
+        conteudo.append("<script type=\"text/javascript\" src=\"boxMessageManager.js\"></script>\n");
+
+        conteudo.append("<script type=\"text/javascript\">\n");
+        conteudo.append(" $(document).ready(function () {\n");
+        conteudo.append(" });\n");
+        conteudo.append("</script>\n");
+        conteudo.append("<script language=\"javascript\">\n");
+        conteudo.append("function jumpToHtmlId(object) {\n");
+        conteudo.append(" window.location.hash = '#' + object;\n");
+        conteudo.append("}\n");
+        conteudo.append("</script>\n");
+
         conteudo.append("\n<script>\n");
 
         for (Sentenca sentenca : Livro.getInstance().comporSentencas()) {

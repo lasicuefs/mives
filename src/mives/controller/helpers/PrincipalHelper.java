@@ -100,9 +100,10 @@ public class PrincipalHelper {
         String tipoBusca = Livro.getInstance().getTipoDeBusca();
 
         geradorHTML = new GeradorHTML();
-        conteudo = geradorHTML.construirScript();
+        conteudo = geradorHTML.construirScriptV2();
 
-        geradorHTML.montarParagrafo(conteudo);
+        //geradorHTML.montarParagrafo(conteudo);
+        geradorHTML.montarParagrafoV2(conteudo);
 
         principal.webEngine = principal.browser.getEngine();
         // Enable Javascript.

@@ -247,7 +247,9 @@ public class Livro {
 
     public void gerarLinhasEscandidas() {
         for (Integer chave : paginas.keySet()) {
-            paginas.get(chave).gerarLinhasEscandidas();
+            paginas.get(chave).gerarLinhasEscandidasV2();//Em 26/06/2020
+
+            //paginas.get(chave).gerarLinhasEscandidas();
         }
         this.setFoiProcessado(true);
     }

@@ -38,6 +38,13 @@ public class Frase {
     private boolean existeVerso = false;
     private int indiceDeOrigemDaCadeiaNaLinha;
     private int numeroDaFrase;
+    
+    /**
+     * Em 26/06/2020
+     * Nova forma de marcação, agora baseado na frase e não na linha 
+     */
+    private String fraseSaida;
+    
     /**
      * Outras possibilidades de escansão testadas no mesmo segmento frásico.
      */
@@ -201,5 +208,19 @@ public class Frase {
      */
     public void setNumeroDaFrase(int numeroDaFrase) {
         this.numeroDaFrase = numeroDaFrase;
+    }
+
+    /**
+     * @return the fraseSaida
+     */
+    public String getFraseSaida() {
+        return fraseSaida;
+    }
+
+    /**
+     * @param fraseSaida the fraseSaida to set
+     */
+    public void setFraseSaida(String fraseSaida) {
+        this.fraseSaida = fraseSaida;
     }
 }
