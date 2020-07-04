@@ -645,8 +645,9 @@ public class EscansaoCustomizada2 {
         Verso versoEncontrado = new Verso();//Objeto que será retornado ao final do processamento.
         do {
             temp = st.nextToken();
-//            System.out.println("ENVIANDO PARA O SEPARADOR 3: " + temp);
+            System.out.println("Enviando para separador.separarSilabasTextoV1(temp).toString().trim(): " + temp);
             temp = separador.separarSilabasTextoV1(temp).toString().trim();
+            System.out.println("Retorno do separarSilabasTextoV1: " + temp);
             r++;//Conta quantas palavras são trabalhadas
             if (isPalavra(temp)) {//Se for uma palavra
                 if (r < b || b == 0) {

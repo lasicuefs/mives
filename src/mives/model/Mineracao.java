@@ -489,10 +489,10 @@ public class Mineracao implements ProcessarLivroObservable {
             String auxFrase[] = Utilitario.preencherVetorToken(f);
             String auxVerso[] = new String[new StringTokenizer(verso.getVersoEscandido().toString().replaceAll("-", "").replaceAll("#", "").replaceAll("§", "-").replaceAll("/", "")).countTokens()];
             StringBuilder versoExtraido = new StringBuilder();
-            System.out.println("Frase: " + frase);
-            System.out.println("Verso: " + verso.getVersoEscandido().toString().replaceAll("-", "").replaceAll("#", "").replaceAll("§", "-").replaceAll("/", ""));
-            System.out.println("Tamanho da frase: " + auxFrase.length);
-            System.out.println("Tamanho do verso: " + auxVerso.length);
+//            System.out.println("Frase: " + frase);
+//            System.out.println("Verso: " + verso.getVersoEscandido().toString().replaceAll("-", "").replaceAll("#", "").replaceAll("§", "-").replaceAll("/", ""));
+//            System.out.println("Tamanho da frase: " + auxFrase.length);
+//            System.out.println("Tamanho do verso: " + auxVerso.length);
 
             int in = auxFrase.length - auxVerso.length;
             System.out.println("Inicio: " + in);

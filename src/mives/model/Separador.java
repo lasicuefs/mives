@@ -119,7 +119,7 @@ public class Separador {
      * @return
      */
     public StringBuilder separarSilabasTextoV1(String palavra) {
-     //   System.out.println("REBENDO A PALAVRA: " + palavra);
+        System.out.println("REBENDO A PALAVRA: " + palavra);
         StringBuilder retorno = new StringBuilder();
         String palavraRetorno;
         String simbolo = "";

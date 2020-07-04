@@ -731,6 +731,8 @@ public class Pagina {
         String fraseSaida;
         frase.getVerso().setLink(link);
         String verso = frase.getVerso().toString();
+        System.out.println("frase.getVerso().toString()" + verso);
+        System.out.println("Palavras do verso: " + frase.getVerso().getPalavras());
         fraseSaida = frase.toString().replace(verso, "<a id=\"" + link + "\"><span id=\"" + link + "\" style=\"background-color: #8CC5F4\">" + verso + "</span>");
         frase.getVerso().setSubstituicao(true);
         frase.setFraseSaida(contador + ": " + fraseSaida);

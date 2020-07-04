@@ -58,7 +58,7 @@ public class Dicionario {
         carregarAlgarismos();
         carregarMonossilabosAtonos();
         carregarVogais();
-       
+
     }
 
     public static Dicionario getInstance() {
@@ -271,6 +271,7 @@ public class Dicionario {
             String simbolo = "";
             StringTokenizer st = new StringTokenizer(linha);
             String p = null;
+            String retorno;
             while (st.hasMoreTokens()) {
                 p = st.nextToken().toString();
                 simbolo = "";
@@ -326,7 +327,6 @@ public class Dicionario {
                         } else {
                             if (!dicio.containsKey(p.toLowerCase())) {
                                 if (!p.contains("-")) {
-
                                     temp = separarSilaba(p);
                                     bufferedWriterDestino.newLine();
                                     bufferedWriterDestino.write(p.toLowerCase() + "\t" + temp);
@@ -334,7 +334,9 @@ public class Dicionario {
                                     dicio.put(p.toLowerCase(), separarSilaba(p));
                                 } else {//Trata palavras compostas a exemplo de: Demonstram-no, Quebra-se, torna-se                                        
                                     String aux[] = p.split("-");
-                                    temp = separarSilaba(aux[0]) + "-" + aux[1].toLowerCase();
+                                    retorno = separarSilaba(aux[0]);
+                                    temp = retorno + "-" + aux[1].toLowerCase();
+                                    retorno = temp; //Necessário para inserir no dicionário sem o "§"
                                     int ultimoHifen = temp.length() - 1;
                                     for (int i = ultimoHifen; i > 0; i--) {
                                         if ((temp.charAt(i) + "").equals("-")) {
@@ -345,7 +347,7 @@ public class Dicionario {
                                     }
                                     bufferedWriterDestino.newLine();
                                     bufferedWriterDestino.write(p.toLowerCase() + "\t" + temp);
-                                    dicio.put(p.toLowerCase(), separarSilaba(p));
+                                    dicio.put(p.toLowerCase(), retorno);
                                 }
                             }
                         }
@@ -359,10 +361,22 @@ public class Dicionario {
                         }
                     } else {
                         if (!dicio.containsKey(p.toLowerCase())) {
-                            temp = separarSilaba(p);
-                            bufferedWriterDestino.newLine();
-                            bufferedWriterDestino.write(p.toLowerCase() + "\t" + temp);
-                            dicio.put(p.toLowerCase(), temp);
+                            if (p.length() > 1) {
+                                temp = separarSilaba(p);
+                                System.out.println("01 - Enviando: " + p);
+                                System.out.println("01 - Recebendo: " + temp);
+                                bufferedWriterDestino.newLine();
+                                bufferedWriterDestino.write(p.toLowerCase() + "\t" + temp);
+                                dicio.put(p.toLowerCase(), temp);
+                            } else {
+                                //temp = separarSilaba(p);
+                                System.out.println("01 - Enviando: " + p);
+                                System.out.println("01 - Recebendo: " + temp);
+                                bufferedWriterDestino.newLine();
+                                bufferedWriterDestino.write(p + "\t" + p);
+                                dicio.put(p, p);
+                            }
+
                         }
                     }
                 } else {
@@ -420,6 +434,10 @@ public class Dicionario {
         //Fiz o teste com um método lá no C# para executar o simples Writeln e nada. Também não funciona.
         // vamos facilitar os testes, espera um pouco
         String retorno[] = lapseparatorjni.TextAnalysisToolApp.Main(vetor);//aqui nessa linha
+        System.out.println("Retorno:");
+        for (String ret : retorno) {
+            System.out.println(ret);
+        }
 
         int posTonica = Integer.parseInt(retorno[2]);
 
@@ -466,6 +484,7 @@ public class Dicionario {
     }
 
 //Precisa melhorar - Tem processamento desnecessário
+    @Deprecated
     public String separarSilabaOLd(String palavra) {
 
         //Algarismos romanos e Monossílabos Átonos não possuem marcação de tónica
@@ -488,7 +507,6 @@ public class Dicionario {
             ton = reader.readLine();
 
             novaPal = reader.readLine();
-
 
             while (novaPal.matches("\\d")) {
                 novaPal = reader.readLine();
@@ -524,7 +542,6 @@ public class Dicionario {
 //            } else {
 //                t = posTonica;
 //            }
-
             if ((!(t < 0)) && (pal.length() - 1) > t && pal.charAt(t) == '-') {
                 t++;
             } else {
@@ -628,13 +645,13 @@ public class Dicionario {
         int linhaACarregar = 0;
         int numeroDalinha = 0;
         try {
-            
+
             System.out.println("Nome do arquivo: " + arquivoDicionario.getPath());
             readerBase = new FileReader(arquivoDicionario);//Faz novaPal leitura do arquivo base
             bufferedReaderBase = new BufferedReader(readerBase);//Faz novaPal leitura do arquivo base
-          
+
             String linha = bufferedReaderBase.readLine();
-            
+
             StringTokenizer st;
             String termos[] = new String[2];
             int cont = 0;
@@ -653,7 +670,6 @@ public class Dicionario {
                 dicio.put(termos[0], termos[1]);
 
 //                if (dicio.containsKey("ó")) {
-
 //                    break;
 //                }
                 linha = bufferedReaderBase.readLine();
@@ -690,7 +706,6 @@ public class Dicionario {
 //        String vertor[] = {"Teste"};
 //        // gente precisa carregar as DLLs antes coloca ai pra carregar...blz
 //         try {
-
 //            Bridge.setVerbose(true);
 //            Bridge.init();
 //            File proxyAssemblyFile = new File("lib\\LapSeparatorJNI.j4n.dll");
@@ -705,5 +720,4 @@ public class Dicionario {
 //        }
 //        String retorno[] = lapseparatorjni.TextAnalysisToolApp.Main(vertor);//aqui nessa linha
 //    }
-   
 }
