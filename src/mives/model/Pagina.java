@@ -751,8 +751,8 @@ public class Pagina {
                 continue inicio;
             }
             for (Integer i : linha.getFrasesAssociadas()) {
-                System.out.println("Linha: " + linha.getLinha());
-                System.out.println("Número de frases Associadas: " + linha.getFrasesAssociadas().size());
+//                System.out.println("Linha: " + linha.getLinha());
+//                System.out.println("Número de frases Associadas: " + linha.getFrasesAssociadas().size());
                 if (frases.get(i).getVerso() != null) {
                     //  substituirCaracteres(indiceDaLinha);
                     if (!Livro.getInstance().getTipoDeBusca().equals("Frases Completas.") && !Livro.getInstance().getTipoDeBusca().equals("Início de Frase.")) {
@@ -813,9 +813,9 @@ public class Pagina {
 
     private int comecaNestaLinha(Integer indice, Linha linha, Frase frase) {
 
-        System.out.println("ComecaNestaLinha.........................");
-        System.out.println("Recebendo para procurar na linha: " + linhas.get(indice).getLinha());
-        System.out.println("O verso: " + frase.getVerso().getPalavras());
+//        System.out.println("ComecaNestaLinha.........................");
+//        System.out.println("Recebendo para procurar na linha: " + linhas.get(indice).getLinha());
+//        System.out.println("O verso: " + frase.getVerso().getPalavras());
 
         StringTokenizer v = new StringTokenizer(frase.getVerso().getPalavras());
         String vetorVerso[] = new String[v.countTokens()];

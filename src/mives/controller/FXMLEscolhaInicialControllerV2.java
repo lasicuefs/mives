@@ -130,7 +130,7 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
 
     @FXML
     public void addDicionario(ActionEvent e) {
-        System.out.println("oioioioioiioio");
+//        System.out.println("oioioioioiioio");
         Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
         dialogoInfo.setTitle("MIVES");
         dialogoInfo.setHeaderText("Adicionar termos ao dicionário");

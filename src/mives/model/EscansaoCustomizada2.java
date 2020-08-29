@@ -407,7 +407,7 @@ public class EscansaoCustomizada2 {
 
             //  return versoEncontrado;
         } catch (Exception ex) {
-//            System.out.println("Olha o erro aqui: ");
+            System.out.println("Olha o erro aqui: ");
             ex.printStackTrace();
         }
         return null;
@@ -645,9 +645,9 @@ public class EscansaoCustomizada2 {
         Verso versoEncontrado = new Verso();//Objeto que será retornado ao final do processamento.
         do {
             temp = st.nextToken();
-            System.out.println("Enviando para separador.separarSilabasTextoV1(temp).toString().trim(): " + temp);
+//            System.out.println("Enviando para separador.separarSilabasTextoV1(temp).toString().trim(): " + temp);
             temp = separador.separarSilabasTextoV1(temp).toString().trim();
-            System.out.println("Retorno do separarSilabasTextoV1: " + temp);
+//            System.out.println("Retorno do separarSilabasTextoV1: " + temp);
             r++;//Conta quantas palavras são trabalhadas
             if (isPalavra(temp)) {//Se for uma palavra
                 if (r < b || b == 0) {
@@ -842,7 +842,7 @@ public class EscansaoCustomizada2 {
      * @return Verso e suas caracterísiticas;
      */
     public Verso contarSilabasPoeticasCompleta(String verso, int maxSilabas, int minSilabas, boolean validarContagem) {//Precisa melhorar
-        System.out.println("RICARDO - RECEBENDO O VERSO: " + verso);
+//        System.out.println("RICARDO - RECEBENDO O VERSO: " + verso);
         if (verso.trim().length() == 0) {
             return null;
         }
@@ -955,7 +955,7 @@ public class EscansaoCustomizada2 {
                     //Se já ultrapassou pare a busca, vefique se tem histórico, se tiver reverta, 
                     //Caso contrário deixe como está
                     if (auxNumSilabas + numSilabasPoeticas >= maxSilabas) {
-                        System.out.println("Parei aqui 01");
+//                        System.out.println("Parei aqui 01");
                         continuarBusca = false;
                         if (versoEncontrado.isHistoricoDeContagem()) {
                             novoVerso = new StringBuilder(versoEncontrado.getVersoAnterior());
@@ -987,19 +987,19 @@ public class EscansaoCustomizada2 {
 //                            System.out.println("Novo verso atual: " + novoVerso);
                             continuarBusca = true;
                         } else {
-                            System.out.println("Resumo------------------------------------------------------------------------");
-                            System.out.println("numSilabasPoeticas " + numSilabasPoeticas);
-                            System.out.println("versoEncontrado.getNumeroDeElisoes() " + versoEncontrado.getNumeroDeElisoes());
-                            System.out.println("versoEncontrado.getNumeroDeSinereses() " + versoEncontrado.getNumeroDeSinereses());
-                            System.out.println("versoEncontrado.getNumeroDeDiereses() " + versoEncontrado.getNumeroDeDiereses());
-                            System.out.println("maxSilabas " + maxSilabas);
-                            System.out.println("st.hasMoreTokens() " + st.hasMoreTokens());
-                            System.out.println("Resumo------------------------------------------------------------------------");
+//                            System.out.println("Resumo------------------------------------------------------------------------");
+//                            System.out.println("numSilabasPoeticas " + numSilabasPoeticas);
+//                            System.out.println("versoEncontrado.getNumeroDeElisoes() " + versoEncontrado.getNumeroDeElisoes());
+//                            System.out.println("versoEncontrado.getNumeroDeSinereses() " + versoEncontrado.getNumeroDeSinereses());
+//                            System.out.println("versoEncontrado.getNumeroDeDiereses() " + versoEncontrado.getNumeroDeDiereses());
+//                            System.out.println("maxSilabas " + maxSilabas);
+//                            System.out.println("st.hasMoreTokens() " + st.hasMoreTokens());
+//                            System.out.println("Resumo------------------------------------------------------------------------");
 
                             if (numSilabasPoeticas + versoEncontrado.getNumeroDeElisoes() + versoEncontrado.getNumeroDeSinereses() < maxSilabas && st.hasMoreTokens()) {
                                 continuarBusca = true;
                             } else {
-                                System.out.println("Parei aqui 02");
+//                                System.out.println("Parei aqui 02");
                                 continuarBusca = false;
                             }
                         }
@@ -1019,7 +1019,7 @@ public class EscansaoCustomizada2 {
         //COmo no caso da palavra Meio = Mei-o, Me-io não adianta desfazer a dierese. Pois a ação não irá alterar o 
         //número de sílabas. 
         if ((!(versoEncontrado.getNumeroDeSilabas() < minSilabas)) && versoEncontrado.getNumeroDeDiereses() > 0 && numSilabasPoeticas - versoEncontrado.getNumeroDeDiereses() <= maxSilabas) {
-            System.out.println("ANTES ajustarDierese - MODIFICANDO VERSO: " + novoVerso.toString());
+//            System.out.println("ANTES ajustarDierese - MODIFICANDO VERSO: " + novoVerso.toString());
             boolean flag = verificarDesfazerDierese(versoEncontrado, numSilabasPoeticas, minSilabas, maxSilabas);
             if (flag) {
                 return null;
@@ -1027,7 +1027,7 @@ public class EscansaoCustomizada2 {
             versoEncontrado.setVersoOriginalmenteEscandido(novoVerso.toString());
             versoEncontrado.setNumeroDeSilabasOriginais(numSilabasPoeticas);
             versoEncontrado.setStatusDaEscansao("Modificado");
-            System.out.println(" ajustarDierese - MODIFICANDO VERSO: " + novoVerso.toString());
+//            System.out.println(" ajustarDierese - MODIFICANDO VERSO: " + novoVerso.toString());
             return ajustarDierese(versoEncontrado, numSilabasPoeticas, novoVerso.toString(), maxSilabas);
         }
 
@@ -1038,7 +1038,7 @@ public class EscansaoCustomizada2 {
                 && numSilabasPoeticas + versoEncontrado.getNumeroDeSinereses() >= minSilabas) {
             versoEncontrado.setVersoOriginalmenteEscandido(novoVerso.toString());
             versoEncontrado.setNumeroDeSilabasOriginais(numSilabasPoeticas);
-            System.out.println(" ajustarSinerese - MODIFICANDO VERSO: " + novoVerso.toString());
+//            System.out.println(" ajustarSinerese - MODIFICANDO VERSO: " + novoVerso.toString());
             return ajustarSinerese(versoEncontrado, numSilabasPoeticas, novoVerso.toString(), minSilabas);
         }
 
@@ -1049,7 +1049,7 @@ public class EscansaoCustomizada2 {
                 && (numSilabasPoeticas + versoEncontrado.getNumeroDeElisoes()) >= minSilabas) {
             versoEncontrado.setVersoOriginalmenteEscandido(novoVerso.toString());
             versoEncontrado.setNumeroDeSilabasOriginais(numSilabasPoeticas);
-            System.out.println(" ajustarElisoes - MODIFICANDO VERSO: " + novoVerso.toString());
+//            System.out.println(" ajustarElisoes - MODIFICANDO VERSO: " + novoVerso.toString());
             return ajustarElisoes(versoEncontrado, numSilabasPoeticas, novoVerso.toString(), minSilabas);
         }
 
@@ -1060,7 +1060,7 @@ public class EscansaoCustomizada2 {
                 && (numSilabasPoeticas + versoEncontrado.getNumeroDeElisoes() + versoEncontrado.getNumeroDeSinereses()) >= minSilabas) {
             versoEncontrado.setVersoOriginalmenteEscandido(novoVerso.toString());
             versoEncontrado.setNumeroDeSilabasOriginais(numSilabasPoeticas);
-            System.out.println(" ajustarSinereseElisoes - MODIFICANDO VERSO: " + novoVerso.toString());
+//            System.out.println(" ajustarSinereseElisoes - MODIFICANDO VERSO: " + novoVerso.toString());
             return ajustarSinereseElisoes(versoEncontrado, numSilabasPoeticas, novoVerso.toString(), minSilabas);
         }
 
@@ -1074,7 +1074,7 @@ public class EscansaoCustomizada2 {
         versoEncontrado.setVersoOriginalmenteEscandido(novoVerso.toString());
         versoEncontrado.setNumeroDeSilabas(numSilabasPoeticas);
         versoEncontrado.setVersoEscandido(novoVerso.toString());
-        System.out.println("Estou retornando o que eu encontrei..... pense!");
+//        System.out.println("Estou retornando o que eu encontrei..... pense!");
         return versoEncontrado;
     }
 
@@ -1096,19 +1096,19 @@ public class EscansaoCustomizada2 {
     }
 
     private Verso ajustarElisoes(Verso versoEncontrado, int numSilabasPoeticas, String novoVerso, int minSilabas) {
-        System.out.println("Ajustando Elisão para: " + versoEncontrado.getPalavrasVerso());
-        System.out.println("Novo verso: " + novoVerso);
-        System.out.println("Número de elisões do verso encontrado: " + versoEncontrado.getNumeroDeElisoes());
-        System.out.println("Mínimo de sílabas: " + minSilabas);
+//        System.out.println("Ajustando Elisão para: " + versoEncontrado.getPalavrasVerso());
+//        System.out.println("Novo verso: " + novoVerso);
+//        System.out.println("Número de elisões do verso encontrado: " + versoEncontrado.getNumeroDeElisoes());
+//        System.out.println("Mínimo de sílabas: " + minSilabas);
         int numeroDeElisoesDoVersoes = versoEncontrado.getNumeroDeElisoes();
         int indiceDasElisoes = 0;
         int indiceDasRegras = 0;
-        System.out.println("Regras de Elisões aplicadas: ");
-        System.out.println("------------------------------------------------------");
-        for (String st : versoEncontrado.getRegrasDeElisoesAplicadas()) {
-            System.out.println(st);
-        }
-        System.out.println("------------------------------------------------------");
+//        System.out.println("Regras de Elisões aplicadas: ");
+//        System.out.println("------------------------------------------------------");
+//        for (String st : versoEncontrado.getRegrasDeElisoesAplicadas()) {
+//            System.out.println(st);
+//        }
+//        System.out.println("------------------------------------------------------");
         //Enquanto o número de sílabas mínimo não for alcançado e as regras aplicadas já não tiverem se esgotado....
         while (numSilabasPoeticas < minSilabas && indiceDasRegras < versoEncontrado.getRegrasDeElisoesAplicadas().size()) {
             String regra = versoEncontrado.getRegrasDeElisoesAplicadas().get(indiceDasRegras++).toLowerCase();
@@ -1116,18 +1116,18 @@ public class EscansaoCustomizada2 {
                 String primeiraPalavra = versoEncontrado.getPalavrasComElisao().get(indiceDasElisoes).getPalavra().replaceAll("-", "/");
                 String segundaPalavra = versoEncontrado.getPalavrasComElisao().get(++indiceDasElisoes).getPalavra().replaceAll("-", "/");
                 indiceDasElisoes++;
-                System.out.println("NOVO VERSO---------------------------------------------------");
-                System.out.println("Antes: " + novoVerso);
+//                System.out.println("NOVO VERSO---------------------------------------------------");
+//                System.out.println("Antes: " + novoVerso);
                 novoVerso = novoVerso.replaceFirst(primeiraPalavra + " " + segundaPalavra, primeiraPalavra + "/ " + segundaPalavra);
-                System.out.println("Depois: " + novoVerso);
-                System.out.println("NOVO VERSO---------------------------------------------------");
+//                System.out.println("Depois: " + novoVerso);
+//                System.out.println("NOVO VERSO---------------------------------------------------");
                 numSilabasPoeticas++;
                 versoEncontrado.setNumeroDeElisoesDesfeitas(versoEncontrado.getNumeroDeElisoesDesfeitas() + 1);
             }
         }
-        System.out.println("----------------------RESUMO----------------------");
-        System.out.println("MODIFICADO --------- Novo verso:  " + novoVerso);
-        System.out.println("Número de Elisões desfeitas: " + versoEncontrado.getNumeroDeElisoesDesfeitas());
+//        System.out.println("----------------------RESUMO----------------------");
+//        System.out.println("MODIFICADO --------- Novo verso:  " + novoVerso);
+//        System.out.println("Número de Elisões desfeitas: " + versoEncontrado.getNumeroDeElisoesDesfeitas());
 
 //        System.out.println("Retornado após ajuste: " + novoVerso + " >>> " + numSilabasPoeticas);
         if (classificacao.containsKey(numSilabasPoeticas)) {
@@ -1145,9 +1145,9 @@ public class EscansaoCustomizada2 {
         int aux = 0;
         int indiceSinerese = 0;
         int numeroSineresesPalavra = 0;
-        System.out.println("Verso recebido (novoVerso): " + novoVerso);
-        System.out.println("numSilabasPoeticas: " + numSilabasPoeticas);
-        System.out.println("minSilabas: " + minSilabas);
+//        System.out.println("Verso recebido (novoVerso): " + novoVerso);
+//        System.out.println("numSilabasPoeticas: " + numSilabasPoeticas);
+//        System.out.println("minSilabas: " + minSilabas);
         while (numSilabasPoeticas < minSilabas) {
             while (aux < versoEncontrado.getPalavrasVerso().size() && !versoEncontrado.getPalavrasVerso().get(aux).isSinerese()) {//Enquanto não encontrar um palavra com dierese
                 aux++;//Vá para a próxima palavra
@@ -1158,11 +1158,11 @@ public class EscansaoCustomizada2 {
                 }
 
                 Palavra palavraAux = versoEncontrado.getPalavrasVerso().get(aux);//Peque a palavra com a Sinérese
-                System.out.println("Palavra com sinérese: " + palavraAux.getPalavra());
+//                System.out.println("Palavra com sinérese: " + palavraAux.getPalavra());
 
                 //Veja se não é a última palavra
                 if (!isUltimaPalavra(versoEncontrado, aux)) {
-                    System.out.println("Entrei aqui. Não é a última palavra.");
+//                    System.out.println("Entrei aqui. Não é a última palavra.");
                     //Guarde quantas diéreses existem em uma palavra
                     numeroSineresesPalavra = palavraAux.getSilabasSinerese().size();
                     indiceSinerese = 0;
@@ -1173,19 +1173,19 @@ public class EscansaoCustomizada2 {
                             //Guarde a palavra anterior
                             String palavraAnterior = palavraAux.getPalavra();//Palavra como está no verso
 
-                            System.out.println("Palavra antes da substituição: " + palavraAux.getPalavra());
+//                            System.out.println("Palavra antes da substituição: " + palavraAux.getPalavra());
                             //Pegue a palavra com a Sinérese e substitua a sílaba alterada pela anterior
-                            System.out.println("palavraAux.getSilabasSinerese().get(indiceSinerese): " + palavraAux.getSilabasSinerese().get(indiceSinerese));
+//                            System.out.println("palavraAux.getSilabasSinerese().get(indiceSinerese): " + palavraAux.getSilabasSinerese().get(indiceSinerese));
                             // palavraAux.setPalavra(palavraAux.getPalavra().replace(palavraAux.getSilabasSinerese().get(indiceSinerese), palavraAux.getSilabasSinerese().get(indiceSinerese)).replace("-", "/"));
                             palavraAux.setPalavra(palavraAux.getSilabasSinerese().get(indiceSinerese).replace("-", "/"));
-                            System.out.println("Palavra depois da substituição: " + palavraAux.getPalavra());
+//                            System.out.println("Palavra depois da substituição: " + palavraAux.getPalavra());
                             numeroSineresesPalavra--;
-                            System.out.println("Novo verso antes: " + novoVerso);
+//                            System.out.println("Novo verso antes: " + novoVerso);
                             //Substitua a palavra no verso que será devolvido
-                            System.out.println("palavraAux.getNovaSilabaComSinerese().get(indiceSinerese): " + palavraAux.getNovaSilabaComSinerese().get(indiceSinerese));
-                            System.out.println("palavraAux.getSilabasSinerese().get(indiceSinerese): " + palavraAux.getSilabasSinerese().get(indiceSinerese));
+//                            System.out.println("palavraAux.getNovaSilabaComSinerese().get(indiceSinerese): " + palavraAux.getNovaSilabaComSinerese().get(indiceSinerese));
+//                            System.out.println("palavraAux.getSilabasSinerese().get(indiceSinerese): " + palavraAux.getSilabasSinerese().get(indiceSinerese));
                             novoVerso = novoVerso.replaceFirst(palavraAux.getNovaSilabaComSinerese().get(indiceSinerese).replaceAll("-", "/"), palavraAux.getSilabasSinerese().get(indiceSinerese)).replaceAll("-", "/");
-                            System.out.println("Novo verso depois: " + novoVerso);
+//                            System.out.println("Novo verso depois: " + novoVerso);
                             indiceSinerese++;
                             //Decremente o número de sílabas poéticas
                             numSilabasPoeticas++;
@@ -1268,7 +1268,7 @@ public class EscansaoCustomizada2 {
 
     private Verso ajustarDierese(Verso versoEncontrado, int numSilabasPoeticas, String novoVerso, int maxSilabas) {
 
-        System.out.println("Ajustando Dierese para: " + versoEncontrado.getPalavrasVerso());
+//        System.out.println("Ajustando Dierese para: " + versoEncontrado.getPalavrasVerso());
 //        for (Palavra p : versoEncontrado.getPalavrasVerso()) {//Remover isso não faz nada
 //            System.out.println(p.getPalavra() + " ");
 //        }
@@ -1278,35 +1278,35 @@ public class EscansaoCustomizada2 {
         int indiceDiereses = 0;
         int numeroDiresesPalavra = 0;
         while (numSilabasPoeticas > maxSilabas) {
-            System.out.println("Entrei no primeiro Laço");
+//            System.out.println("Entrei no primeiro Laço");
             while (aux < versoEncontrado.getPalavrasVerso().size() && !versoEncontrado.getPalavrasVerso().get(aux).isDierese()) {//Enquanto não encontrar um palavra com dierese
                 aux++;//Vá para a próxima palavra
             }
-            System.out.println("Índice da palavra com diérese: " + aux);
+//            System.out.println("Índice da palavra com diérese: " + aux);
             try {
                 if (aux == versoEncontrado.getPalavrasVerso().size()) {
                     break;
                 }
                 Palavra palavraAux = versoEncontrado.getPalavrasVerso().get(aux);//Peque a palavra com a Diérese
-                System.out.println("PALAVRA COM DIÉRESE>>>>>>>>>>>>>>>>>>>>> " + palavraAux);
+//                System.out.println("PALAVRA COM DIÉRESE>>>>>>>>>>>>>>>>>>>>> " + palavraAux);
 
                 //Veja se não é a última palavra
                 if (!isUltimaPalavra(versoEncontrado, aux)) {
-                    System.out.println("Não é a última palavra...");
+//                    System.out.println("Não é a última palavra...");
                     //Guarde quantas diéreses existem em uma palavra
                     numeroDiresesPalavra = palavraAux.getSilabasDirese().size();
-                    System.out.println("Número de diéreses da palavra: " + numeroDiresesPalavra);
+//                    System.out.println("Número de diéreses da palavra: " + numeroDiresesPalavra);
                     indiceDiereses = 0;
                     //Enquanto existir diérese na palavra e quantidade de sílabas poéticas for maior do está sendo buscado...
                     while (numeroDiresesPalavra > 0 && numSilabasPoeticas > maxSilabas) {
-                        System.out.println("Entrei no laço");
+//                        System.out.println("Entrei no laço");
                         //Verficar se a Dierese está na lista de exceções ante de processar
                         if (MapaConfiguracao.getInstacia().getExcecoesDierese().contains(palavraAux.getRegrasAplicadasDirese().get(indiceDiereses))) {
                             palavraAux.setPalavraOrigialEscandida(palavraAux.getPalavra());
-                            System.out.println(palavraAux.getRegrasAplicadasDirese().get(indiceDiereses) + " - Está no Mapa de exceções");
+//                            System.out.println(palavraAux.getRegrasAplicadasDirese().get(indiceDiereses) + " - Está no Mapa de exceções");
                             //Guarde a palavra anterior
                             String palavraAnterior = palavraAux.getPalavra().replaceAll("-", "/");//Palavra como está no verso
-                            System.out.println("Palavra anterior: " + palavraAnterior);
+//                            System.out.println("Palavra anterior: " + palavraAnterior);
                             //Pegue a palavra com a Diérese e substitua a sílaba alterada pela anterior
                             palavraAux.setPalavra(palavraAux.getPalavra().replace(palavraAux.getNovaSilabaComDierese().get(indiceDiereses), palavraAux.getSilabasDirese().get(indiceDiereses)));
                             indiceDiereses++;
@@ -1317,7 +1317,7 @@ public class EscansaoCustomizada2 {
                             numSilabasPoeticas--;
                             versoEncontrado.setNumeroDeDieresesDesfeitas(versoEncontrado.getNumeroDeDieresesDesfeitas() + 1);
                         } else {
-                            System.out.println(palavraAux.getRegrasAplicadasDirese().get(indiceDiereses) + " - Não está no Mapa de exceções");
+//                            System.out.println(palavraAux.getRegrasAplicadasDirese().get(indiceDiereses) + " - Não está no Mapa de exceções");
                             indiceDiereses++;
                             numeroDiresesPalavra--;
                         }
@@ -1335,8 +1335,8 @@ public class EscansaoCustomizada2 {
                     }
 
                 } else {
-                    System.out.println("É A ÚLTIMA PALAVRA DO VERSO: " + palavraAux.getPalavra());
-                    System.out.println("A diérese foi aplicada na Tonica? " + palavraAux.isPossuiDiereseNaTonica());
+//                    System.out.println("É A ÚLTIMA PALAVRA DO VERSO: " + palavraAux.getPalavra());
+//                    System.out.println("A diérese foi aplicada na Tonica? " + palavraAux.isPossuiDiereseNaTonica());
                     numeroDiresesPalavra = palavraAux.getSilabasDirese().size();
                     indiceDiereses = 0;
 
@@ -1347,7 +1347,7 @@ public class EscansaoCustomizada2 {
                             if (MapaConfiguracao.getInstacia().getExcecoesDierese().contains(palavraAux.getRegrasAplicadasDirese().get(indiceDiereses))) {
                                 palavraAux.setPalavraOrigialEscandida(palavraAux.getPalavra());
 
-                                System.out.println("Última palavra: " + palavraAux.getRegrasAplicadasDirese().get(indiceDiereses) + " - Está no Mapa de exceções");
+//                                System.out.println("Última palavra: " + palavraAux.getRegrasAplicadasDirese().get(indiceDiereses) + " - Está no Mapa de exceções");
                                 //Guarde a palavra anterior
                                 String palavraAnterior = palavraAux.getPalavra().replaceAll("-", "/");//Palavra como está no verso
                                 //Pegue a palavra com a Diérese e substitua a sílaba alterada pela anterior
@@ -1359,9 +1359,9 @@ public class EscansaoCustomizada2 {
                                 //Decremente o número de sílabas poéticas
                                 numSilabasPoeticas--;
                                 versoEncontrado.setNumeroDeDieresesDesfeitas(versoEncontrado.getNumeroDeDieresesDesfeitas() + 1);
-                                System.out.println("Palavra revertida...nova palavra: " + palavraAux.getPalavra());
+//                                System.out.println("Palavra revertida...nova palavra: " + palavraAux.getPalavra());
                             } else {
-                                System.out.println("Última palavra: " + palavraAux.getRegrasAplicadasDirese().get(indiceDiereses) + " - Não está no Mapa de exceções");
+//                                System.out.println("Última palavra: " + palavraAux.getRegrasAplicadasDirese().get(indiceDiereses) + " - Não está no Mapa de exceções");
                                 indiceDiereses++;
                                 numeroDiresesPalavra--;
                             }
@@ -1370,12 +1370,12 @@ public class EscansaoCustomizada2 {
                         //Fim - 22/05/2017
 //                        System.out.println("NÃO DEVE SER REVERTIDO");- 22/05/2017 - Deve ser sim.
                     } else {
-                        System.out.println("DEVE SER REVERTIDO");
+//                        System.out.println("DEVE SER REVERTIDO");
                         while (numeroDiresesPalavra > 0 && numSilabasPoeticas > maxSilabas) {
                             if (MapaConfiguracao.getInstacia().getExcecoesDierese().contains(palavraAux.getRegrasAplicadasDirese().get(indiceDiereses))) {
                                 palavraAux.setPalavraOrigialEscandida(palavraAux.getPalavra());
 
-                                System.out.println("Última palavra: " + palavraAux.getRegrasAplicadasDirese().get(indiceDiereses) + " - Está no Mapa de exceções");
+//                                System.out.println("Última palavra: " + palavraAux.getRegrasAplicadasDirese().get(indiceDiereses) + " - Está no Mapa de exceções");
                                 //Guarde a palavra anterior
                                 String palavraAnterior = palavraAux.getPalavra().replaceAll("-", "/");//Palavra como está no verso
                                 //Pegue a palavra com a Diérese e substitua a sílaba alterada pela anterior
@@ -1387,9 +1387,9 @@ public class EscansaoCustomizada2 {
                                 //Decremente o número de sílabas poéticas
                                 numSilabasPoeticas--;
                                 versoEncontrado.setNumeroDeDieresesDesfeitas(versoEncontrado.getNumeroDeDieresesDesfeitas() + 1);
-                                System.out.println("Palavra revertida...nova palavra: " + palavraAux.getPalavra());
+//                                System.out.println("Palavra revertida...nova palavra: " + palavraAux.getPalavra());
                             } else {
-                                System.out.println("Última palavra: " + palavraAux.getRegrasAplicadasDirese().get(indiceDiereses) + " - Não está no Mapa de exceções");
+//                                System.out.println("Última palavra: " + palavraAux.getRegrasAplicadasDirese().get(indiceDiereses) + " - Não está no Mapa de exceções");
                                 indiceDiereses++;
                                 numeroDiresesPalavra--;
                             }
@@ -1421,9 +1421,9 @@ public class EscansaoCustomizada2 {
     }
 
     public boolean isUltimaPalavra(Verso versoEncontrado, int posicao) {
-        System.out.println("OIOIOIOIOIOIOIOIOI ------>>>>>>>>>> isUltimaPalavra: " + versoEncontrado.getPalavrasVerso().get(posicao).getPalavra());
-        System.out.println("Quantidade de palavras do verso: " + versoEncontrado.getPalavrasVerso().size());
-        System.out.println("Valor de posição: " + posicao);
+//        System.out.println("OIOIOIOIOIOIOIOIOI ------>>>>>>>>>> isUltimaPalavra: " + versoEncontrado.getPalavrasVerso().get(posicao).getPalavra());
+//        System.out.println("Quantidade de palavras do verso: " + versoEncontrado.getPalavrasVerso().size());
+//        System.out.println("Valor de posição: " + posicao);
         return versoEncontrado.getPalavrasVerso().size() - 1 == posicao;
     }
 
@@ -1552,7 +1552,7 @@ public class EscansaoCustomizada2 {
                 novaSilaba = temp[i].substring(0, temp[i].length() - 1) + "-" + temp[i].charAt(temp[i].length() - 1);
                 s = s.replace(temp[i], novaSilaba);
                 palavra.setPalavraOrigialEscandida(s);
-                System.out.println("novaSilaba: " + novaSilaba);
+//                System.out.println("novaSilaba: " + novaSilaba);
                 temp[i] = novaSilaba;
                 numero++;//Isso deve causar um alongamento no número de sílabas.
                 houveDirese = true;
@@ -1834,29 +1834,29 @@ public class EscansaoCustomizada2 {
     private boolean verificarDesfazerDierese(Verso versoEncontrado, int numSilabasPoeticas, int minSilabas, int maxSilabas) {
         int naoCompensaDesfazer = 0;
         int i = 0;
-        System.out.println("versoEncontrado.getPalavrasVerso().size(): " + versoEncontrado.getPalavrasVerso().size());
+//        System.out.println("versoEncontrado.getPalavrasVerso().size(): " + versoEncontrado.getPalavrasVerso().size());
         while (i < versoEncontrado.getPalavrasVerso().size()) {
             if (versoEncontrado.getPalavrasVerso().get(i).isDierese()) {
                 Palavra palavraAux = versoEncontrado.getPalavrasVerso().get(i);//Peque a palavra com a Diérese
                 int numeroSilabaOriginal = palavraAux.getPalavraOriginalSeparada().split("-").length;
                 int numeroSilabaPalavraModificada = palavraAux.getPalavraOrigialEscandida().split("-").length;
-                System.out.println("numeroSilabaOriginal: " + numeroSilabaOriginal);
-                System.out.println("numeroSilabaPalavraModificada: " + numeroSilabaPalavraModificada);
+//                System.out.println("numeroSilabaOriginal: " + numeroSilabaOriginal);
+//                System.out.println("numeroSilabaPalavraModificada: " + numeroSilabaPalavraModificada);
 
                 if (numeroSilabaOriginal < numeroSilabaPalavraModificada) {
-                    System.out.println("Palavra:  " + palavraAux.getPalavraOrigialEscandida() + " - Não compensa desafazer");
+//                    System.out.println("Palavra:  " + palavraAux.getPalavraOrigialEscandida() + " - Não compensa desafazer");
                     palavraAux.setDesfazerDierese(false);
                     naoCompensaDesfazer++;
                 }
             }
             i++;
-            System.out.println("i: " + i);
+//            System.out.println("i: " + i);
         }
         //  System.out.println("versoEncontrado.getVersoEscandido(): " + versoEncontrado.getVersoEscandido());
-        System.out.println("numSilabasPoeticas: " + numSilabasPoeticas);
-        System.out.println("numSilabasPoeticas: " + numSilabasPoeticas);
-        System.out.println("naoCompensaDesfazer: " + naoCompensaDesfazer);
-        System.out.println("maxSilabas: " + maxSilabas);
+//        System.out.println("numSilabasPoeticas: " + numSilabasPoeticas);
+//        System.out.println("numSilabasPoeticas: " + numSilabasPoeticas);
+//        System.out.println("naoCompensaDesfazer: " + naoCompensaDesfazer);
+//        System.out.println("maxSilabas: " + maxSilabas);
         if (numSilabasPoeticas - naoCompensaDesfazer <= maxSilabas) {
             return false;
         } else {

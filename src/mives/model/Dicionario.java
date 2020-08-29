@@ -172,7 +172,7 @@ public class Dicionario {
                                         int ultimoHifen = temp.length() - 1;
                                         for (int i = ultimoHifen; i > 0; i--) {
                                             if ((temp.charAt(i) + "").equals("-")) {
-                                                System.out.println("Entrei aqui");
+//                                                System.out.println("Entrei aqui");
                                                 StringBuilder stTemp = new StringBuilder(temp);
                                                 temp = stTemp.replace(i, i, "§").toString();
                                                 break;
@@ -363,15 +363,15 @@ public class Dicionario {
                         if (!dicio.containsKey(p.toLowerCase())) {
                             if (p.length() > 1) {
                                 temp = separarSilaba(p);
-                                System.out.println("01 - Enviando: " + p);
-                                System.out.println("01 - Recebendo: " + temp);
+//                                System.out.println("01 - Enviando: " + p);
+//                                System.out.println("01 - Recebendo: " + temp);
                                 bufferedWriterDestino.newLine();
                                 bufferedWriterDestino.write(p.toLowerCase() + "\t" + temp);
                                 dicio.put(p.toLowerCase(), temp);
                             } else {
                                 //temp = separarSilaba(p);
-                                System.out.println("01 - Enviando: " + p);
-                                System.out.println("01 - Recebendo: " + temp);
+//                                System.out.println("01 - Enviando: " + p);
+//                                System.out.println("01 - Recebendo: " + temp);
                                 bufferedWriterDestino.newLine();
                                 bufferedWriterDestino.write(p + "\t" + p);
                                 dicio.put(p, p);
@@ -434,10 +434,10 @@ public class Dicionario {
         //Fiz o teste com um método lá no C# para executar o simples Writeln e nada. Também não funciona.
         // vamos facilitar os testes, espera um pouco
         String retorno[] = lapseparatorjni.TextAnalysisToolApp.Main(vetor);//aqui nessa linha
-        System.out.println("Retorno:");
-        for (String ret : retorno) {
-            System.out.println(ret);
-        }
+//        System.out.println("Retorno:");
+//        for (String ret : retorno) {
+//            System.out.println(ret);
+//        }
 
         int posTonica = Integer.parseInt(retorno[2]);
 
@@ -567,7 +567,7 @@ public class Dicionario {
 //            Logger.getLogger(SepararSilabaTexto.class
 //                    .getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Retornando vazio");
+//        System.out.println("Retornando vazio");
         return "";
     }
 
@@ -646,7 +646,7 @@ public class Dicionario {
         int numeroDalinha = 0;
         try {
 
-            System.out.println("Nome do arquivo: " + arquivoDicionario.getPath());
+//            System.out.println("Nome do arquivo: " + arquivoDicionario.getPath());
             readerBase = new FileReader(arquivoDicionario);//Faz novaPal leitura do arquivo base
             bufferedReaderBase = new BufferedReader(readerBase);//Faz novaPal leitura do arquivo base
 
@@ -690,7 +690,7 @@ public class Dicionario {
     }
 
     public void imprimirDicionario() {
-        System.out.println("Entradas Dicionário:");
+//        System.out.println("Entradas Dicionário:");
         int linha = 1;
         for (String obj : dicio.keySet()) {
 //            System.out.printf("%s %s\n", obj, dicio.get(obj));
@@ -699,7 +699,7 @@ public class Dicionario {
             }
             linha++;
         }
-        System.out.println("Processo Concluído!!");
+//        System.out.println("Processo Concluído!!");
     }
 
 //    public static void main(final String[] args) {
