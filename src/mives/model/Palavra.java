@@ -13,6 +13,20 @@ import java.util.ArrayList;
  */
 public class Palavra {
 
+    /**
+     * @return the desfazerDierese
+     */
+    public boolean isDesfazerDierese() {
+        return desfazerDierese;
+    }
+
+    /**
+     * @param desfazerDierese the desfazerDierese to set
+     */
+    public void setDesfazerDierese(boolean desfazerDierese) {
+        this.desfazerDierese = desfazerDierese;
+    }
+
     private String palavra;
     private String palavraSeparada;
     private int qtdSilabasPoeticas;
@@ -26,6 +40,8 @@ public class Palavra {
     private ArrayList<String> regrasAplicadasSinerese = new ArrayList<>();
     private String palavraOrigialEscandida;
     private boolean possuiDiereseNaTonica = false;
+    private String palavraOriginalSeparada;
+    private boolean desfazerDierese = true;
 
     /**
      * @return the sinerese
@@ -156,6 +172,20 @@ public class Palavra {
 
     public void setPossuiDiereseNaTonica(boolean possuiDiereseNaTonica) {
         this.possuiDiereseNaTonica = possuiDiereseNaTonica;
+    }
+
+    /**
+     * @return the palavraOriginalSeparada
+     */
+    public String getPalavraOriginalSeparada() {
+        return palavraOriginalSeparada;
+    }
+
+    /**
+     * @param palavraOriginalSeparada the palavraOriginalSeparada to set
+     */
+    public void setPalavraOriginalSeparada(String palavraOriginalSeparada) {
+        this.palavraOriginalSeparada = palavraOriginalSeparada;
     }
 
 }
