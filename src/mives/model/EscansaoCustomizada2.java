@@ -901,6 +901,7 @@ public class EscansaoCustomizada2 {
                     }
                 } else { //a partir da segunda palavra do verso
                     Palavra palavraTemp = contarSilabasPalavraNew(temp, 0, true);
+                    palavraTemp.setPalavraOriginalSeparada(temp);
                     //Sempre que as sílabas forem contadas o verso é avisado de que naquela palavra houve um caso de diérese
                     versoEncontrado.setNumeroDeDiereses(versoEncontrado.getNumeroDeDiereses() + palavraTemp.getSilabasDirese().size());
                     //O verso sabe quantos casos de sinerese aconteram
@@ -928,6 +929,7 @@ public class EscansaoCustomizada2 {
                     }
                 }
             } else {
+//                System.out.println("Entrei no else: " + temp);
                 novoVerso.append(" " + temp);
                 r--;//Se for uma palavra decrementa o "R"
             }
