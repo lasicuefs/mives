@@ -77,7 +77,7 @@ public class MIVES extends Application {
             System.out.println("Carregando DLL....");
             Bridge.setVerbose(true);
             Bridge.init();
-            File proxyAssemblyFile = new File("lib\\LapSeparatorJNI.j4n.dll");
+            File proxyAssemblyFile = new File("bibliotecas\\LapSeparatorJNI.j4n.dll");
 //                File proxyAssemblyFile = new File("LapSeparatorJNI.j4n.dll");
 //            File proxyAssemblyFile = new File("lib\\LapSeparatorJNI.j4n.dll");// Colocar quando for gerar o jar
             Bridge.LoadAndRegisterAssemblyFrom(proxyAssemblyFile);

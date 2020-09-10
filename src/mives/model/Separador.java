@@ -8,6 +8,8 @@ package mives.model;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.StringTokenizer;
+import java.util.regex.Pattern;
+
 import mives.util.Utilitario;
 
 /**
@@ -170,9 +172,9 @@ public class Separador {
                 }
                 if (Uppercase) {
                     if (palavraRetorno.charAt(0) == '#') {
-                        palavraRetorno = palavraRetorno.replaceFirst(palavraRetorno.charAt(1) + "", (palavraRetorno.charAt(1) + "").toUpperCase());
+                        palavraRetorno = palavraRetorno.replaceFirst(Pattern.quote(palavraRetorno.charAt(1) + ""), (palavraRetorno.charAt(1) + "").toUpperCase());
                     } else {
-                        palavraRetorno = palavraRetorno.replaceFirst(palavraRetorno.charAt(0) + "", (palavraRetorno.charAt(0) + "").toUpperCase());
+                        palavraRetorno = palavraRetorno.replaceFirst(Pattern.quote(palavraRetorno.charAt(0) + ""), (palavraRetorno.charAt(0) + "").toUpperCase());
                     }
                 }
                 retorno.append(simbInicio + palavraRetorno + simbolo + " ");
