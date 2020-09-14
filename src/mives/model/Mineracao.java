@@ -153,7 +153,7 @@ public class Mineracao implements ProcessarLivroObservable {
      * sido catalogado como tipo de verso principal.
      */
     public void gerarOutrasPossibilidadesDeEscansaoFinalFrase(Frase frase, int fraseCorrespondente, int tipoDoversoBase) throws Exception {
-        System.out.println("Frase/Verso recebido: " + frase);
+//        System.out.println("Frase/Verso recebido: " + frase);
         Verso vTemp;
         String linhaBase = frase.toString();
         for (int i = tipoDeVersoInicio; i <= tipoDeVersoFim; i++) {
@@ -410,7 +410,7 @@ public class Mineracao implements ProcessarLivroObservable {
                 && new StringTokenizer(frase).countTokens() == new StringTokenizer(verso.getVersoEscandido()).countTokens()
                 //                && verso.getNumeroDeSilabas() >= numeroSilabas) {
                 && ((verso.getNumeroDeSilabas() >= numeroSilabasInicio) && (verso.getNumeroDeSilabas() <= 12))) {
-            System.out.println("1- Verso Escandido: " + verso.getVersoEscandido().toString());
+//            System.out.println("1- Verso Escandido: " + verso.getVersoEscandido().toString());
             verso.setPalavras(verso.getVersoEscandido().toString().replaceAll("#", "").replaceAll("§", "-").replaceAll("/", ""));
             verso.gerarPosicionamento();
             return verso;
@@ -431,10 +431,10 @@ public class Mineracao implements ProcessarLivroObservable {
 //            System.out.println("2- Verso Escandido: " + verso.getVersoEscandido().toString());
             verso.setPalavras(verso.getVersoEscandido().toString().replaceAll("#", "").replaceAll("§", "-").replaceAll("/", ""));
             verso.gerarPosicionamento();
-            System.out.println("----------------------------------------------------------------------");
-            System.out.println("Verso Retornado da escansão: " + verso.getVersoEscandido());
-            System.out.println("Número de Sílabas: " + verso.getNumeroDeSilabas());
-            System.out.println("----------------------------------------------------------------------");
+//            System.out.println("----------------------------------------------------------------------");
+//            System.out.println("Verso Retornado da escansão: " + verso.getVersoEscandido());
+//            System.out.println("Número de Sílabas: " + verso.getNumeroDeSilabas());
+//            System.out.println("----------------------------------------------------------------------");
             return verso;
         }
         return null;
@@ -458,7 +458,7 @@ public class Mineracao implements ProcessarLivroObservable {
 //        }
 //        System.out.println("Possui pontuação: " + verso.getPalavras());
         if ((verso.getNumeroDeSilabas() >= numeroSilabasInicio) && (verso.getNumeroDeSilabas() <= numeroSilabasFim)) {
-            System.out.println("3- Verso Escandido: " + verso.getVersoEscandido().toString());
+//            System.out.println("3- Verso Escandido: " + verso.getVersoEscandido().toString());
             verso.setPalavras(verso.getVersoEscandido().toString().replaceAll("#", "").replaceAll("§", "-").replaceAll("/", ""));
             String ultimaPalavra[] = Utilitario.preencherVetorTokenV2(new StringTokenizer(verso.getPalavras()));
             boolean possuiPontuacao = escansaoCustomizada2.verifcarSimboloPontuacao(ultimaPalavra[ultimaPalavra.length - 1]);
@@ -475,14 +475,14 @@ public class Mineracao implements ProcessarLivroObservable {
 
     private Verso extrairPalavrasFraseFinalCustomizadaNew(String frase, int minimo, int maximo) {
         StringTokenizer f = new StringTokenizer(frase.toString());
-        System.out.println("FRASE RECEBIDA - DOMINGO..............." + frase);
+//        System.out.println("FRASE RECEBIDA - DOMINGO..............." + frase);
         Verso verso = escansaoCustomizada2.contarSilabasPoeticasFinalNew(frase, minimo, maximo, true);
         if (verso == null) {
             return null;
         }
 
         if (verso.getVersoEscandido().toString().matches(".*\\d.*")) {
-            System.out.println("Tem número: " + verso.getVersoEscandido().toString());
+//            System.out.println("Tem número: " + verso.getVersoEscandido().toString());
             return null;
         }
         if ((verso.getNumeroDeSilabas() >= minimo) && (verso.getNumeroDeSilabas() <= maximo)) {
@@ -496,13 +496,13 @@ public class Mineracao implements ProcessarLivroObservable {
 //            System.out.println("Tamanho do verso: " + auxVerso.length);
 
             int in = auxFrase.length - auxVerso.length;
-            System.out.println("Inicio: " + in);
+//            System.out.println("Inicio: " + in);
             for (int inicio = in; inicio < auxFrase.length; inicio++) {
                 versoExtraido.append(auxFrase[inicio] + " ");
             }
             verso.setPalavras(versoExtraido.toString().replace("\"", "\"").trim());//IFBA
-            System.out.println("VERSO ESCANDIDO: " + verso.getVersoEscandido());
-            System.out.println("DEVOLVENDO VERSO: " + verso.getPalavras());
+//            System.out.println("VERSO ESCANDIDO: " + verso.getVersoEscandido());
+//            System.out.println("DEVOLVENDO VERSO: " + verso.getPalavras());
             //verso.setPalavras(verso.getVersoEscandido().toString().replaceAll("-", "").replaceAll("#", "").replaceAll("§", "-").replaceAll("/", ""));
             // System.out.println("DEVOLVENDO VERSO: " + verso.getVersoEscandido().toString().replaceAll("-", "").replaceAll("#", "").replaceAll("§", "-").replaceAll("/", ""));
             verso.gerarPosicionamento();
@@ -519,7 +519,7 @@ public class Mineracao implements ProcessarLivroObservable {
             return null;
         }
         if (verso.getNumeroDeSilabas() >= numeroSilabas) {
-            System.out.println("4- Verso Escandido: " + verso.getVersoEscandido().toString());
+//            System.out.println("4- Verso Escandido: " + verso.getVersoEscandido().toString());
             verso.setPalavras(verso.getVersoEscandido().toString().replaceAll("#", "").replaceAll("§", "-").replaceAll("/", ""));
             verso.gerarPosicionamento();
             return verso;

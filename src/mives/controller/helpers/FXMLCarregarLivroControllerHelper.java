@@ -36,6 +36,11 @@ public class FXMLCarregarLivroControllerHelper {
 
     public void iniciarCarregarLivro() {
 
+        task.setOnFailed(evt -> {
+            System.err.println("Task failed, exception:");
+            task.getException().printStackTrace(System.err);
+        });
+
         Thread t = new Thread(task);
         t.start();
         carregarLivro.getLabelNomeArquivo().setText(FXMLCarregarLivroController.arquivo.getName());
@@ -62,7 +67,7 @@ public class FXMLCarregarLivroControllerHelper {
 
     Task task = new Task<Boolean>() {
         @Override
-        public Boolean call() {
+        public Boolean call() throws Exception {
 
             Livro livro = Livro.getInstance();
             livro.setArquivoDeOrigem(FXMLCarregarLivroController.arquivo);
@@ -92,7 +97,7 @@ public class FXMLCarregarLivroControllerHelper {
                                 nf.printStackTrace();
                                 System.out.println("CORRIGINDO ERRO: " + linha);
 
-                                pagina.setNumero(Integer.parseInt(linha.toString().trim().replaceAll("?", "")));
+                                pagina.setNumero(Integer.parseInt(linha.toString().trim().replaceAll("\\?", "")));
                                 livro.getPaginas().put(pagina.getNumero(), pagina);
                                 temNumero = true;
                                 System.out.println("Erro solucionado");
@@ -118,10 +123,10 @@ public class FXMLCarregarLivroControllerHelper {
                     Livro.getStringLivro().append(linha + "\n");
                 }
             } catch (FileNotFoundException ex) {
-                System.out.println("O arquivo não foi encontrado");
+                System.out.println("ERRO: O arquivo não foi encontrado!");
 
             } catch (IOException ex) {
-                System.out.println("Falha ao ler o arquivo");
+                System.out.println("ERRO: Falha ao ler o arquivo!");
 
             }
             livro.gerarFrases();

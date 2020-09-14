@@ -731,8 +731,8 @@ public class Pagina {
         String fraseSaida;
         frase.getVerso().setLink(link);
         String verso = frase.getVerso().toString();
-        System.out.println("frase.getVerso().toString()" + verso);
-        System.out.println("Palavras do verso: " + frase.getVerso().getPalavras());
+//        System.out.println("frase.getVerso().toString()" + verso);
+//        System.out.println("Palavras do verso: " + frase.getVerso().getPalavras());
         fraseSaida = frase.toString().replace(verso, "<a id=\"" + link + "\"><span id=\"" + link + "\" style=\"background-color: #8CC5F4\">" + verso + "</span>");
         frase.getVerso().setSubstituicao(true);
         frase.setFraseSaida(contador + ": " + fraseSaida);
@@ -761,18 +761,18 @@ public class Pagina {
 //                            System.out.println("Entrei aqui 1: " + frases.get(i).getVerso().getPalavras());
                         } else {
 //                            System.out.println("Entrei aqui 2: " + frases.get(i).getVerso().getPalavras());
-//                            System.out.println("Enviando linha para buscar origem: " + linha.getLinha());
+//                            System.out.println("Enviando linha para bucar origem: " + linha.getLinha());
 //                            System.out.println("Verso: " + frases.get(i).getVerso().getPalavras());
                             int indiceComeca = comecaNestaLinha(indiceDaLinha, linha, frases.get(i));
 //                            System.out.println("LINHA DE ORIGEM: " + indiceDaLinha);
 //                            System.out.println("ESTA NESTA LINHA: " + indiceComeca);
                             int aux = indiceDaLinha;
                             while (indiceComeca == 0 && aux > 0) {
-//                                System.out.println("Procurando origem");
+//                                System.out.println("Procuranto origem");
                                 aux--;
                                 indiceComeca = comecaNestaLinha(aux, linha, frases.get(i));
                             }
-                            if( (indiceComeca != 0) && (indiceComeca < frases.size())){
+                            if (indiceComeca != 0) {
 //                                System.out.println("Entrei aqui 3: " + frases.get(i).getVerso().getPalavras());
                                 marcarVersosFinalV2(indiceComeca, comeca, i);
 
@@ -817,8 +817,7 @@ public class Pagina {
 //        System.out.println("Recebendo para procurar na linha: " + linhas.get(indice).getLinha());
 //        System.out.println("O verso: " + frase.getVerso().getPalavras());
 
-        //StringTokenizer v = new StringTokenizer(frase.getVerso().getPalavras());
-        StringTokenizer v = new StringTokenizer(frase.getPalavras());
+        StringTokenizer v = new StringTokenizer(frase.getVerso().getPalavras());
         String vetorVerso[] = new String[v.countTokens()];
         int i = 0;
 
@@ -860,7 +859,7 @@ public class Pagina {
 //            System.out.println("Valord e i: " + i);
 //            System.out.println("Tamanho do vetor: " + vetorLinha.length);
 
-            if (i >= vetorLinha.length && g.replace("-", "").equals(primeiraPalavraVerso.replace("-", ""))) {//A última palavra da linha dá início ao verso
+            if (i == vetorLinha.length && g.replace("-", "").equals(primeiraPalavraVerso.replace("-", ""))) {//A última palavra da linha dá início ao verso
 
 //                System.out.println("ENTREI...ENTREI...ENTREI...ENTREI...ENTREI===> " + g);
                 if (i == vetorLinha.length) {
@@ -902,9 +901,7 @@ public class Pagina {
                 }
 
 //                System.out.println("indiceLinha == vetorLinha.length? " + (indiceLinha == vetorLinha.length));
-                //if (linhas.get(indice).getLinha().toLowerCase().contains(frase.getVerso().getPalavras().toLowerCase())) {
-                //modificado Angelo
-                if (linhas.get(indice).getLinha().toLowerCase().contains(frase.getPalavras().toLowerCase())) {
+                if (linhas.get(indice).getLinha().toLowerCase().contains(frase.getVerso().getPalavras().toLowerCase())) {
 //                    System.out.println("RICARDO");
 //                    System.out.println("RICARDO: " + linhas.get(indice).getLinha());
 //                    System.out.println("RICARDO: " + frase.getVerso().getPalavras());
@@ -952,16 +949,10 @@ public class Pagina {
 //                System.out.println("Começa na linha: " + comeca);
                 return indice + 1;
             }
-            try{ //modificado Angelo
+
                 int retorno = comecaNestaLinha(indice + 1, linhas.get(indice + 1), frase);
 //              System.out.println("Retorno: " + retorno);
                 return retorno;
-            }
-            catch(StackOverflowError e){
-                System.err.println(e.getMessage());
-                return linhas.size();
-            }
-
         } else {
 
             return 0;

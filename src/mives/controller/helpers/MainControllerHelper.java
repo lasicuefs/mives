@@ -128,20 +128,26 @@ public class MainControllerHelper {
 //            Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //        
+
+        task.setOnFailed(evt -> {
+            System.err.println("Task failed, exception:");
+            task.getException().printStackTrace(System.err);
+        });
+
         Thread t = new Thread(task);
         t.start();
     }
 
     Task task = new Task<Void>() {
         @Override
-        public Void call() {
+        public Void call() throws Exception {
             try {
-                System.out.println("Processando Livro");
+                System.out.println("Processando Livro...");
                 MivesController.getInstance().minerarVersosCustomizados(Livro.getInstance(),
                         MivesWizardData.INICIOFRASE, MivesWizardData.FINALFRASE, MivesWizardData.FRASECOMPLETA,
                         MivesWizardData.TIPODEVERSOINICIO, MivesWizardData.TIPODEVERSOFINAL,
                         true, true, true, true, true);
-                System.out.println("Livro processado");
+                System.out.println("Livro processado!");
             } catch (LivroException ex) {
                 Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -153,6 +159,14 @@ public class MainControllerHelper {
         protected void succeeded() {
             super.succeeded();
             controller.btnFinalizar.setDisable(false);
+
+        }
+
+        @Override
+        protected void failed() {
+            super.failed();
+            System.out.println("(task failed) ERRO AO PROCESSAR TEXTO!");
+            controller.btnFinalizar.setDisable(true);
 
         }
 

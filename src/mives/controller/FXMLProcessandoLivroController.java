@@ -42,6 +42,11 @@ public class FXMLProcessandoLivroController implements Initializable, PageWizard
 
     private void minerarLivro() {
 
+        task.setOnFailed(evt -> {
+            System.err.println("Task failed, exception:");
+            task.getException().printStackTrace(System.err);
+        });
+
         Thread t = new Thread(task);
         t.start();
     }

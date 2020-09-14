@@ -8,6 +8,8 @@ package mives.model;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.StringTokenizer;
+import java.util.regex.Pattern;
+
 import mives.util.ConfiguracaoEncansao;
 import mives.util.Utilitario;
 
@@ -901,6 +903,7 @@ public class EscansaoCustomizada2 {
                     }
                 } else { //a partir da segunda palavra do verso
                     Palavra palavraTemp = contarSilabasPalavraNew(temp, 0, true);
+                    palavraTemp.setPalavraOriginalSeparada(temp);
                     //Sempre que as sílabas forem contadas o verso é avisado de que naquela palavra houve um caso de diérese
                     versoEncontrado.setNumeroDeDiereses(versoEncontrado.getNumeroDeDiereses() + palavraTemp.getSilabasDirese().size());
                     //O verso sabe quantos casos de sinerese aconteram
@@ -928,6 +931,7 @@ public class EscansaoCustomizada2 {
                     }
                 }
             } else {
+//                System.out.println("Entrei no else: " + temp);
                 novoVerso.append(" " + temp);
                 r--;//Se for uma palavra decrementa o "R"
             }
@@ -1118,7 +1122,7 @@ public class EscansaoCustomizada2 {
                 indiceDasElisoes++;
 //                System.out.println("NOVO VERSO---------------------------------------------------");
 //                System.out.println("Antes: " + novoVerso);
-                novoVerso = novoVerso.replaceFirst(primeiraPalavra + " " + segundaPalavra, primeiraPalavra + "/ " + segundaPalavra);
+                novoVerso = novoVerso.replaceFirst(Pattern.quote(primeiraPalavra + " " + segundaPalavra), primeiraPalavra + "/ " + segundaPalavra);
 //                System.out.println("Depois: " + novoVerso);
 //                System.out.println("NOVO VERSO---------------------------------------------------");
                 numSilabasPoeticas++;
