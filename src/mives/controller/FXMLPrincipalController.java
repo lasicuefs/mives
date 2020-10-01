@@ -34,6 +34,7 @@ import mives.arquivos.LivroIO;
 import mives.controller.helpers.utils.NodeTree;
 import mives.model.Livro;
 import mives.model.MapaConfiguracao;
+import mives.util.ErroContagem;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -270,6 +271,7 @@ public class FXMLPrincipalController implements Initializable {
         testarGerarEvento();
         helper.gerarVetorDeNavegacao();
         helper.preencherEstatisticas();
+        ErroContagem.imprimirRelatorio();
 
     }
 

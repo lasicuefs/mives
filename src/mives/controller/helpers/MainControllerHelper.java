@@ -19,6 +19,7 @@ import mives.controller.helpers.utils.MivesWizardData;
 import mives.controller.helpers.utils.Revista;
 import mives.exceptions.LivroException;
 import mives.model.Livro;
+import mives.util.ErroContagem;
 
 /**
  *
@@ -47,7 +48,7 @@ public class MainControllerHelper {
         pages.add(MIVES.telaProcessandoLivro);
         pages.add(MIVES.telaAnalise);
 
-        System.out.println("Tamanho de PAGE: " + pages.size());
+//        System.out.println("Tamanho de PAGE: " + pages.size());
         navTo(0);
     }
 

@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.StringTokenizer;
 import mives.observable.Observer;
 import mives.observable.ProcessarLivroObservable;
+import mives.util.ErroContagem;
 import mives.util.Utilitario;
 
 /**
@@ -424,6 +425,9 @@ public class Mineracao implements ProcessarLivroObservable {
 //        verso = escansaoCustomizada2.contarSilabasPoeticasNew(frase, numeroSilabasFim, numeroSilabasInicio, false); 
         verso = escansaoCustomizada2.contarSilabasPoeticasCompleta(frase, numeroSilabasFim, numeroSilabasInicio, false);//21/05/2017
 
+        /**
+         * Exclusão forçada em fazer aqui, se autorizada...
+         */
         if (verso != null
                 && new StringTokenizer(frase).countTokens() == new StringTokenizer(verso.getVersoEscandido()).countTokens()
                 && ((verso.getNumeroDeSilabas() >= numeroSilabasInicio) && (verso.getNumeroDeSilabas() <= numeroSilabasFim))) {
@@ -434,6 +438,11 @@ public class Mineracao implements ProcessarLivroObservable {
 //            System.out.println("Verso Retornado da escansão: " + verso.getVersoEscandido());
 //            System.out.println("Número de Sílabas: " + verso.getNumeroDeSilabas());
 //            System.out.println("----------------------------------------------------------------------");
+            verso.gerarPosicionamento();
+
+            if (verso.getNumeroDeSilabas() != verso.getValidaMetro()) {
+                ErroContagem.adicionarErro(verso.getVersoEscandido(), verso.getPosicionamentoDasTonicas(), verso.getNumeroDeSilabas());
+            }
             return verso;
         }
         return null;

@@ -33,7 +33,7 @@ public class Palavra {
     private boolean sinerese = false;//Verdadeiro se houver o fenômeno
     private boolean dierese = false;//Verdadeiro se houver o fenômeno
     private ArrayList<String> silabasSinerese = new ArrayList<>();
-    private ArrayList<String> silabasDirese = new ArrayList<>();
+    private ArrayList<SilabaModificada> silabasDirese = new ArrayList<>();
     private ArrayList<String> novaSilabaComDierese = new ArrayList<>();
     private ArrayList<String> regrasAplicadasDirese = new ArrayList<>();
     private ArrayList<String> novaSilabaComSinerese = new ArrayList<>();
@@ -91,14 +91,14 @@ public class Palavra {
      *
      * @return the silabasDirese
      */
-    public ArrayList<String> getSilabasDirese() {
+    public ArrayList<SilabaModificada> getSilabasDirese() {
         return silabasDirese;
     }
 
     /**
      * @param silabasDirese the silabasDirese to set
      */
-    public void setSilabasDirese(ArrayList<String> silabasDirese) {
+    public void setSilabasDirese(ArrayList<SilabaModificada> silabasDirese) {
         this.silabasDirese = silabasDirese;
     }
 

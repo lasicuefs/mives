@@ -15,6 +15,28 @@ import java.util.StringTokenizer;
 public class Verso implements Comparable<Verso> {
 
     /**
+     * @return the validaMetro
+     */
+    public int getValidaMetro() {
+        String arrayVerso[] = versoEscandido.split("/");
+        int i = 0;
+        for (String silaba : arrayVerso) {
+            i++;
+            if (silaba.contains("#")) {
+                validaMetro = i;
+            }
+        }
+        return validaMetro;
+    }
+
+    /**
+     * @param validaMetro the validaMetro to set
+     */
+    public void setValidaMetro(int validaMetro) {
+        this.validaMetro = validaMetro;
+    }
+
+    /**
      * @return the substituicao
      */
     public boolean isSubstituicao() {
@@ -67,6 +89,7 @@ public class Verso implements Comparable<Verso> {
     private int numeroDeVersoAntes;
     private int numeroDeVersoDepois;
     private int link;
+    private int validaMetro;
 
     private boolean substituicao = false;
     /**
@@ -222,6 +245,7 @@ public class Verso implements Comparable<Verso> {
             i++;
             if (silaba.contains("#")) {
                 posicionamento.append(i + " ");
+                validaMetro = i;
             }
         }
         return posicionamento.toString().trim();
@@ -526,5 +550,14 @@ public class Verso implements Comparable<Verso> {
 
     public void setLink(int link) {
         this.link = link;
+    }
+
+    public String getTempVerso() {
+        StringBuilder st = new StringBuilder();
+        for (Palavra pal : palavrasVerso) {
+            st.append(pal.getPalavra() + " ");
+        }
+
+        return st.toString();
     }
 }
