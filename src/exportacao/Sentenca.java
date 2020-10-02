@@ -15,10 +15,8 @@ public class Sentenca {
 
     private String segmento;
     private int link;
- 
     private int numeroDaFrase;
-    
-
+ 
     private ArrayList<EstruturaVersificacao> estruturaDeVesificacao;
 
     /**

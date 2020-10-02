@@ -438,7 +438,7 @@ public class Mineracao implements ProcessarLivroObservable {
 //            System.out.println("Verso Retornado da escansão: " + verso.getVersoEscandido());
 //            System.out.println("Número de Sílabas: " + verso.getNumeroDeSilabas());
 //            System.out.println("----------------------------------------------------------------------");
-            verso.gerarPosicionamento();
+            //verso.gerarPosicionamento();
 
             if (verso.getNumeroDeSilabas() != verso.getValidaMetro()) {
                 ErroContagem.adicionarErro(verso.getVersoEscandido(), verso.getPosicionamentoDasTonicas(), verso.getNumeroDeSilabas());

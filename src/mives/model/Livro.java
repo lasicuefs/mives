@@ -1158,6 +1158,12 @@ public class Livro {
                         estruturaVersificacao.setSentecaEscandida(frase.getVerso().getVersoEscandido());
                         estruturaVersificacao.setPalavrasVerso(frase.getVerso().getPalavras());
 
+                        if (frase.getVerso().getNumeroDeSilabas() != frase.getVerso().getValidaMetro()) {
+                            estruturaVersificacao.setErroMetrica(1);
+                        } else {
+                            estruturaVersificacao.setErroMetrica(0);
+                        }
+
                         if (frase.getVersosExtra().size() > 0) {
                             for (Verso ve : frase.getVersosExtra()) {
                                 estruturaVersificacao = new EstruturaVersificacao();
@@ -1166,6 +1172,11 @@ public class Livro {
                                 estruturaVersificacao.setPosicaoDasTonicas(ve.getPosicionamentoDasTonicas());
                                 estruturaVersificacao.setSentecaEscandida(ve.getVersoEscandido());
                                 estruturaVersificacao.setPalavrasVerso(ve.getPalavras());
+                                if (ve.getNumeroDeSilabas() != ve.getValidaMetro()) {
+                                    estruturaVersificacao.setErroMetrica(1);
+                                } else {
+                                    estruturaVersificacao.setErroMetrica(0);
+                                }
                                 if (ve.getOutrasFormas() != null) {
                                     estruturaVersificacao = new EstruturaVersificacao();
                                     sentenca.getEstruturaDeVesificacao().add(estruturaVersificacao);
@@ -1173,6 +1184,11 @@ public class Livro {
                                     estruturaVersificacao.setPosicaoDasTonicas(ve.getOutrasFormas().getVersoBase().getPosicionamentoDasTonicas());
                                     estruturaVersificacao.setSentecaEscandida(ve.getOutrasFormas().getVersoBase().getVersoEscandido());
                                     estruturaVersificacao.setPalavrasVerso(ve.getOutrasFormas().getVersoBase().getPalavras());
+                                    if (ve.getOutrasFormas().getVersoBase().getNumeroDeSilabas() != ve.getOutrasFormas().getVersoBase().getValidaMetro()) {
+                                        estruturaVersificacao.setErroMetrica(1);
+                                    } else {
+                                        estruturaVersificacao.setErroMetrica(0);
+                                    }
                                     for (Verso of : ve.getOutrasFormas().getVersosExtras()) {
                                         estruturaVersificacao = new EstruturaVersificacao();
                                         sentenca.getEstruturaDeVesificacao().add(estruturaVersificacao);
@@ -1180,6 +1196,11 @@ public class Livro {
                                         estruturaVersificacao.setPosicaoDasTonicas(of.getPosicionamentoDasTonicas());
                                         estruturaVersificacao.setSentecaEscandida(of.getVersoEscandido());
                                         estruturaVersificacao.setPalavrasVerso(of.getPalavras());
+                                        if (of.getNumeroDeSilabas() != of.getValidaMetro()) {
+                                            estruturaVersificacao.setErroMetrica(1);
+                                        } else {
+                                            estruturaVersificacao.setErroMetrica(0);
+                                        }
                                     }
                                 }
                             }
