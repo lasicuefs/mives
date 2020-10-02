@@ -7,12 +7,13 @@ package mives.util;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import javafx.stage.FileChooser;
-import mives.model.Verso;
+import mives.model.Livro;
 
 /**
  *
@@ -27,22 +28,16 @@ public class ErroContagem {
     }
 
     public static void imprimirRelatorio() {
-
-        FileChooser fileChooser = new FileChooser();
-        File file = null;
-        fileChooser.setTitle("Erros Encontrados");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text doc(*.txt)", "*.txt"));
-        fileChooser.setInitialFileName("*.txt");
+        FileWriter fileWriterDestino;
+        BufferedWriter bufferedWriterDestino;
         try {
-            file = fileChooser.showSaveDialog(null);
+            String tipoDeBusca = Livro.getInstance().getTipoDeBusca().replace(".", "");
+            String nomeDoLivro = Livro.getInstance().getArquivoDeOrigem().getName().replace(".txt", "");
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+            File arquivoDeDestino = new File(System.getProperty("user.dir") + "/erros/" + nomeDoLivro + tipoDeBusca + System.currentTimeMillis() + ".txt");
 
-        try {
-            FileWriter fileWriterDestino = new FileWriter(file); //Escrever no novo arquivo
-            BufferedWriter bufferedWriterDestino = new BufferedWriter(fileWriterDestino);//Escrever no novo arquivo
+            fileWriterDestino = new FileWriter(arquivoDeDestino); //Escrever no novo arquivo
+            bufferedWriterDestino = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(arquivoDeDestino), StandardCharsets.UTF_8));
             int contador = 1;
             for (ExemplarErro err : erros) {
 
@@ -51,14 +46,12 @@ public class ErroContagem {
                 contador++;
             }
 
-            bufferedWriterDestino.flush();
+            bufferedWriterDestino.close();
             bufferedWriterDestino.close();
             fileWriterDestino.close();
-        } catch (FileNotFoundException exception) {
-            System.out.println(exception.getMessage());
-        } catch (IOException ioe) {
-            System.out.println(ioe.getMessage());
 
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
 
     }

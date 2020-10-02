@@ -245,6 +245,15 @@ public class FXMLPrincipalController implements Initializable {
     public void sentencasXml() {
         helper.sentencasXml();
     }
+
+    /**
+     * Incremento em 2020. Método responsável por gerar um XML com informações
+     * tais como: O número da sentença que foi escandida.
+     */
+    public void sentencasXmlGeral() {
+        helper.sentencasXmlGeral();
+    }
+    
     
     public void sentencasETipos() {
         helper.sentencasETipos();
