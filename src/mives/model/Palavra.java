@@ -159,6 +159,11 @@ public class Palavra {
     }
 
     public String getPalavraOrigialEscandida() {
+        /*Se essa condição for verdadeira, significa que a palavra durante o processo de escansão não foi modificada.
+        Portanto, a variávcel palavraOriginalEscandida não foi inicializada.*/
+        if (palavraOrigialEscandida == null) {
+            return getPalavra();//11/03/2021
+        }
         return palavraOrigialEscandida;
     }
 
