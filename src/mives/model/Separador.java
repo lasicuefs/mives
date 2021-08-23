@@ -107,8 +107,7 @@ public class Separador {
             }
             simbolo = "";
         }//Encerra o while aqui
-        //  System.out.println("SEPARA SÍLABA RETORNO: " + retorno);
-//        System.out.println("Retorno: " + retorno);
+
         return retorno;
     }
 

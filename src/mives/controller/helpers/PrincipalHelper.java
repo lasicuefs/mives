@@ -488,7 +488,7 @@ public class PrincipalHelper {
         if (principal.webEngine != null) {
             JSObject jSObject = (JSObject) principal.webEngine.executeScript("window");
             Object retorno = jSObject.call("jumpToHtmlId", jumpToHtmlId);
-            System.out.println("Retorno: " + retorno.toString());
+         
         }
     }
 

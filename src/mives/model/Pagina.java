@@ -353,10 +353,8 @@ public class Pagina {
                 && alfabeto.contains("" + linhaSeguinte.trim().charAt(0))) {//Se a primeira letra da linha seguinte for Maiúscula
             //Então é um título
 
-
             return true;
         } else {
-
 
             return false;
 
@@ -810,7 +808,6 @@ public class Pagina {
 //        System.out.println("ComecaNestaLinha.........................");
 //        System.out.println("Recebendo para procurar na linha: " + linhas.get(indice).getLinha());
 //        System.out.println("O verso: " + frase.getVerso().getPalavras());
-
         StringTokenizer v = new StringTokenizer(frase.getVerso().getPalavras());
         String vetorVerso[] = new String[v.countTokens()];
         int i = 0;
@@ -841,7 +838,6 @@ public class Pagina {
             vetorLinha[i] = l.nextToken();
             i++;
         }
-
 
         i = 0;
 
@@ -925,7 +921,6 @@ public class Pagina {
         }
         //Não está nesta linha procure na próxima
         if (indice < linhas.size() - 1) {
-
 
             if (linhas.get(indice + 1).getLinha().toLowerCase().replaceAll("-", "").contains(frase.getVerso().getPalavras().toLowerCase())) {
                 comeca = posicaoInicialDoVerso(linhas.get(indice + 1).getLinha().toLowerCase(), frase.getVerso().getPalavras().toLowerCase());
@@ -1125,7 +1120,7 @@ public class Pagina {
             String aux = "<a id=\"" + link + "\"><span id=\"" + link + "\" style=\"background-color: #8CC5F4\">";
             StringTokenizer auxToken = new StringTokenizer(aux);
             linhaBase.setDiferencaDeInserir(auxToken.countTokens() - 1);
-            System.out.println("Retorno: " + retorno.toString());
+
             frases.get(indiceVerso).getVerso().setSubstituicao(true);
             linhaBase.setSubstituicao(true);
             linhaBase.setLinhaComEscansao(retorno.toString());
@@ -1174,16 +1169,14 @@ public class Pagina {
                 System.out.println("ADICIONANDO: " + add);
                 retorno.append(add);
             }
-            System.out.println("COMEÇANDO A INSERIR....");
+
             retorno.append("<a id=\"" + link + "\"><span id=\"" + link + "\" style=\"background-color: #8CC5F4\">" + l.nextToken() + " ");
-            System.out.println("Retorno: " + retorno.toString());
+
             int indiceInserido = 0;
             //     System.out.println("Existem um próximo??? -> " + l.hasMoreTokens());
 
             while (l.hasMoreTokens() && indiceInserido <= new StringTokenizer(verso).countTokens()) {
                 retorno.append(l.nextToken() + " ");
-                System.out.println("Retorno: " + retorno.toString());
-                System.out.println("Indice inserido: " + indiceInserido);
                 indiceInserido++;
             }
             if (indiceInserido == 0) {
