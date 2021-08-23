@@ -69,7 +69,7 @@ public class Utilitario {
 
         String retorno[] = new String[i];
         for (tamanho = 0; tamanho < i; tamanho++) {
-//            System.out.println("Transferindo: " + palavras[tamanho].toString() + " - Tamanho: " + tamanho);
+
             retorno[tamanho] = palavras[tamanho].toString();
         }
         return retorno;
@@ -155,11 +155,11 @@ public class Utilitario {
         int i = 0;
         while (st.hasMoreTokens()) {
             temp = new StringBuilder(st.nextToken());
-//            System.out.println("Pegando a palavra: " + temp);
+
             if (isSimboolo(temp.toString()) && i > 0) {
                 palavras.get(palavras.size() - 1).append(temp);
             } else if (isPalavraGenuina(temp.toString())) {
-                //  System.out.println("Adicionando: = " + temp);
+   
                 palavras.add(temp);
                 i++;
             } else {

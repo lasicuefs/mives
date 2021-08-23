@@ -285,22 +285,7 @@ public class Livro {
 
     }
 
-//    public void imprimeLivroEscandido() {
-//        for (Integer chave : paginas.keySet()) {
-//            paginas.get(chave).imprimeLinhasEscadidadas();
-//        }
-//    }
-//    public void imprimeFrases() {
-//        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<-Minhas Frases por Página->>>>>>>>>>>>>>>>>>>>>>>>>");
-//        for (Integer chave : paginas.keySet()) {
-//            System.out.println("Página: " + chave);
-//            ArrayList<String> frases = paginas.get(chave).getFraseEncontrada();
-//            for (String fra : frases) {
-//                System.out.println(fra);
-//            }
-//            System.out.println("");
-//        }
-//    }
+
     public void imprimeFrases() {
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<-Minhas Frases por Página->>>>>>>>>>>>>>>>>>>>>>>>>");
         int contador = 1;
@@ -316,7 +301,6 @@ public class Livro {
                     System.out.println("----------------------------------------------------------------------------------------------------------------------");
                 }
             }
-//            System.out.println("");
         }
     }
 
@@ -1138,7 +1122,6 @@ public class Livro {
         int contador = 1;
         if (sentencasCompostasCompletas) {
             Sentenca sentenca;
-//            System.out.println("Número de Sentenças:");
             for (Integer numeroPagina : paginas.keySet()) {
                 Pagina pagina = paginas.get(numeroPagina);
                 for (Frase frase : pagina.getFrases()) {

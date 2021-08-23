@@ -185,7 +185,7 @@ public class Separador {
                 simbolo = "";
                 simbInicio = "";
             }
-//            System.out.println("Retornando 07_10_2016: " + retorno);
+
             return retorno;
         } catch (Exception ex) {
             System.out.println("ERRO DO SEPARADOR....");

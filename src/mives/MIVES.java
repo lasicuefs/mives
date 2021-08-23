@@ -54,8 +54,9 @@ public class MIVES extends Application {
         telaResumo = FXMLLoader.load(getClass().getResource("view/FXMLResumoController.fxml"));
 
         Parent root = FXMLLoader.load(getClass().getResource("view/MainMivesWizard.fxml"));
-
+        java.net.CookieHandler.setDefault(null);
         Scene scene = new Scene(root);
+        
         primaryStage.getIcons().add(new Image("mives/icon.png"));
 
         carregarDLL();//Carrega a DLL utilizada do LapSeparator

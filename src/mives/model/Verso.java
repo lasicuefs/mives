@@ -29,6 +29,15 @@ public class Verso implements Comparable<Verso> {
         return validaMetro;
     }
 
+    public boolean isMetroValido() {
+        System.out.println("isMetroValido - getValidaMetro(): " + getValidaMetro());
+        System.out.println("isMetroValido - getNumeroDeSilabas(): " + getNumeroDeSilabas());
+        if (getValidaMetro() != getNumeroDeSilabas()) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * @param validaMetro the validaMetro to set
      */
@@ -432,13 +441,13 @@ public class Verso implements Comparable<Verso> {
     }
 
     public void restaurarHistorico() {
-//        System.out.println("Guardando as palavras do verso");
+
         palavrasVerso.clear();
         for (Palavra palavra : historicoPalavrasVerso) {
 
             palavrasVerso.add(palavra);
         }
-//        System.out.println("Guardando as palavras com elisão do verso");
+
         palavrasComElisao.clear();
         for (Palavra palavra : historicoPalavrasComElisao) {
             palavrasComElisao.add(palavra);
@@ -456,37 +465,26 @@ public class Verso implements Comparable<Verso> {
      * informadas como limites para o verso que esta sendo procurado.
      */
     public void reordenarElisoes() {
-//        System.out.println("----------------------------------------------------------------------------------");
-//        System.out.println("REORDENANDO ELISÕES.....");
-//        System.out.println("NÚMERO DE ELIÕES ATUAIS: " + getNumeroDeElisoes());
 
         if (palavrasComElisao.size() > 0) {
             ArrayList<Palavra> palavrasComElisaoTemp = new ArrayList<>();
-//            System.out.println("Palavras como elisões atuais: ");
+
             for (Palavra pt : palavrasComElisao) {
-//                System.out.print(pt.getPalavra() + " ");
+
                 palavrasComElisaoTemp.add(pt);
             }
-//            System.out.println("\npalavrasComElisaoTemp: " + palavrasComElisaoTemp.size());
+
             palavrasComElisao.clear();
             int indiceElisoes = palavrasComElisaoTemp.size() - 1;
             while (indiceElisoes >= 0) {
-//                System.out.println("RETIRANDO A ELISÃO: " + indiceElisoes);
-//                System.out.println("ADICIONANDO PALAVRA: " + palavrasComElisaoTemp.get(indiceElisoes).getPalavra());
+
                 palavrasComElisao.add(palavrasComElisaoTemp.get(indiceElisoes));
                 indiceElisoes--;
             }
         }
-//        System.out.println("NOVA SEQUÊNCIA DE PALAVRAS");
-//        for (Palavra pt : palavrasComElisao) {
-//            System.out.print(pt.getPalavra() + " ");
-//
-//        }
-//        System.out.println("\n----------------------------------------------------------------------------------");
     }
 
     public int compareTo(Verso verso) {
-        //  return getClassificacao().compareToIgnoreCase(verso.getClassificacao());
         if (this.getNumeroDeSilabas() < verso.getNumeroDeSilabas()) {
             return -1;
         } else if (this.getNumeroDeSilabas() > verso.getNumeroDeSilabas()) {

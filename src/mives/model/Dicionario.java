@@ -434,10 +434,8 @@ public class Dicionario {
         //Fiz o teste com um método lá no C# para executar o simples Writeln e nada. Também não funciona.
         // vamos facilitar os testes, espera um pouco
         String retorno[] = lapseparatorjni.TextAnalysisToolApp.Main(vetor);//aqui nessa linha
-//        System.out.println("Retorno:");
-//        for (String ret : retorno) {
-//            System.out.println(ret);
-//        }
+
+
 
         int posTonica = Integer.parseInt(retorno[2]);
 
@@ -646,7 +644,6 @@ public class Dicionario {
         int numeroDalinha = 0;
         try {
 
-//            System.out.println("Nome do arquivo: " + arquivoDicionario.getPath());
             readerBase = new FileReader(arquivoDicionario);//Faz novaPal leitura do arquivo base
             bufferedReaderBase = new BufferedReader(readerBase);//Faz novaPal leitura do arquivo base
 
@@ -690,34 +687,17 @@ public class Dicionario {
     }
 
     public void imprimirDicionario() {
-//        System.out.println("Entradas Dicionário:");
+
         int linha = 1;
         for (String obj : dicio.keySet()) {
-//            System.out.printf("%s %s\n", obj, dicio.get(obj));
+
             if (obj.charAt(0) == 'ó') {
-//                System.out.println("Achei+++++++++++++++++++++++++++++++++++++++++++: " + linha);
+
             }
             linha++;
         }
-//        System.out.println("Processo Concluído!!");
+
     }
 
-//    public static void main(final String[] args) {
-//        String vertor[] = {"Teste"};
-//        // gente precisa carregar as DLLs antes coloca ai pra carregar...blz
-//         try {
-//            Bridge.setVerbose(true);
-//            Bridge.init();
-//            File proxyAssemblyFile = new File("lib\\LapSeparatorJNI.j4n.dll");
-//            Bridge.LoadAndRegisterAssemblyFrom(proxyAssemblyFile);
-//            System.out.println("Carregando DLL....Pronto.");
-//            //System.loadLibrary("jni4net.n.w64.v40-0.8.8.0");
-//            //System.loadLibrary("LapSeparatorJNI.j4n");
-//            // ele ta carregando ela na pasta dist e na lib e ta se perdendo
-//            //agora vai da erro porque a pasta lib não tem no seu projeto, só quando gera o jar
-//        } catch (IOException ioEx) {
-//            System.out.println("Erro ao carregar a DLL");
-//        }
-//        String retorno[] = lapseparatorjni.TextAnalysisToolApp.Main(vertor);//aqui nessa linha
-//    }
+
 }

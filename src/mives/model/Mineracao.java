@@ -410,7 +410,6 @@ public class Mineracao implements ProcessarLivroObservable {
                 && new StringTokenizer(frase).countTokens() == new StringTokenizer(verso.getVersoEscandido()).countTokens()
                 //                && verso.getNumeroDeSilabas() >= numeroSilabas) {
                 && ((verso.getNumeroDeSilabas() >= numeroSilabasInicio) && (verso.getNumeroDeSilabas() <= 12))) {
-//            System.out.println("1- Verso Escandido: " + verso.getVersoEscandido().toString());
             verso.setPalavras(verso.getVersoEscandido().toString().replaceAll("#", "").replaceAll("§", "-").replaceAll("/", ""));
             verso.gerarPosicionamento();
             return verso;
@@ -431,15 +430,9 @@ public class Mineracao implements ProcessarLivroObservable {
         if (verso != null
                 && new StringTokenizer(frase).countTokens() == new StringTokenizer(verso.getVersoEscandido()).countTokens()
                 && ((verso.getNumeroDeSilabas() >= numeroSilabasInicio) && (verso.getNumeroDeSilabas() <= numeroSilabasFim))) {
-//            System.out.println("2- Verso Escandido: " + verso.getVersoEscandido().toString());
+
             verso.setPalavras(verso.getVersoEscandido().toString().replaceAll("#", "").replaceAll("§", "-").replaceAll("/", ""));
             verso.gerarPosicionamento();
-//            System.out.println("----------------------------------------------------------------------");
-//            System.out.println("Verso Retornado da escansão: " + verso.getVersoEscandido());
-//            System.out.println("Número de Sílabas: " + verso.getNumeroDeSilabas());
-//            System.out.println("----------------------------------------------------------------------");
-            //verso.gerarPosicionamento();
-
             if (verso.getNumeroDeSilabas() != verso.getValidaMetro()) {
                 ErroContagem.adicionarErro(verso.getVersoEscandido(), verso.getPosicionamentoDasTonicas(), verso.getNumeroDeSilabas());
             }
@@ -457,24 +450,16 @@ public class Mineracao implements ProcessarLivroObservable {
             return null;
         }
 
-//        String ultimaPalavra[] = Utilitario.preencherVetorTokenV2(new StringTokenizer(verso.getPalavras()));
-//
-//        boolean possuiPontuacao = escansaoCustomizada2.verifcarSimboloPontuacao(ultimaPalavra[ultimaPalavra.length - 1]);
-//        if (!possuiPontuacao) {
-//            System.out.println("Não tem pontuação: " + verso.getPalavras());
-//            return null;
-//        }
-//        System.out.println("Possui pontuação: " + verso.getPalavras());
         if ((verso.getNumeroDeSilabas() >= numeroSilabasInicio) && (verso.getNumeroDeSilabas() <= numeroSilabasFim)) {
-//            System.out.println("3- Verso Escandido: " + verso.getVersoEscandido().toString());
+
             verso.setPalavras(verso.getVersoEscandido().toString().replaceAll("#", "").replaceAll("§", "-").replaceAll("/", ""));
             String ultimaPalavra[] = Utilitario.preencherVetorTokenV2(new StringTokenizer(verso.getPalavras()));
             boolean possuiPontuacao = escansaoCustomizada2.verifcarSimboloPontuacao(ultimaPalavra[ultimaPalavra.length - 1]);
             if (!possuiPontuacao) {
-                //   System.out.println("Não tem pontuação: " + verso.getPalavras());
+
                 return null;
             }
-            // System.out.println("Possui pontuação: " + verso.getPalavras());
+
             verso.gerarPosicionamento();
             return verso;
         }
@@ -490,7 +475,7 @@ public class Mineracao implements ProcessarLivroObservable {
         }
 
         if (verso.getVersoEscandido().toString().matches(".*\\d.*")) {
-//            System.out.println("Tem número: " + verso.getVersoEscandido().toString());
+
             return null;
         }
         if ((verso.getNumeroDeSilabas() >= minimo) && (verso.getNumeroDeSilabas() <= maximo)) {
@@ -498,21 +483,14 @@ public class Mineracao implements ProcessarLivroObservable {
             String auxFrase[] = Utilitario.preencherVetorToken(f);
             String auxVerso[] = new String[new StringTokenizer(verso.getVersoEscandido().toString().replaceAll("-", "").replaceAll("#", "").replaceAll("§", "-").replaceAll("/", "")).countTokens()];
             StringBuilder versoExtraido = new StringBuilder();
-//            System.out.println("Frase: " + frase);
-//            System.out.println("Verso: " + verso.getVersoEscandido().toString().replaceAll("-", "").replaceAll("#", "").replaceAll("§", "-").replaceAll("/", ""));
-//            System.out.println("Tamanho da frase: " + auxFrase.length);
-//            System.out.println("Tamanho do verso: " + auxVerso.length);
 
             int in = auxFrase.length - auxVerso.length;
-//            System.out.println("Inicio: " + in);
+
             for (int inicio = in; inicio < auxFrase.length; inicio++) {
                 versoExtraido.append(auxFrase[inicio] + " ");
             }
             verso.setPalavras(versoExtraido.toString().replace("\"", "\"").trim());//IFBA
-//            System.out.println("VERSO ESCANDIDO: " + verso.getVersoEscandido());
-//            System.out.println("DEVOLVENDO VERSO: " + verso.getPalavras());
-            //verso.setPalavras(verso.getVersoEscandido().toString().replaceAll("-", "").replaceAll("#", "").replaceAll("§", "-").replaceAll("/", ""));
-            // System.out.println("DEVOLVENDO VERSO: " + verso.getVersoEscandido().toString().replaceAll("-", "").replaceAll("#", "").replaceAll("§", "-").replaceAll("/", ""));
+
             verso.gerarPosicionamento();
             return verso;
         }
@@ -527,7 +505,7 @@ public class Mineracao implements ProcessarLivroObservable {
             return null;
         }
         if (verso.getNumeroDeSilabas() >= numeroSilabas) {
-//            System.out.println("4- Verso Escandido: " + verso.getVersoEscandido().toString());
+
             verso.setPalavras(verso.getVersoEscandido().toString().replaceAll("#", "").replaceAll("§", "-").replaceAll("/", ""));
             verso.gerarPosicionamento();
             return verso;

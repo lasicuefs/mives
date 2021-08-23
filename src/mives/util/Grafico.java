@@ -74,7 +74,7 @@ public class Grafico {
         ScrollPane scroll = new ScrollPane(1);
 
         if (estatiticaGeral.size() > 0) {
-//            System.out.println("-------------------------------------------------------------------");
+
             for (String key : estatiticaGeral.keySet()) {
 
                 nomes.add(key);
@@ -86,7 +86,7 @@ public class Grafico {
 //                }
 //                System.out.println("");
             }
-//            System.out.println("-------------------------------------------------------------------");
+
         }
 
 //        for (int i = 0; i < 5; i++) {

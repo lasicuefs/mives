@@ -94,7 +94,7 @@ public class Pagina {
         StringBuilder ultimaLinha = new StringBuilder();
         inicio:
         for (String linha : linhasOriginais) {
-//            System.out.println("Processando linha: " + linha);
+
             tamanhoDaLinhaOriginal = linha.length();
             indiceDalinha++;
             lendoLinha = indiceDalinha;//utilizada por outros métodos.
@@ -290,8 +290,7 @@ public class Pagina {
                 linhaDeOrigemDaFrase = indiceDalinha;
             }
             f.setLinhaDeOrigem(linhaDeOrigemDaFrase);
-//            System.out.println("2 - Linha: " + frase.toString());
-//            System.out.println("2 - indice de origem: " + indiceDeOrigemDaCadeiaNaLinha);
+
             f.setIndiceDeOrigemDaCadeiaNaLinha(indiceDeOrigemDaCadeiaNaLinha);
             linhaDeOrigemDaFrase = -1;
             frases.add(f);
@@ -326,8 +325,7 @@ public class Pagina {
 //        System.out.print("É um título? " + linhaBase);
         int comprimento = linhaBase.trim().length() - 1;
         if (indiceDalinha == linhasOriginais.size() - 1) {//Verifica se é a última linha da Página
-//            System.out.println(" Não é um título");
-//            System.out.println("Retornei daqui 1");
+
             return false;//Não é um título
         }
         int numeroDaLinhaSeguinte = indiceDalinha + 1;
@@ -344,11 +342,7 @@ public class Pagina {
         }
         linhaSeguinte = linhasOriginais.get(numeroDaLinhaSeguinte);
         if (numeroDaLinhaSeguinte == linhasOriginais.size() - 1 || linhaSeguinte.toString().trim().length() == 0) {
-//            System.out.println("numeroDaLinhaSeguinte == linhasOriginais.size() - 1 >>>>> " + (numeroDaLinhaSeguinte == linhasOriginais.size() - 1));
-//            System.out.println("linhaSeguinte.toString().trim().length() == 0) >>>>>>> " + (linhaSeguinte.toString().trim().length() == 0));
-//            System.out.println("Retornei daqui 2");
-//            System.out.println(" Não é um título");
-            //return false;
+
             if (pulouLinha) {
                 return true;
             }
@@ -358,12 +352,12 @@ public class Pagina {
                 && linhaBase.trim().charAt(comprimento) != '.' //Se não terminar com ponto.
                 && alfabeto.contains("" + linhaSeguinte.trim().charAt(0))) {//Se a primeira letra da linha seguinte for Maiúscula
             //Então é um título
-//            System.out.println("Linha base: " + linhaBase + " >>> É um título.");
-//            System.out.println("Retornei daqui 3");
+
+
             return true;
         } else {
-//            System.out.println("Linha base: " + linhaBase + " >>> Não é um título.");
-//            System.out.println("Retornei daqui 4");
+
+
             return false;
 
         }
@@ -848,25 +842,17 @@ public class Pagina {
             i++;
         }
 
-//        for (String s : vetorLinha) {
-//            System.out.println(s);
-//        }
+
         i = 0;
 
         for (String g : vetorLinha) {
             i++;
-//            System.out.println("Valor de g: " + g);
-//            System.out.println("Valord e i: " + i);
-//            System.out.println("Tamanho do vetor: " + vetorLinha.length);
 
             if (i == vetorLinha.length && g.replace("-", "").equals(primeiraPalavraVerso.replace("-", ""))) {//A última palavra da linha dá início ao verso
 
-//                System.out.println("ENTREI...ENTREI...ENTREI...ENTREI...ENTREI===> " + g);
                 if (i == vetorLinha.length) {
                     //      comecaAqui = indice;
-//                    System.out.println("ESTOU NA ÚLTIMA PALAVRA");
-//                    System.out.println("ÚLTIMA PALAVRA: " + g);
-//                    System.out.println("Linha de início: " + linhas.get(indice).getLinha());
+
                     if (linhas.size() > indice) {
                         int linhaAtual = 0;
                         indice++;
@@ -939,10 +925,7 @@ public class Pagina {
         }
         //Não está nesta linha procure na próxima
         if (indice < linhas.size() - 1) {
-//            System.out.println("Chamada recursiva.....................................");
-//            System.out.println("Verso: " + frase.getVerso().getPalavras());
-//            System.out.println("Linha: " + linhas.get(indice + 1).getLinha());
-//            System.out.println("Índice linha: " + indice);
+
 
             if (linhas.get(indice + 1).getLinha().toLowerCase().replaceAll("-", "").contains(frase.getVerso().getPalavras().toLowerCase())) {
                 comeca = posicaoInicialDoVerso(linhas.get(indice + 1).getLinha().toLowerCase(), frase.getVerso().getPalavras().toLowerCase());
@@ -951,7 +934,7 @@ public class Pagina {
             }
 
             int retorno = comecaNestaLinha(indice + 1, linhas.get(indice + 1), frase);
-//            System.out.println("Retorno: " + retorno);
+
             return retorno;
         } else {
 

@@ -336,11 +336,8 @@ public class PrincipalHelper {
         System.out.println("TOTAL DE SENTENÇAS: " + sentencas.size());
         int link = -1;
         for (Sentenca sentenca : sentencas) {
-//            link++;
-//            System.out.println("Sentença: " + sentenca.getSegmento());
             String verso = sentenca.getEstruturaDeVesificacao().get(0).getPalavrasVerso();
             link = sentenca.getLink();
-//            System.out.println("Valor de link: " + link);
             for (EstruturaVersificacao estruturaVersificacao : sentenca.getEstruturaDeVesificacao()) {
                 if (!(estrutraArvore.containsKey(estruturaVersificacao.getNumeroDeSilabas()))) {
                     ArrayList<nodeArvore> nodes = new ArrayList<>();
@@ -538,19 +535,12 @@ public class PrincipalHelper {
         XYChart.Series series1;
 
         for (int j = 0; j < tipos.length; j++) {
-//            System.out.println(tipos[j]);
             series1 = new XYChart.Series();
             series1.setName(metro.get(tipos[j]));
             series1.getData().add(new XYChart.Data("", new Float(estrutraArvore.get(tipos[j]).size())));
             principal.graficoBarras.getData().add(series1);
         }
 
-//        for (Integer key : estrutraArvore.keySet()) {
-//            series1 = new XYChart.Series();
-//            series1.setName(metro.get(key));
-//            series1.getData().add(new XYChart.Data("", new Float(estrutraArvore.get(key).size())));
-//            principal.graficoBarras.getData().add(series1);
-//        }
     }
 
     String texto = null;
