@@ -1,7 +1,0 @@
-10 | Tes/ta/m#en/to/ de um/ Le/ga/l#is/ta/ de/ Fr#a/que | 3 8 11
-11 | São/ To/m#ás/ de/ A/qu#i/no // De/ M#a/i/o / ar. | 3 6 10
-10 | Do/ro/t#é/i/a/ G#o/mes // S#a/po e/ n#u/vem. | 3 6 9 11
-11 | Do/ro/t#é/i/a/ G#o/mes // S#a/po/ e/ n#u/vem. | 3 6 9 12
-10 | K#at/he // Ba/l#e/i/a/ que a/m#e/i uns/ t#em/pos. | 1 5 9 11
-12 | K#at/he // Ba/l#e/i/a/ que/ a/m#e/i/ uns/ t#em/pos. | 1 5 10 13
-7 | Ou/ Do/ Pe/di/gr#ee/ De/ Pom/p#e/que | 5 8

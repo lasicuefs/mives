@@ -21,7 +21,9 @@ public class Verso implements Comparable<Verso> {
         String arrayVerso[] = versoEscandido.split("/");
         int i = 0;
         for (String silaba : arrayVerso) {
-            i++;
+            if (silaba.trim().length() != 0) {
+                i++;
+            }
             if (silaba.contains("#")) {
                 validaMetro = i;
             }
@@ -30,8 +32,6 @@ public class Verso implements Comparable<Verso> {
     }
 
     public boolean isMetroValido() {
-        System.out.println("isMetroValido - getValidaMetro(): " + getValidaMetro());
-        System.out.println("isMetroValido - getNumeroDeSilabas(): " + getNumeroDeSilabas());
         if (getValidaMetro() != getNumeroDeSilabas()) {
             return false;
         }
@@ -246,12 +246,13 @@ public class Verso implements Comparable<Verso> {
     }
 
     public String getPosicionamentoDasTonicas() {
-//        System.out.println("GERAR POSICIONAMENTO TÔNICAS: " + versoEscandido);
         String arrayVerso[] = versoEscandido.split("/");
         int i = 0;
         StringBuilder posicionamento = new StringBuilder();
         for (String silaba : arrayVerso) {
-            i++;
+            if (silaba.length() != 0) {
+                i++;
+            }
             if (silaba.contains("#")) {
                 posicionamento.append(i + " ");
                 validaMetro = i;

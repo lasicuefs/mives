@@ -89,6 +89,7 @@ public class Mineracao implements ProcessarLivroObservable {
         Verso vTempAux;
         for (int i = tipoDeVersoInicio; i <= tipoDeVersoFim; i++) {
             if (vBase != i) {
+                
                 vTempAux = this.extrairPalavrasFraseInteiraCustomizada2(vTemp.getPalavras(), i, i);
                 if (vTempAux != null) {
                     vTempAux.setLocal(local);
@@ -128,6 +129,7 @@ public class Mineracao implements ProcessarLivroObservable {
                     Verso vTempAux;
                     for (int iAux = tipoDeVersoInicio; iAux <= tipoDeVersoFim; iAux++) {
                         if (vBase != iAux) {
+                            
                             vTempAux = this.extrairPalavrasFraseInteiraCustomizada2(vTemp.getPalavras(), iAux, iAux);
                             if (vTempAux != null && (!frase.jaTemEssaFormaDeEscansao(vTempAux.getVersoEscandido()))) {
                                 vTempAux.setLocal("Início de frase.");
@@ -171,6 +173,7 @@ public class Mineracao implements ProcessarLivroObservable {
                     Verso vTempAux;
                     for (int iAux = tipoDeVersoInicio; iAux <= tipoDeVersoFim; iAux++) {
                         if (vBase != iAux) {
+                            
                             vTempAux = this.extrairPalavrasFraseInteiraCustomizada2(vTemp.getPalavras(), iAux, iAux);
                             if (vTempAux != null && (!frase.jaTemEssaFormaDeEscansao(vTempAux.getVersoEscandido()))) {
                                 vTempAux.setLocal("Final de Frase.");
@@ -274,6 +277,7 @@ public class Mineracao implements ProcessarLivroObservable {
                     }
                 } else if (buscarFraseInteira) {
                     //vTemp = this.extrairPalavrasFraseInteira(linhaBase, tipoDeVerso);
+                    
                     vTemp = this.extrairPalavrasFraseInteiraCustomizada2(linhaBase, tipoDeVersoInicio, tipoDeVersoFim);
 
                     if (vTemp != null && !containsNumber(vTemp.getPalavras())) {
@@ -435,6 +439,11 @@ public class Mineracao implements ProcessarLivroObservable {
             verso.gerarPosicionamento();
             if (verso.getNumeroDeSilabas() != verso.getValidaMetro()) {
                 ErroContagem.adicionarErro(verso.getVersoEscandido(), verso.getPosicionamentoDasTonicas(), verso.getNumeroDeSilabas());
+                /*
+                Se a escansão não for correta, não será apresentada na interface e não irá aparecer nos arquivos de escansão.
+                De qualquer forma, os erros serão armazenados no arquivo de erros.
+                 */
+                return null;
             }
             return verso;
         }

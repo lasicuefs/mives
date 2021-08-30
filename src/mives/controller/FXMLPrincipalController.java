@@ -253,8 +253,7 @@ public class FXMLPrincipalController implements Initializable {
     public void sentencasXmlGeral() {
         helper.sentencasXmlGeral();
     }
-    
-    
+
     public void sentencasETipos() {
         helper.sentencasETipos();
     }
@@ -264,15 +263,17 @@ public class FXMLPrincipalController implements Initializable {
     }
 
     public void apresentarResultados() {
-        helper.carregarHtml();
-        helper.gerarArvores();
-        helper.carregarGraficosOcorrencias();
-        botonResult.setVisible(false);
-        menuBar.setDisable(false);
-        testarGerarEvento();
-        helper.gerarVetorDeNavegacao();
-        helper.preencherEstatisticas();
-        ErroContagem.imprimirRelatorio();
+      
+            helper.carregarHtml();
+            helper.gerarArvores();
+            helper.carregarGraficosOcorrencias();
+            botonResult.setVisible(false);
+            menuBar.setDisable(false);
+            testarGerarEvento();
+            helper.gerarVetorDeNavegacao();
+            helper.preencherEstatisticas();
+            ErroContagem.imprimirRelatorio();
+      
 
     }
 
