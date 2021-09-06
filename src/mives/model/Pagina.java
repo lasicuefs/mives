@@ -723,12 +723,23 @@ public class Pagina {
         String fraseSaida;
         frase.getVerso().setLink(link);
         String verso = frase.getVerso().toString();
-//        System.out.println("frase.getVerso().toString()" + verso);
-//        System.out.println("Palavras do verso: " + frase.getVerso().getPalavras());
+        System.out.println("frase.getVerso().toString()" + verso);
+        System.out.println("Palavras do verso: " + frase.toString());
+        int posicaoIncial = frase.toString().toLowerCase().lastIndexOf(verso.toLowerCase());
+        if (posicaoIncial != -1) {
+            verso = corrigirMaiusculaNoVerso(frase.toString(), verso, posicaoIncial);
+        }
         fraseSaida = frase.toString().replace(verso, "<a id=\"" + link + "\"><span id=\"" + link + "\" style=\"background-color: #8CC5F4\">" + verso + "</span>");
         frase.getVerso().setSubstituicao(true);
         frase.setFraseSaida(contador + ": " + fraseSaida);
         link++;
+    }
+
+    private String corrigirMaiusculaNoVerso(String frase, String verso, int posicaoIncial) {
+        System.out.println("Recebi o verso assim: " + verso);
+        verso = frase.substring(posicaoIncial, verso.length());
+        System.out.println("Devolvendo assim: " + verso);
+        return verso;
     }
 
     public void gerarLinhasEscandidas() {
