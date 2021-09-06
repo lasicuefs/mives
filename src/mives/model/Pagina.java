@@ -723,8 +723,6 @@ public class Pagina {
         String fraseSaida;
         frase.getVerso().setLink(link);
         String verso = frase.getVerso().toString();
-        System.out.println("frase.getVerso().toString()" + verso);
-        System.out.println("Palavras do verso: " + frase.toString());
         int posicaoIncial = frase.toString().toLowerCase().lastIndexOf(verso.toLowerCase());
         if (posicaoIncial != -1) {
             verso = corrigirMaiusculaNoVerso(frase.toString(), verso, posicaoIncial);
@@ -736,9 +734,7 @@ public class Pagina {
     }
 
     private String corrigirMaiusculaNoVerso(String frase, String verso, int posicaoIncial) {
-        System.out.println("Recebi o verso assim: " + verso);
         verso = frase.substring(posicaoIncial, verso.length());
-        System.out.println("Devolvendo assim: " + verso);
         return verso;
     }
 
