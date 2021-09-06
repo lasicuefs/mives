@@ -376,7 +376,11 @@ public class GeradorHTML {
             frases = pagina.getFrases();
             conteudo.append("<p>\n");
             for (Frase frase : frases) {
-                conteudo.append(frase.getFraseSaida() + "<br>\n");
+                if (frase.getFraseSaida() != null) {
+                    conteudo.append(frase.getFraseSaida() + "<br>\n");
+                } else {
+                    conteudo.append("<br>\n");
+                }
             }
             conteudo.append("</p>\n");
         }
