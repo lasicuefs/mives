@@ -465,7 +465,7 @@ public class PrincipalHelper {
 
     public void gerarVetorDeNavegacao() {
         numeroMaximoDeSegmentos = Livro.getInstance().getNumeroDeSegmentos();
-        System.out.println("Número de Segmentos gerados no vetor: " + numeroMaximoDeSegmentos);
+        //System.out.println("Número de Segmentos gerados no vetor: " + numeroMaximoDeSegmentos);
     }
 
     public void avancar(int id) {

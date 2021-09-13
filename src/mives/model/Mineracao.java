@@ -41,7 +41,7 @@ public class Mineracao implements ProcessarLivroObservable {
     private boolean considerarHiato;
     private boolean considerarElisão;
     private boolean considerarPosicionamentoTonica;
-    EscansaoCustomizada2 escansaoCustomizada2;
+    Escansao escansaoCustomizada2;
     Separador separador;
     private static Mineracao mineracao;
 
@@ -69,7 +69,7 @@ public class Mineracao implements ProcessarLivroObservable {
         this.considerarDierese = considerarDierese;
         this.considerarHiato = considerarHiato;
         this.considerarElisao = considerarElisao;
-        escansaoCustomizada2 = new EscansaoCustomizada2(considerarSinerese, considerarDierese, considerarElisao);
+        escansaoCustomizada2 = new Escansao(considerarSinerese, considerarDierese, considerarElisao);
     }
 
     private Mineracao() {

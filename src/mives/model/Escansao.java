@@ -17,7 +17,7 @@ import mives.util.Utilitario;
  *
  * @author Ricardo
  */
-public class EscansaoCustomizada2 {
+public class Escansao {
 
     HashMap<Integer, String> classificacao = new HashMap<>();
     // MapaConfiguracao mapaConfiguracao;
@@ -38,7 +38,7 @@ public class EscansaoCustomizada2 {
     private HashSet<String> ditongoCresecente = new HashSet<>();
 //    boolean utilizarConfiguracao = false;
 
-    public EscansaoCustomizada2() {
+    public Escansao() {
 //        mapaConfiguracao = MapaConfiguracao.getInstacia();
         separador = new Separador();
         carregarVogais();
@@ -49,7 +49,7 @@ public class EscansaoCustomizada2 {
 
     }
 
-    public EscansaoCustomizada2(boolean verificarSinerese, boolean verificarDierese, boolean considerarElisao) {
+    public Escansao(boolean verificarSinerese, boolean verificarDierese, boolean considerarElisao) {
         this();
     }
 
@@ -1007,8 +1007,8 @@ public class EscansaoCustomizada2 {
         //Em caso positivo desfazer a diérese e decrementar o no número de sílabas poéticas
         versoEncontrado.setNumeroDeSilabas(numSilabasPoeticas);
 
-        //Se o número de sílabas antes e depois do processo da aplicação de Diérese nas na palavra for igual 
-        //COmo no caso da palavra Meio = Mei-o, Me-io não adianta desfazer a dierese. Pois a ação não irá alterar o 
+        //Se o número de sílabas antes e depois do processo da aplicação de Diérese na palavra for igual 
+        //Como no caso da palavra Meio = Mei-o, Me-io não adianta desfazer a dierese. Pois a ação não irá alterar o 
         //número de sílabas. 
         if ((versoEncontrado.getNumeroDeSilabas() >= minSilabas && versoEncontrado.getNumeroDeSilabas() <= maxSilabas)) {
             return versoEncontrado;
@@ -1025,8 +1025,6 @@ public class EscansaoCustomizada2 {
             versoEncontrado.setNumeroDeSilabasOriginais(numSilabasPoeticas);
             versoEncontrado.setStatusDaEscansao("Modificado");
 
-//            System.out.println(" ajustarDierese - MODIFICANDO VERSO: " + novoVerso.toString());
-
             return ajustarDierese(versoEncontrado, numSilabasPoeticas, novoVerso.toString(), maxSilabas);
         }
 
@@ -1038,7 +1036,7 @@ public class EscansaoCustomizada2 {
                 ) {
             versoEncontrado.setVersoOriginalmenteEscandido(novoVerso.toString());
             versoEncontrado.setNumeroDeSilabasOriginais(numSilabasPoeticas);
-//            System.out.println("ajustarSinerese: " + novoVerso.toString());
+           
             return ajustarSinerese(versoEncontrado, numSilabasPoeticas, novoVerso.toString(), minSilabas);
         }
 
@@ -1072,8 +1070,7 @@ public class EscansaoCustomizada2 {
                 && (numSilabasPoeticas + versoEncontrado.getNumeroDeElisoes() + versoEncontrado.getNumeroDeSinereses()) >= minSilabas) {
             versoEncontrado.setVersoOriginalmenteEscandido(novoVerso.toString());
             versoEncontrado.setNumeroDeSilabasOriginais(numSilabasPoeticas);
-            
-                     
+
             return ajustarSinereseElisoes(versoEncontrado, numSilabasPoeticas, novoVerso.toString(), minSilabas);
         }
 
@@ -1148,11 +1145,9 @@ public class EscansaoCustomizada2 {
         int indiceSinerese = 0;
         int numeroSineresesPalavra = 0;
         String novoVersoAntes = novoVerso;//Para comparar se a modificação foi realmente realizada
-//        System.out.println("Verso recebido (novoVerso): " + novoVerso);
-//        System.out.println("numSilabasPoeticas: " + numSilabasPoeticas);
-//        System.out.println("minSilabas: " + minSilabas);
+        
         while (numSilabasPoeticas < minSilabas) {
-            while (aux < versoEncontrado.getPalavrasVerso().size() && !versoEncontrado.getPalavrasVerso().get(aux).isSinerese()) {//Enquanto não encontrar um palavra com dierese
+            while (aux < versoEncontrado.getPalavrasVerso().size() && !versoEncontrado.getPalavrasVerso().get(aux).isSinerese()) {//Enquanto não encontrar um palavra com sinerese
                 aux++;//Vá para a próxima palavra
             }
             try {
@@ -1161,12 +1156,16 @@ public class EscansaoCustomizada2 {
                 }
 
                 Palavra palavraAux = versoEncontrado.getPalavrasVerso().get(aux);//Peque a palavra com a Sinérese
-//                System.out.println("Palavra com sinérese: " + palavraAux.getPalavra());
+               
 
                 //Veja se não é a última palavra
-                if (!isUltimaPalavra(versoEncontrado, aux)) {
-                    // System.out.println("Entrei aqui. Não é a última palavra: " + palavraAux.getPalavra());
-                    //Guarde quantas diéreses existem em uma palavra
+                /*Veja se não é a última palavra, mas se for a última com sinérese e existir uma próxima palavra não desfazer. 
+                Desfazer não fará alteração no número de sílabas poéticas.
+                Não é a última palavra, é penultima palavra, a a sinerese está depois da tônica e a última não tem tônica. Não desfazer! */
+                if (!isUltimaPalavra(versoEncontrado, aux)
+                        && existeMaisPalavrasComTonica(versoEncontrado, aux)) {
+                    
+                    //Guarde quantas sinereses existem em uma palavra
                     numeroSineresesPalavra = palavraAux.getSilabasSinerese().size();
                     indiceSinerese = 0;
                     //Enquanto existir sinérese na palavra e quantidade de sílabas poéticas for maior do está sendo buscado...
@@ -1178,13 +1177,19 @@ public class EscansaoCustomizada2 {
 
                             //Pegue a palavra com a Sinérese e substitua a sílaba alterada pela anterior
                             // palavraAux.setPalavra(palavraAux.getPalavra().replace(palavraAux.getSilabasSinerese().get(indiceSinerese), palavraAux.getSilabasSinerese().get(indiceSinerese)).replace("-", "/"));
+                            
                             palavraAux.setPalavra(palavraAux.getSilabasSinerese().get(indiceSinerese).replace("-", "/"));
 
                             numeroSineresesPalavra--;
 
+//                            System.out.println("palavraAux.getNovaSilabaComSinerese().get(indiceSinerese).replaceAll(\"-\", \"/\")): " + palavraAux.getNovaSilabaComSinerese().get(indiceSinerese).replaceAll("-", "/"));
+//                            System.out.println("");
+
                             //Substitua a palavra no verso que será devolvido
-                            novoVerso = novoVerso.replaceFirst(Pattern.quote(palavraAux.getNovaSilabaComSinerese().get(indiceSinerese).replaceAll("-", "/")), palavraAux.getSilabasSinerese().get(indiceSinerese)).replaceAll("-", "/");
+                            //novoVerso = novoVerso.replaceFirst(Pattern.quote(palavraAux.getNovaSilabaComSinerese().get(indiceSinerese).replaceAll("-", "/")), palavraAux.getSilabasSinerese().get(indiceSinerese)).replaceAll("-", "/");
+                            novoVerso = novoVerso.replaceFirst(Pattern.quote(palavraAux.getNovaSilabaComSinerese().get(indiceSinerese).replaceAll("-", "/")), palavraAux.getSilabasSinerese().get(indiceSinerese).replaceAll("-", "/"));
                             indiceSinerese++;
+                            
                             if (!novoVersoAntes.equals(novoVerso)) //Decremente o número de sílabas poéticas
                             {
                                 numSilabasPoeticas++;
@@ -1199,14 +1204,16 @@ public class EscansaoCustomizada2 {
                 } else {
                     numeroSineresesPalavra = palavraAux.getSilabasSinerese().size();
                     indiceSinerese = 0;
-                    //Se a diérese for aplicada na sílaba tônica não deve ser revertida
+                    //Se a sinerese for aplicada na sílaba tônica não deve ser revertida
                     if (palavraAux.getSilabasSinerese().size() > 0 && palavraAux.getSilabasSinerese().get(indiceSinerese).contains("#")) {
                         // NÃO DEVE SER REVERTIDO
                     } else {
                         if (sinereseEstaDepoisDaTonica(palavraAux, palavraAux.getSilabasSinerese().get(indiceSinerese))) {
-                            //ESTA DEPOIS DA TÔNICA NÃO DEVE SER REVERTIDO"
+                            
+                            //ESTA DEPOIS DA TÔNICA NÃO DEVE SER REVERTIDO
                         } else {
                             //ESTA ANTES DA TÔNICA DEVE SER REVERTIDO"
+                            
                             while (numeroSineresesPalavra > 0 && numSilabasPoeticas < minSilabas) {
                                 if (MapaConfiguracao.getInstacia().getExcecoesSinerese().contains(palavraAux.getRegrasAplicadasSinerese().get(indiceSinerese))) {
                                     palavraAux.setPalavraOrigialEscandida(palavraAux.getPalavra());
@@ -1251,6 +1258,7 @@ public class EscansaoCustomizada2 {
 
         versoEncontrado.setNumeroDeSilabas(numSilabasPoeticas);
         versoEncontrado.setVersoEscandido(novoVerso.toString());
+        
         return versoEncontrado;
     }
 
@@ -1267,6 +1275,17 @@ public class EscansaoCustomizada2 {
         int posicaoDaTonica = palavraAux.indexOf("#", 0);
         int posicaoDaSinerese = palavraAux.indexOf(sinerese, 0);
         if (posicaoDaSinerese > posicaoDaTonica) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean diereseEstaDepoisDaTonica(Palavra palavra, String silabaComDierese) {
+               
+        String palavraAux = palavra.getPalavra().replaceAll("-", "").replaceAll("-", "");
+        int posicaoDaTonica = palavraAux.indexOf("#", 0);
+        int posicaoDaDierese = palavraAux.indexOf(silabaComDierese, 0);
+        if (posicaoDaDierese > posicaoDaTonica) {
             return true;
         }
         return false;
@@ -1321,34 +1340,42 @@ public class EscansaoCustomizada2 {
                     numeroDiresesPalavra = palavraAux.getSilabasDirese().size();
                     indiceDiereses = 0;
 
-                    //Se a diérese for aplicada na sílaba tônica não deve ser revertida.
-                    if (palavraAux.getSilabasDirese().size() > 0 && !palavraAux.isPossuiDiereseNaTonica()) {//Isso aqui é uma coisa muito mal feita. - RESOLVER ISSO MELHORAR CÓDIGO.
-                        while (numeroDiresesPalavra > 0 && numSilabasPoeticas > maxSilabas) {
-                            if (MapaConfiguracao.getInstacia().getExcecoesDierese().contains(palavraAux.getRegrasAplicadasDirese().get(indiceDiereses))) {
-                                palavraAux.setPalavraOrigialEscandida(palavraAux.getPalavra());
-                                //Guarde a palavra anterior
-                                String palavraAnterior = palavraAux.getPalavra().replaceAll("-", "/");//Palavra como está no verso
-                                palavraAux.setPalavra(palavraAux.getPalavra().replaceFirst(palavraAux.getNovaSilabaComDierese().get(indiceDiereses), palavraAux.getSilabasDirese().get(indiceDiereses).getSilaba()));
-                                indiceDiereses++;
-                                numeroDiresesPalavra--;
+                    if (diereseEstaDepoisDaTonica(palavraAux, palavraAux.getSilabasDirese().get(indiceDiereses).getSilaba())) {
+                        
+                        //ESTA DEPOIS DA TÔNICA NÃO DEVE SER REVERTIDO
+                    } else {
 
-                                /**
-                                 * Uma questão: Reverter a diérese irá reduzir o
-                                 * número de sílabas da palavra? Caso não seja
-                                 * alterado, não aplicar reversão.
-                                 */
-                                String ultimaPalavra = ultimaPalavraDoVerso(novoVerso);
-                                if (ultimaPalavra.split("/").length != palavraAux.getPalavra().split("-").length) {
-                                    novoVerso = trocarUltimaPalavra(novoVerso, palavraAux);
-                                    numSilabasPoeticas--;
-                                    versoEncontrado.setNumeroDeDieresesDesfeitas(versoEncontrado.getNumeroDeDieresesDesfeitas() + 1);
+                        //Se a diérese for aplicada na sílaba tônica não deve ser revertida.
+                        if (palavraAux.getSilabasDirese().size() > 0 && !palavraAux.isPossuiDiereseNaTonica()) {//Isso aqui é uma coisa muito mal feita. - RESOLVER ISSO MELHORAR CÓDIGO.
+                            while (numeroDiresesPalavra > 0 && numSilabasPoeticas > maxSilabas) {
+                                if (MapaConfiguracao.getInstacia().getExcecoesDierese().contains(palavraAux.getRegrasAplicadasDirese().get(indiceDiereses))) {
+                                    palavraAux.setPalavraOrigialEscandida(palavraAux.getPalavra());
+                                    //Guarde a palavra anterior
+                                    String palavraAnterior = palavraAux.getPalavra().replaceAll("-", "/");//Palavra como está no verso
+                                    palavraAux.setPalavra(palavraAux.getPalavra().replaceFirst(palavraAux.getNovaSilabaComDierese().get(indiceDiereses), palavraAux.getSilabasDirese().get(indiceDiereses).getSilaba()));
+                                    indiceDiereses++;
+                                    numeroDiresesPalavra--;
+
+                                    /**
+                                     * Uma questão: Reverter a diérese irá
+                                     * reduzir o número de sílabas da palavra?
+                                     * Caso não seja alterado, não aplicar
+                                     * reversão.
+                                     */
+                                    String ultimaPalavra = ultimaPalavraDoVerso(novoVerso);
+                                    if (ultimaPalavra.split("/").length != palavraAux.getPalavra().split("-").length) {
+                                        novoVerso = trocarUltimaPalavra(novoVerso, palavraAux);
+                                        numSilabasPoeticas--;
+                                        versoEncontrado.setNumeroDeDieresesDesfeitas(versoEncontrado.getNumeroDeDieresesDesfeitas() + 1);
+                                    }
+                                } else {
+                                    indiceDiereses++;
+                                    numeroDiresesPalavra--;
                                 }
-                            } else {
-                                indiceDiereses++;
-                                numeroDiresesPalavra--;
                             }
                         }
                     }
+                    //Incorporar
 
                     //É a última palavra... É necessário pensar melhor em como isso irá ficar
                     //Por enquanto...
@@ -1400,6 +1427,22 @@ public class EscansaoCustomizada2 {
 
     public boolean isUltimaPalavra(Verso versoEncontrado, int posicao) {
         return versoEncontrado.getPalavrasVerso().size() - 1 == posicao;
+    }
+
+    public boolean existeMaisPalavrasComTonica(Verso versoEncontrado, int posicao) {
+        /*
+        Será que existe outra palavra com tônica?
+         */
+        boolean retorno = false;
+        posicao++;//Vá para próxima palavra. Veja se existe mais alguma com tônica
+        while (posicao < versoEncontrado.getPalavrasVerso().size()) {
+            if (versoEncontrado.getPalavrasVerso().get(posicao).getPalavra().contains("#")) {
+                retorno = true;
+            }
+            posicao++;
+        }
+
+        return retorno;
     }
 
     //Realiza a contagem das sílabas quando o objetivo for verificar as terminações
