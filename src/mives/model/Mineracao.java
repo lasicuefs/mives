@@ -129,8 +129,7 @@ public class Mineracao implements ProcessarLivroObservable {
                     Verso vTempAux;
                     for (int iAux = tipoDeVersoInicio; iAux <= tipoDeVersoFim; iAux++) {
                         if (vBase != iAux) {
-                            System.out.println("Buscando versos no início da frase....");
-
+                            
                             vTempAux = this.extrairPalavrasFraseInteiraCustomizada2(vTemp.getPalavras(), iAux, iAux);
                             if (vTempAux != null && (!frase.jaTemEssaFormaDeEscansao(vTempAux.getVersoEscandido()))) {
                                 vTempAux.setLocal("Início de frase.");
