@@ -148,7 +148,7 @@ public class MainControllerHelper {
         @Override
         protected void succeeded() {
             super.succeeded();
-            controller.btnFinalizar.setDisable(false);
+            controller.btnSair.setDisable(false);
 
         }
 
@@ -156,10 +156,14 @@ public class MainControllerHelper {
         protected void failed() {
             super.failed();
             System.out.println("(task failed) ERRO AO PROCESSAR TEXTO!");
-            controller.btnFinalizar.setDisable(true);
+            controller.btnSair.setDisable(true);
 
         }
 
     };
+    
+    public int getCurPageIdx() {
+    	return this.curPageIdx;
+    }
 
 }

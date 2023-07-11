@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import mives.controller.helpers.MainControllerHelper;
@@ -29,7 +30,7 @@ public class FXMLMainController implements Initializable, PageWizard {
     protected StackPane stack;
     
     @FXML
-    public Button btnFinalizar;
+    public Button btnSair;
     
     @FXML
     public Button btnProximo;
@@ -42,7 +43,8 @@ public class FXMLMainController implements Initializable, PageWizard {
         helper = new MainControllerHelper(this);
         helper.loadNodes();
         
-        btnFinalizar.setDisable(true);
+        btnVoltar.setDisable(true);
+        btnVoltar.setOpacity(0);
         Revista.registrarAssinante(this);
 
         //   btnFinalizar.setDisable(true);
@@ -54,11 +56,19 @@ public class FXMLMainController implements Initializable, PageWizard {
     
     @FXML
     protected void nextPage(ActionEvent e) {
+    	if(helper.getCurPageIdx() == 0) {
+    		btnVoltar.setDisable(false);
+            btnVoltar.setOpacity(1);
+    	}
         helper.nextPage();
     }
     
     @FXML
     protected void priorPage(ActionEvent e) {
+    	if(helper.getCurPageIdx() == 1) {
+    		btnVoltar.setDisable(true);
+            btnVoltar.setOpacity(0);
+    	}
         helper.priorPage();
     }
     
@@ -66,10 +76,17 @@ public class FXMLMainController implements Initializable, PageWizard {
         return stack;
     }
     
+    //Ao apertar o botão de SAIR, fecha a aplicação//
+    @FXML
+    protected void fecharAplicacao(ActionEvent e) {
+    	Stage stage = (Stage) btnSair.getScene().getWindow(); //Obtendo a janela atual//
+        stage.close();
+    }
+    
     @FXML
     protected void minerarVersos(ActionEvent e) {
         helper.processarLivro();
-        btnFinalizar.setDisable(true);
+        btnSair.setDisable(true);
         btnProximo.setDisable(true);
         btnVoltar.setDisable(true);
         MainControllerHelper.controller.nextPage(e);
@@ -79,7 +96,7 @@ public class FXMLMainController implements Initializable, PageWizard {
     @Override
     public void update() {
         if (MivesWizardData.isHabilitarBotaoFinalizar()) {
-            btnFinalizar.setDisable(false);
+        	btnSair.setDisable(false);
         }
     }
     
