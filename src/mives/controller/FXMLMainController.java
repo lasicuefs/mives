@@ -59,6 +59,7 @@ public class FXMLMainController implements Initializable, PageWizard {
     	if(helper.getCurPageIdx() == 0) {
     		btnVoltar.setDisable(false);
             btnVoltar.setOpacity(1);
+            btnProximo.setDisable(true);
     	}
         helper.nextPage();
     }
@@ -68,6 +69,7 @@ public class FXMLMainController implements Initializable, PageWizard {
     	if(helper.getCurPageIdx() == 1) {
     		btnVoltar.setDisable(true);
             btnVoltar.setOpacity(0);
+            btnProximo.setDisable(false);
     	}
         helper.priorPage();
     }

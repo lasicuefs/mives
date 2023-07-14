@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #3F3F3F;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mives.controller.FXMLEscolhaInicialControllerV2">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #3F3F3F;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mives.controller.FXMLEscolhaInicialControllerV2">
    <bottom>
       <HBox alignment="CENTER" prefHeight="39.0" prefWidth="600.0" spacing="50.0" BorderPane.alignment="CENTER">
          <children>
@@ -40,17 +42,7 @@
                   <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="171.0" prefWidth="150.0">
                      <children>
                         <Button fx:id="adicionarLivro" minHeight="118.0" mnemonicParsing="false" onAction="#abrirLivroProcessar" onMouseEntered="#carregarAjudaLivro" onMouseExited="#carregarAjudaLivroExit" prefHeight="118.0" prefWidth="150.0" stylesheets="@css/buttonlivro.css" textAlignment="CENTER" />
-                        <Label stylesheets="@css/label_botoes.css" text="PROCESSAR UM NOVO LIVRO" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="150.0">
-                     <children>
-                        <Button fx:id="adicionarDicionario" minHeight="111.0" mnemonicParsing="false" onAction="#addDicionario" onMouseEntered="#carregarAjudaDicionario" onMouseExited="#carregarAjudaDicionarioExit" prefHeight="111.0" prefWidth="150.0" stylesheets="@css/buttontermosdicionario.css" textAlignment="CENTER" />
-                        <Label stylesheets="@css/label_botoes.css" text="ADICIONAR TERMOS AO DICIONÁRIO" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <Label stylesheets="@css/label_botoes.css" text="ESCOLHER UM LIVRO" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -76,9 +68,9 @@
                         <Button fx:id="ajudaNovoLivro" mnemonicParsing="false" prefHeight="148.0" prefWidth="157.0" style="-fx-background-color: #3F3F3F;" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="177.0" prefWidth="154.0">
+                  <VBox prefHeight="177.0" prefWidth="154.0" style="-fx-padding: 1em;">
                      <children>
-                        <Button fx:id="ajudaDicionario" mnemonicParsing="false" prefHeight="148.0" prefWidth="153.0" style="-fx-background-color: #3F3F3F;" />
+                        <Button mnemonicParsing="false" style="-fx-background-color: #3F3F3F;" />
                      </children>
                   </VBox>
                   <VBox prefHeight="177.0" prefWidth="144.0">

@@ -57,14 +57,16 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
     public void abrirLivroProcessar(ActionEvent e) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("MIVES - Abrir arquivo de texto para processamento.");
-        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Arquivo de texto", "txt"));
-
+        //fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Arquivo de texto", "txt"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Arquivos de Texto", "*.txt"));
+        
         System.out.println("Estou aqui");
         try {
             File file = fileChooser.showOpenDialog(null);
             if (file != null) {
                 FXMLCarregarLivroController.arquivo = file;
-                MainControllerHelper.controller.nextPage(e);
+                //MainControllerHelper.controller.nextPage(e);
+                MainControllerHelper.controller.btnProximo.setDisable(false);
                 System.out.println("Já estou aqui");
             } else {
                 System.out.println("valor invãlido");
@@ -81,14 +83,16 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("MIVES - Abrir livro processado.");
-        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("XML", "xml"));
-
+        //fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("XML", "xml"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML", "*.xml"));
+        
         try {
             File file = fileChooser.showOpenDialog(null);
             if (file != null) {
                 Livro.getInstance().setLivro(livroIO.ler(file));
                 MapaConfiguracao.setMapaConfiguracao(Livro.getInstance().getMapaConfiguracao());
-                MainControllerHelper.controller.nextPage();
+                //MainControllerHelper.controller.nextPage();
+                MainControllerHelper.controller.btnProximo.setDisable(false);
             } else {
                 System.out.println("valor invãlido");
             }
