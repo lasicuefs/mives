@@ -12,4 +12,5 @@
 
 .button:hover {
   -fx-background-image: url(../imagens/processarlivroativo.png);
+  -fx-cursor: hand;
 }

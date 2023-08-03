@@ -12,4 +12,5 @@
 
 .button:hover {
   -fx-background-image: url(../imagens/abrirlivroprocessadoativo.png);
+  -fx-cursor: hand;
 }

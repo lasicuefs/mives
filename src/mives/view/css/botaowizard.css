@@ -4,4 +4,5 @@
 
 .button:hover {
   -fx-background-color:  #8CC5F4;
+  -fx-cursor: hand;
 }

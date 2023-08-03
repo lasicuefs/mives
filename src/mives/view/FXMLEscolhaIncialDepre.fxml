@@ -41,8 +41,8 @@
                <children>
                   <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="171.0" prefWidth="150.0">
                      <children>
-                        <Button fx:id="adicionarLivro" minHeight="118.0" mnemonicParsing="false" onAction="#abrirLivroProcessar" onMouseEntered="#carregarAjudaLivro" onMouseExited="#carregarAjudaLivroExit" prefHeight="118.0" prefWidth="150.0" stylesheets="@css/buttonlivro.css" textAlignment="CENTER" />
-                        <Label stylesheets="@css/label_botoes.css" text="ESCOLHER UM LIVRO" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <Button fx:id="adicionarLivro" minHeight="103.0" mnemonicParsing="false" onAction="#abrirLivroProcessar" onMouseEntered="#carregarAjudaLivro" onMouseExited="#carregarAjudaLivroExit" prefHeight="103.0" prefWidth="150.0" stylesheets="@css/buttonlivro.css" textAlignment="CENTER" />
+                        <Label prefHeight="66.0" prefWidth="121.0" stylesheets="@css/label_botoes.css" text="ESCOLHER UM LIVRO" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -52,7 +52,7 @@
                   <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="190.0" prefWidth="175.0">
                      <children>
                         <Button fx:id="analisarProcessado" minHeight="103.0" mnemonicParsing="false" onAction="#abrirArquivoProcessar" onMouseEntered="#carregarAjudaArqAnalise" onMouseExited="#carregarAjudaArqAnaliseExit" prefHeight="132.0" prefWidth="164.0" stylesheets="@css/botaoabrirprocessado.css" textAlignment="RIGHT" />
-                        <Label prefHeight="36.0" prefWidth="150.0" stylesheets="@css/label_botoes.css" text="ABRIR UM ARQUIVO PROCESSADO PARA ANÁLISE" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <Label prefHeight="61.0" prefWidth="150.0" stylesheets="@css/label_botoes.css" text="ABRIR UM ARQUIVO PROCESSADO PARA ANÁLISE" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -70,7 +70,8 @@
                   </VBox>
                   <VBox prefHeight="177.0" prefWidth="154.0" style="-fx-padding: 1em;">
                      <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #3F3F3F;" />
+                        <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="153.0" text="Arquivo Escolhido:" textFill="WHITE" />
+                        <Label fx:id="nomeArquivo" prefHeight="17.0" prefWidth="148.0" textFill="WHITE" />
                      </children>
                   </VBox>
                   <VBox prefHeight="177.0" prefWidth="144.0">

@@ -20,7 +20,7 @@ import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+import mives.controller.helpers.MainControllerHelper;
 import mives.observable.Observer;
 
 /**
@@ -92,14 +92,17 @@ public class FXMLParametrosController implements Initializable, Observer {
     @FXML
     protected void carregarRegrasSistema(ActionEvent e) {
         MivesController.getInstance().carregarRegraPadrao();
-        definirParametros.setDisable(true);
+        //definirParametros.setDisable(true);
         regraPadrao.getStylesheets().add("/mives/view/css/buttonutilizarparametro2.css");
         regraPadrao.setDisable(true);
+        MainControllerHelper.controller.btnProximo.setDisable(false);
     }
 
     public void abrirJanelaConfiguracao(ActionEvent event) {
 
         try {
+        	regraPadrao.setDisable(false);
+            regraPadrao.getStylesheets().remove("/mives/view/css/buttonutilizarparametro2.css");
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(
                     FXMLParametrosController.class.getResource("/mives/view/FXMLDefinirParametros.fxml"));

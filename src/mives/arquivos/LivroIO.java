@@ -462,7 +462,7 @@ public class LivroIO {
             fis = new FileInputStream(arquivo);
             XStream xStream = new XStream(new DomDriver());
             System.out.println("Preparando para ler....");
-            livro = (Livro) xStream.fromXML(fis);
+            livro = (Livro) xStream.fromXML(arquivo);
             System.out.println("Leitura finalizadas");
 
         } catch (FileNotFoundException ex) {

@@ -13,10 +13,13 @@ import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import mives.controller.helpers.FXMLCarregarLivroControllerHelper;
+import mives.controller.FXMLCarregarLivroController;
 import mives.controller.helpers.MainControllerHelper;
 import mives.controller.helpers.utils.MivesWizardData;
 import mives.controller.helpers.utils.PageWizard;
 import mives.controller.helpers.utils.Revista;
+import mives.model.MapaConfiguracao;
 
 /**
  *
@@ -25,6 +28,10 @@ import mives.controller.helpers.utils.Revista;
 public class FXMLMainController implements Initializable, PageWizard {
     
     private MainControllerHelper helper;
+    
+    private FXMLCarregarLivroControllerHelper carregarLivroHelper;
+    
+    private FXMLCarregarLivroController carregarLivro;
     
     @FXML
     protected StackPane stack;
@@ -59,8 +66,24 @@ public class FXMLMainController implements Initializable, PageWizard {
     	if(helper.getCurPageIdx() == 0) {
     		btnVoltar.setDisable(false);
             btnVoltar.setOpacity(1);
-            btnProximo.setDisable(true);
+            if(FXMLCarregarLivroController.arquivo != null) {
+    			btnProximo.setDisable(false);
+    		}else {
+    			btnProximo.setDisable(true);
+    		}
     	}
+    	
+    	if(helper.getCurPageIdx() == 1) {
+    		FXMLCarregarLivroController.helper.iniciarCarregarLivro();
+    	}
+    	/*
+    	if(helper.getCurPageIdx() == 2 && MapaConfiguracao.getMapaConfiguracao()==null) {
+    		System.out.println("Vazio");
+    		btnProximo.setDisable(true);
+    	}else if(helper.getCurPageIdx() == 2 && MapaConfiguracao.getMapaConfiguracao()!=null) {
+    		System.out.println("Não Vazio");
+    		btnProximo.setDisable(false);
+    	}*/
         helper.nextPage();
     }
     
@@ -71,6 +94,11 @@ public class FXMLMainController implements Initializable, PageWizard {
             btnVoltar.setOpacity(0);
             btnProximo.setDisable(false);
     	}
+    	
+    	/*
+    	if(helper.getCurPageIdx() == 3) {
+    		btnProximo.setDisable(false);
+    	}*/
         helper.priorPage();
     }
     

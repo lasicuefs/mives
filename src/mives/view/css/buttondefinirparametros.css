@@ -8,9 +8,9 @@
     -fx-background-position: center;
     -fx-background-color:  #3F3F3F;
 	
-
 }
 
 .button:hover {
   -fx-background-image: url(../imagens/definirparametroativo.png);
+  -fx-cursor: hand;
 }

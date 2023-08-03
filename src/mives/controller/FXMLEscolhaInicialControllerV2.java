@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import mives.arquivos.LivroIO;
 import mives.controller.helpers.MainControllerHelper;
@@ -36,7 +37,10 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
 
     @FXML
     Button ajudaNovoAnalise;
-
+    
+    @FXML
+    Label nomeArquivo;
+    
     @FXML
     Button ajudaDicionario;
 
@@ -65,6 +69,7 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
             File file = fileChooser.showOpenDialog(null);
             if (file != null) {
                 FXMLCarregarLivroController.arquivo = file;
+                nomeArquivo.setText(file.getName());
                 //MainControllerHelper.controller.nextPage(e);
                 MainControllerHelper.controller.btnProximo.setDisable(false);
                 System.out.println("Já estou aqui");
@@ -91,10 +96,11 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
             if (file != null) {
                 Livro.getInstance().setLivro(livroIO.ler(file));
                 MapaConfiguracao.setMapaConfiguracao(Livro.getInstance().getMapaConfiguracao());
+                nomeArquivo.setText(file.getName());
                 //MainControllerHelper.controller.nextPage();
                 MainControllerHelper.controller.btnProximo.setDisable(false);
             } else {
-                System.out.println("valor invãlido");
+                System.out.println("valor inválido");
             }
         } catch (Exception ex) {
             ex.printStackTrace();

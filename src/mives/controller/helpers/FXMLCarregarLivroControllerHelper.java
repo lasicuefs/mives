@@ -43,6 +43,7 @@ public class FXMLCarregarLivroControllerHelper {
 
         Thread t = new Thread(task);
         t.start();
+        System.out.println(FXMLCarregarLivroController.arquivo.getName());
         carregarLivro.getLabelNomeArquivo().setText(FXMLCarregarLivroController.arquivo.getName());
         carregarLivro.getProgressBar().progressProperty().bind(task.progressProperty());
 //        while(t.isAlive()){

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="600.0" style="-fx-background-color: #3F3F3F;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mives.controller.FXMLCarregarLivroController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="600.0" style="-fx-background-color: #3F3F3F;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mives.controller.FXMLCarregarLivroController">
    <bottom>
       <HBox alignment="CENTER" prefHeight="39.0" prefWidth="600.0" spacing="50.0" BorderPane.alignment="CENTER">
          <children>
@@ -44,7 +47,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Label fx:id="labelNomeArquivo" text="PáginaValidação.txt" textFill="#d8d8d8" />
+                  <Label fx:id="labelNomeArquivo" textFill="#d8d8d8" />
                   <ProgressBar fx:id="barraCarregarLivro" maxHeight="8.0" minHeight="10.0" onMouseClicked="#testeProgressBar" prefHeight="8.0" prefWidth="234.0" progress="0.0" style="-fx-max-height: 3;" stylesheets="@css/progressbar.css" />
                   <HBox alignment="CENTER" prefHeight="67.0" prefWidth="234.0">
                      <children>
@@ -55,11 +58,6 @@
                                     <Insets />
                                  </opaqueInsets>
                               </Label>
-                              <Button mnemonicParsing="false" onAction="#iniciarCarregarLivro" stylesheets="@css/botaowizard.css" text="Carregar" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
                            </children>
                         </VBox>
                      </children>

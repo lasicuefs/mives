@@ -31,7 +31,7 @@ public class FXMLCarregarLivroController implements Initializable {
      @FXML
     private Label labelProcessamentoConcluido;
 
-    FXMLCarregarLivroControllerHelper helper;
+    public static FXMLCarregarLivroControllerHelper helper;
 
     public static File arquivo;
 
