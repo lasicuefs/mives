@@ -456,7 +456,7 @@ public class LivroIO {
         }
     }
 
-    public Livro ler(File arquivo) {
+    public Livro ler(File arquivo) throws Exception{
         FileInputStream fis;
         try {
             fis = new FileInputStream(arquivo);
@@ -469,7 +469,8 @@ public class LivroIO {
             Logger.getLogger(LivroIO.class
                     .getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            System.out.println("OLha o erro aqui: " + ex.getMessage());
+        	throw new Exception(ex);
+            //System.out.println("OLha o erro aqui: " + ex.getMessage());
         }
         return livro;
     }

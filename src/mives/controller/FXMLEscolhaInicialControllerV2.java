@@ -103,14 +103,16 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
                 System.out.println("valor inválido");
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
+        	alertaEscolha();
+        	System.out.println("Erro");
+            //ex.printStackTrace();
         }
 
     }
 
     @FXML
     protected void carregarAjudaArqAnalise() {
-        ajudaNovoAnalise.getStylesheets().add("/mives/view/css/mensagemtelainicial.css");
+        ajudaNovoAnalise.getStylesheets().add("/mives/view/css/instrucoes.css");
     }
 
     @FXML
@@ -130,7 +132,7 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
 
     @FXML
     protected void carregarAjudaLivro() {
-        ajudaNovoLivro.getStylesheets().add("/mives/view/css/mensagemtelainicial.css");
+        ajudaNovoLivro.getStylesheets().add("/mives/view/css/instrucoes.css");
     }
 
     @FXML
@@ -145,6 +147,15 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
         dialogoInfo.setTitle("MIVES");
         dialogoInfo.setHeaderText("Adicionar termos ao dicionário");
         dialogoInfo.setContentText("Função indisponível para esta versão do MIVES!");
+        // dialogoInfo.
+        dialogoInfo.showAndWait();
+    }
+    
+    public void alertaEscolha() {
+    	Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+        dialogoInfo.setTitle("MIVES");
+        dialogoInfo.setHeaderText("Abertura de arquivo incompatível");
+        dialogoInfo.setContentText("Esse arquivo escolhido não é um texto já processado!");
         // dialogoInfo.
         dialogoInfo.showAndWait();
     }

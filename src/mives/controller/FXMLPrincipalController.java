@@ -310,7 +310,8 @@ public class FXMLPrincipalController implements Initializable {
     public void salvar() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("MIVES - Salvar arquivo de configuração...");
-        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("XML", "xml"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML", "*.xml"));
+        //fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("XML", "xml"));
         try {
             File file = fileChooser.showSaveDialog(null);
             if (file != null) {
