@@ -92,8 +92,9 @@ public class FXMLParametrosController implements Initializable, Observer {
     @FXML
     protected void carregarRegrasSistema(ActionEvent e) {
         MivesController.getInstance().carregarRegraPadrao();
-        //definirParametros.setDisable(true);
+        definirParametros.setDisable(false);
         regraPadrao.getStylesheets().add("/mives/view/css/buttonutilizarparametro2.css");
+        definirParametros.getStylesheets().remove("/mives/view/css/buttondefinirparametros2.css");
         regraPadrao.setDisable(true);
         MainControllerHelper.controller.btnProximo.setDisable(false);
     }
@@ -102,6 +103,8 @@ public class FXMLParametrosController implements Initializable, Observer {
 
         try {
         	regraPadrao.setDisable(false);
+        	definirParametros.setDisable(true);
+        	definirParametros.getStylesheets().add("/mives/view/css/buttondefinirparametros2.css");
             regraPadrao.getStylesheets().remove("/mives/view/css/buttonutilizarparametro2.css");
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(
@@ -113,6 +116,7 @@ public class FXMLParametrosController implements Initializable, Observer {
             stage.initOwner(
                     ((Node) event.getSource()).getScene().getWindow());
             stage.show();
+            MainControllerHelper.controller.btnProximo.setDisable(false);
         } catch (IOException ex) {
             ex.printStackTrace();
         }

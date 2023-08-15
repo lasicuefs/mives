@@ -46,7 +46,7 @@
                            <cursor>
                               <Cursor fx:constant="DEFAULT" />
                            </cursor></Button>
-                        <Label stylesheets="@css/label_botoes.css" text="UTILIZAR PARÂMETROS DO SISTEMA" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <Label prefHeight="74.0" prefWidth="150.0" stylesheets="@css/label_botoes.css" text="Utilizar parâmetros padrões do sistema" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -62,7 +62,7 @@
                            <cursor>
                               <Cursor fx:constant="DEFAULT" />
                            </cursor></Button>
-                        <Label stylesheets="@css/label_botoes.css" text="DEFINIR PARÂMETROS DE BUSCA" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <Label stylesheets="@css/label_botoes.css" text="Definir parâmetros de busca" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>

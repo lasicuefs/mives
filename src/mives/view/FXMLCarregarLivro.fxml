@@ -25,7 +25,7 @@
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label stylesheets="@css/label_wizard.css" text="   CARREGAR" textFill="#d8d8d8">
+            <Label stylesheets="@css/label_wizard.css" text="   CARREGAMENTO CONCLUÍDO" textFill="#d8d8d8">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -40,7 +40,7 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="69.0" prefWidth="234.0">
                      <children>
                         <Label minHeight="88.0" prefHeight="82.0" prefWidth="79.0" stylesheets="@css/btncarregarlivro.css" />
-                        <Label text="CARREGAR LIVRO" textFill="#d8d8d8">
+                        <Label text="Livro Carregado" textFill="#d8d8d8">
                            <font>
                               <Font name="Verdana Bold" size="14.0" />
                            </font>

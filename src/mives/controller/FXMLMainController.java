@@ -76,14 +76,14 @@ public class FXMLMainController implements Initializable, PageWizard {
     	if(helper.getCurPageIdx() == 1) {
     		FXMLCarregarLivroController.helper.iniciarCarregarLivro();
     	}
-    	/*
+    	
     	if(helper.getCurPageIdx() == 2 && MapaConfiguracao.getMapaConfiguracao()==null) {
     		System.out.println("Vazio");
     		btnProximo.setDisable(true);
     	}else if(helper.getCurPageIdx() == 2 && MapaConfiguracao.getMapaConfiguracao()!=null) {
     		System.out.println("Não Vazio");
     		btnProximo.setDisable(false);
-    	}*/
+    	}
         helper.nextPage();
     }
     
@@ -94,11 +94,15 @@ public class FXMLMainController implements Initializable, PageWizard {
             btnVoltar.setOpacity(0);
             btnProximo.setDisable(false);
     	}
-    	
-    	/*
-    	if(helper.getCurPageIdx() == 3) {
+    
+    	if(helper.getCurPageIdx() == 4 && MapaConfiguracao.getMapaConfiguracao()==null) {
+    		System.out.println("Vazio");
+    		btnProximo.setDisable(true);
+    	}else if(helper.getCurPageIdx() == 4 && MapaConfiguracao.getMapaConfiguracao()!=null) {
+    		System.out.println("Não Vazio");
     		btnProximo.setDisable(false);
-    	}*/
+    	}
+    	
         helper.priorPage();
     }
     
