@@ -63,27 +63,43 @@ public class FXMLMainController implements Initializable, PageWizard {
     
     @FXML
     protected void nextPage(ActionEvent e) {
+    	
+    	//Se for a primeura página e eu apertei Avançar
     	if(helper.getCurPageIdx() == 0) {
-    		btnVoltar.setDisable(false);
-            btnVoltar.setOpacity(1);
-            if(FXMLCarregarLivroController.arquivo != null) {
+    		btnVoltar.setDisable(false); //botão de voltar abilitado
+            btnVoltar.setOpacity(1); //botão de voltar aparece na tela
+            if(FXMLCarregarLivroController.arquivo != null) { //se não tiver arquivo, desabilita Avançar
     			btnProximo.setDisable(false);
-    		}else {
+    		}else { //caso contrário
     			btnProximo.setDisable(true);
     		}
     	}
     	
-    	if(helper.getCurPageIdx() == 1) {
+    	// Se a página for 1 e apertei avançar, carrega o livro selecionado
+    	if(helper.getCurPageIdx() == 1) { 
     		FXMLCarregarLivroController.helper.iniciarCarregarLivro();
     	}
     	
+    	//Se estou na página 2 e avanço e não tem parâmetros definidos, botão de avançar desabilitado
     	if(helper.getCurPageIdx() == 2 && MapaConfiguracao.getMapaConfiguracao()==null) {
     		System.out.println("Vazio");
     		btnProximo.setDisable(true);
+    	//Se estou na página 2 e avanço e tem parâmetros definidos, botão de avançar abilitado
     	}else if(helper.getCurPageIdx() == 2 && MapaConfiguracao.getMapaConfiguracao()!=null) {
     		System.out.println("Não Vazio");
     		btnProximo.setDisable(false);
     	}
+    	
+    	/*
+    	if(helper.getCurPageIdx() == 3) {
+    		if(MivesWizardData.isHabilitarBotaoFinalizar()) {
+    			btnProximo.setDisable(false); //botão de voltar abilitado
+                System.out.println("com métrica");
+    		}else {
+    			System.out.println("sem métrica");
+    			btnProximo.setDisable(true); //botão de voltar desabilitado
+    		}
+    	}*/
         helper.nextPage();
     }
     
@@ -93,6 +109,10 @@ public class FXMLMainController implements Initializable, PageWizard {
     		btnVoltar.setDisable(true);
             btnVoltar.setOpacity(0);
             btnProximo.setDisable(false);
+    	}
+    	
+    	if(helper.getCurPageIdx() == 3) {
+    		btnProximo.setDisable(false);
     	}
     
     	if(helper.getCurPageIdx() == 4 && MapaConfiguracao.getMapaConfiguracao()==null) {

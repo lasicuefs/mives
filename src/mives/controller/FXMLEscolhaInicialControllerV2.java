@@ -103,7 +103,7 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
                 System.out.println("valor inválido");
             }
         } catch (Exception ex) {
-        	alertaEscolha();
+        	alertaEscolha(); //Se arquivo XML não é um livro já processado
         	System.out.println("Erro");
             //ex.printStackTrace();
         }

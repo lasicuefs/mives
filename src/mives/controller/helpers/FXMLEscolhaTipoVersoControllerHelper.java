@@ -45,6 +45,7 @@ public class FXMLEscolhaTipoVersoControllerHelper {
 
     public void carregarComboboxFim(int inicio) {
         controller.getComboFim().getItems().clear();
+        controller.getComboFim().setValue("12.Dodecassílabo");
         for (int i = inicio; i < tipoVerso.size(); i++) {
             controller.getComboFim().getItems().add(tipoVerso.get(i));
         }
@@ -62,7 +63,7 @@ public class FXMLEscolhaTipoVersoControllerHelper {
 
         if (controller.getComboInicio().getSelectionModel().getSelectedItem() != null
                 && controller.getComboFim().getSelectionModel().getSelectedItem() != null) {
-            MivesWizardData.TIPODEVERSOFINAL = controller.getComboInicio().getSelectionModel().getSelectedItem();
+            MivesWizardData.TIPODEVERSOINICIO = controller.getComboInicio().getSelectionModel().getSelectedItem();
             MivesWizardData.TIPODEVERSOFINAL = controller.getComboFim().getSelectionModel().getSelectedItem();
             MivesWizardData.TIPOVERSO = true;
             Revista.notificar();

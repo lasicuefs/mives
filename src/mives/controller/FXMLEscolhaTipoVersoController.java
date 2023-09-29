@@ -54,9 +54,15 @@ public class FXMLEscolhaTipoVersoController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	//Default Monossílabo - Dodecassílabo
+    	comboInicio.setValue("1. Monossílabo");
+    	comboFim.setValue("12.Dodecassílabo");
         helper = new FXMLEscolhaTipoVersoControllerHelper(this);
+        helper.capturarMetros();
         helper.carregarComboboxInicio();
+        //Default sentença completa
         definirGruposRadioButton();
+        helper.definirTipoDeSentenca();
 
     }
 
