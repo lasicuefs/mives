@@ -116,6 +116,7 @@ public class FXMLPrincipalController implements Initializable {
         helper.montarArvore();
 
         // carregarTextoExemplo();
+        // apresentarResultados();
     }
 
     int index = 0;

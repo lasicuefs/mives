@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import mives.controller.helpers.FXMLCarregarLivroControllerHelper;
 import mives.controller.FXMLCarregarLivroController;
+import mives.controller.FXMLProcessandoLivroController;
 import mives.controller.helpers.MainControllerHelper;
 import mives.controller.helpers.utils.MivesWizardData;
 import mives.controller.helpers.utils.PageWizard;
@@ -90,16 +91,10 @@ public class FXMLMainController implements Initializable, PageWizard {
     		btnProximo.setDisable(false);
     	}
     	
-    	/*
-    	if(helper.getCurPageIdx() == 3) {
-    		if(MivesWizardData.isHabilitarBotaoFinalizar()) {
-    			btnProximo.setDisable(false); //botão de voltar abilitado
-                System.out.println("com métrica");
-    		}else {
-    			System.out.println("sem métrica");
-    			btnProximo.setDisable(true); //botão de voltar desabilitado
-    		}
-    	}*/
+    	if(helper.getCurPageIdx() == 5) {
+    		btnProximo.setDisable(true);
+    	}
+    	
         helper.nextPage();
     }
     
@@ -121,6 +116,14 @@ public class FXMLMainController implements Initializable, PageWizard {
     	}else if(helper.getCurPageIdx() == 4 && MapaConfiguracao.getMapaConfiguracao()!=null) {
     		System.out.println("Não Vazio");
     		btnProximo.setDisable(false);
+    	}
+    	
+    	if(helper.getCurPageIdx() == 6) {
+    		btnProximo.setDisable(false);
+    	}
+    	
+    	if(helper.getCurPageIdx() == 7) {
+    		btnProximo.setDisable(true);
     	}
     	
         helper.priorPage();

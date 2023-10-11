@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -82,9 +83,9 @@ public class FXMLProcessandoLivroController implements Initializable, PageWizard
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void testeAnalisar() {
-        MainControllerHelper.controller.nextPage(null);
-    }
+    //public void testeAnalisar() {
+    //    MainControllerHelper.controller.nextPage(null);
+    //}
 
     @Override
     public void update(int progresso) {
@@ -99,5 +100,54 @@ public class FXMLProcessandoLivroController implements Initializable, PageWizard
         }
 //        System.out.println("ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO");
     }
+    @FXML
+    void processarLivro(ActionEvent event) {
 
+        task1.setOnFailed(evt -> {
+            System.err.println("Task failed, exception:");
+            task1.getException().printStackTrace(System.err);
+        });
+
+        Thread t = new Thread(task1);
+        t.start();
+        
+        if(task1.getState().toString() == "SUCCEEDED") {
+        	MainControllerHelper.controller.nextPage(null);
+        }
+    }
+
+    Task task1 = new Task<Void>() {
+        @Override
+        public Void call() throws Exception {
+            try {
+                System.out.println("Processando Livro...");
+                MivesController.getInstance().minerarVersosCustomizados(Livro.getInstance(),
+                        MivesWizardData.INICIOFRASE, MivesWizardData.FINALFRASE, MivesWizardData.FRASECOMPLETA,
+                        MivesWizardData.TIPODEVERSOINICIO, MivesWizardData.TIPODEVERSOFINAL,
+                        true, true, true, true, true);
+                System.out.println("Livro processado!");
+            } catch (LivroException ex) {
+                Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return null;
+
+        }
+
+        @Override
+        protected void succeeded() {
+            super.succeeded();
+            //controller.btnSair.setDisable(false);
+            MainControllerHelper.controller.nextPage(null);
+
+        }
+
+        @Override
+        protected void failed() {
+            super.failed();
+            System.out.println("(task failed) ERRO AO PROCESSAR TEXTO!");
+            //controller.btnSair.setDisable(true);
+
+        }
+
+    };
 }

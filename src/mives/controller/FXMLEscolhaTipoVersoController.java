@@ -61,6 +61,7 @@ public class FXMLEscolhaTipoVersoController implements Initializable {
         helper.capturarMetros();
         helper.carregarComboboxInicio();
         //Default sentença completa
+        helper.carregarComboboxFim(0);
         definirGruposRadioButton();
         helper.definirTipoDeSentenca();
 
