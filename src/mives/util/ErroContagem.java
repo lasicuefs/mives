@@ -35,7 +35,7 @@ public class ErroContagem {
             String nomeDoLivro = Livro.getInstance().getArquivoDeOrigem().getName().replace(".txt", "");
 
             File arquivoDeDestino = new File(System.getProperty("user.dir") + "/erros/" + nomeDoLivro + tipoDeBusca + System.currentTimeMillis() + ".txt");
-
+            System.out.println(System.getProperty("user.dir"));
             fileWriterDestino = new FileWriter(arquivoDeDestino); //Escrever no novo arquivo
             bufferedWriterDestino = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(arquivoDeDestino), StandardCharsets.UTF_8));
             int contador = 1;
