@@ -65,11 +65,12 @@ public class FXMLMainController implements Initializable, PageWizard {
     @FXML
     protected void nextPage(ActionEvent e) {
     	
-    	//Se for a primeura página e eu apertei Avançar
+    	//Se for a primeira página e eu apertei Avançar
     	if(helper.getCurPageIdx() == 0) {
     		btnVoltar.setDisable(false); //botão de voltar abilitado
             btnVoltar.setOpacity(1); //botão de voltar aparece na tela
-            if(FXMLCarregarLivroController.arquivo != null) { //se não tiver arquivo, desabilita Avançar
+            if(FXMLCarregarLivroController.arquivo != null) {
+            	System.out.println(FXMLCarregarLivroController.arquivo.getName());//se não tiver arquivo, desabilita Avançar
     			btnProximo.setDisable(false);
     		}else { //caso contrário
     			btnProximo.setDisable(true);

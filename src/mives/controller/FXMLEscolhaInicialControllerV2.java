@@ -97,8 +97,8 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
                 Livro.getInstance().setLivro(livroIO.ler(file));
                 MapaConfiguracao.setMapaConfiguracao(Livro.getInstance().getMapaConfiguracao());
                 nomeArquivo.setText(file.getName());
-                //MainControllerHelper.controller.nextPage();
-                MainControllerHelper.controller.btnProximo.setDisable(false);
+                MainControllerHelper.controller.nextPage();
+                MainControllerHelper.controller.btnProximo.setDisable(true);
             } else {
                 System.out.println("valor inválido");
             }
