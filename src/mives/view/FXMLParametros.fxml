@@ -42,7 +42,7 @@
                <children>
                   <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="171.0" prefWidth="150.0">
                      <children>
-                        <Button fx:id="regraPadrao" minHeight="118.0" mnemonicParsing="false" onAction="#carregarRegrasSistema" onMouseEntered="#carregarAjudaLivro" onMouseExited="#carregarAjudaLivroExit" prefHeight="118.0" prefWidth="150.0" stylesheets="@css/buttonutilizarparametro.css" textAlignment="CENTER">
+                        <Button fx:id="regraPadrao" minHeight="82.0" mnemonicParsing="false" onAction="#carregarRegrasSistema" onMouseEntered="#carregarAjudaLivro" onMouseExited="#carregarAjudaLivroExit" prefHeight="118.0" prefWidth="110.0" stylesheets="@css/buttonutilizarparametro.css" textAlignment="CENTER">
                            <cursor>
                               <Cursor fx:constant="DEFAULT" />
                            </cursor></Button>
@@ -79,14 +79,21 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="177.0" prefWidth="600.0" spacing="80.0">
                <children>
-                  <VBox prefHeight="177.0" prefWidth="158.0">
+                  <VBox alignment="TOP_RIGHT" prefHeight="177.0" prefWidth="158.0">
                      <children>
-                        <Button fx:id="ajudaNovoLivro" mnemonicParsing="false" prefHeight="148.0" prefWidth="157.0" style="-fx-background-color: #3F3F3F;" />
+                        <Button fx:id="ajudaPadrao" alignment="CENTER" mnemonicParsing="false" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #3F3F3F;" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." textAlignment="CENTER" textFill="WHITE" wrapText="true" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="177.0" prefWidth="154.0">
+                  <VBox alignment="TOP_CENTER" prefHeight="177.0" prefWidth="154.0" style="-fx-padding: 1em;">
                      <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="166.0" stylesheets="@css/label_botoes.css" text="Escolha:" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                        <Label fx:id="labelEscolha" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
                         <Button fx:id="ajudaDicionario" mnemonicParsing="false" prefHeight="148.0" prefWidth="153.0" style="-fx-background-color: #3F3F3F;" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="114.0" layoutY="10.0" prefHeight="177.0" prefWidth="158.0">
+                     <children>
+                        <Button fx:id="ajudaDefinir" mnemonicParsing="false" opacity="0.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #3F3F3F;" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." textAlignment="CENTER" textFill="WHITE" wrapText="true" />
                      </children>
                   </VBox>
                </children>

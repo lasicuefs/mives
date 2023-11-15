@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -31,6 +32,9 @@ public class FXMLParametrosController implements Initializable, Observer {
 
     @FXML
     Button regraPadrao;
+    
+    @FXML
+    Label labelEscolha;
 
     @FXML
     Button definirParametros;
@@ -46,6 +50,12 @@ public class FXMLParametrosController implements Initializable, Observer {
 
     @FXML
     Button ajudaNovoLivro;
+    
+    @FXML
+    Button ajudaPadrao;
+
+    @FXML
+    Button ajudaDefinir;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -71,27 +81,28 @@ public class FXMLParametrosController implements Initializable, Observer {
 
     @FXML
     protected void carregarAjudaDicionario() {
-        ajudaDicionario.getStylesheets().add("/mives/view/css/mensagemtelainicial.css");
+    	ajudaDefinir.getStylesheets().add("/mives/view/css/instrucoes.css");
     }
 
     @FXML
     protected void carregarAjudaDicionarioExit() {
-        ajudaDicionario.getStylesheets().clear();
+        ajudaDefinir.getStylesheets().clear();
     }
 
     @FXML
     protected void carregarAjudaLivro() {
-        ajudaNovoLivro.getStylesheets().add("/mives/view/css/mensagemtelainicial.css");
+    	ajudaPadrao.getStylesheets().add("/mives/view/css/instrucoes.css");
     }
 
     @FXML
     protected void carregarAjudaLivroExit() {
-        ajudaNovoLivro.getStylesheets().clear();
+    	ajudaPadrao.getStylesheets().clear();
     }
 
     @FXML
     protected void carregarRegrasSistema(ActionEvent e) {
         MivesController.getInstance().carregarRegraPadrao();
+        labelEscolha.setText("Parâmetros padrões");
         definirParametros.setDisable(false);
         regraPadrao.getStylesheets().add("/mives/view/css/buttonutilizarparametro2.css");
         definirParametros.getStylesheets().remove("/mives/view/css/buttondefinirparametros2.css");
@@ -104,6 +115,7 @@ public class FXMLParametrosController implements Initializable, Observer {
         try {
         	regraPadrao.setDisable(false);
         	definirParametros.setDisable(true);
+        	labelEscolha.setText("Definir Parâmetros");
         	definirParametros.getStylesheets().add("/mives/view/css/buttondefinirparametros2.css");
             regraPadrao.getStylesheets().remove("/mives/view/css/buttonutilizarparametro2.css");
             Stage stage = new Stage();

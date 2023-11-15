@@ -66,7 +66,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="377.0" prefWidth="234.0">
                <children>
-                  <Label minHeight="117.0" prefHeight="117.0" prefWidth="154.0" stylesheets="@css/mensagemcarregarlivro.css" />
+                  <Label minHeight="117.0" prefHeight="117.0" prefWidth="154.0" style="-fx-padding: 1em; -fx-border-color: white; -fx-border-radius: 10px;" stylesheets="@css/mensagemcarregarlivro.css" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
                </children>
             </VBox>
          </children>

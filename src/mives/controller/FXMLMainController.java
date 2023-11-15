@@ -93,6 +93,7 @@ public class FXMLMainController implements Initializable, PageWizard {
     	}
     	
     	if(helper.getCurPageIdx() == 5) {
+    		this.minerarVersos();
     		btnProximo.setDisable(true);
     	}
     	
@@ -141,13 +142,9 @@ public class FXMLMainController implements Initializable, PageWizard {
         stage.close();
     }
     
-    @FXML
-    protected void minerarVersos(ActionEvent e) {
+    protected void minerarVersos() {
         helper.processarLivro();
-        btnSair.setDisable(true);
-        btnProximo.setDisable(true);
-        btnVoltar.setDisable(true);
-        MainControllerHelper.controller.nextPage(e);
+        MainControllerHelper.controller.nextPage();
         
     }
     

@@ -2,5 +2,5 @@
 
     -fx-border-color: white;
     -fx-opacity: 1;
-
+	-fx-border-radius: 10px;
 }

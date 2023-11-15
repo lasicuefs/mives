@@ -2,7 +2,7 @@
 
     -fx-min-height: 80px;
     -fx-min-width: 146px;
-    -fx-background-image: url(../imagens/mensagemFinal.png);
+    /*-fx-background-image: url(../imagens/mensagemFinal.png);*/
     -fx-background-size: 146px 80px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center 8px;
