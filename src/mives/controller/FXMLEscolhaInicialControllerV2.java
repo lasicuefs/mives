@@ -6,6 +6,7 @@
 package mives.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -68,16 +69,25 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
         try {
             File file = fileChooser.showOpenDialog(null);
             if (file != null) {
-                FXMLCarregarLivroController.arquivo = file;
-                nomeArquivo.setText(file.getName());
-                //MainControllerHelper.controller.nextPage(e);
-                MainControllerHelper.controller.btnProximo.setDisable(false);
-                System.out.println("Já estou aqui");
+            	if(file.getCanonicalPath().endsWith(".txt")) {
+            		FXMLCarregarLivroController.arquivo = file;
+                    nomeArquivo.setText(file.getName());
+                    //MainControllerHelper.controller.nextPage(e);
+                    MainControllerHelper.controller.btnProximo.setDisable(false);
+                    System.out.println("Já estou aqui");
+            	}else {
+            		alertaEscolhaExtensao(".txt");
+            	}
+                
             } else {
-                System.out.println("valor invãlido");
+                System.out.println("valor inválido");
             }
+        } catch (IOException IOex) {
+            alertaIO();
+        } catch (SecurityException SecEx) {
+        	alertaSeguranca();
         } catch (Exception ex) {
-            ex.printStackTrace();
+        	System.out.println(ex.getMessage());
         }
     }
 
@@ -94,18 +104,28 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
         try {
             File file = fileChooser.showOpenDialog(null);
             if (file != null) {
-                Livro.getInstance().setLivro(livroIO.ler(file));
-                MapaConfiguracao.setMapaConfiguracao(Livro.getInstance().getMapaConfiguracao());
-                nomeArquivo.setText(file.getName());
-                MainControllerHelper.controller.nextPage();
-                MainControllerHelper.controller.btnProximo.setDisable(true);
+            	if(file.getCanonicalPath().endsWith(".xml")) {
+	                Livro.getInstance().setLivro(livroIO.ler(file));
+	                MapaConfiguracao.setMapaConfiguracao(Livro.getInstance().getMapaConfiguracao());
+	                nomeArquivo.setText(file.getName());
+	                MainControllerHelper.controller.nextPage();
+	                MainControllerHelper.controller.btnProximo.setDisable(true);
+            	} else {
+            		alertaEscolhaExtensao(".xml");
+            	}
             } else {
                 System.out.println("valor inválido");
             }
-        } catch (Exception ex) {
-        	alertaEscolha(); //Se arquivo XML não é um livro já processado
+        } catch (IOException IOex) {
+            alertaIO();
+        } catch (SecurityException SecEx) {
+        	alertaSeguranca();
+        } catch (ClassCastException CastEx) {
+        	alertaEscolhaXML(); //Se arquivo XML não é um livro já processado
         	System.out.println("Erro");
             //ex.printStackTrace();
+        } catch (Exception ex) {
+        	System.out.println(ex.getMessage());
         }
 
     }
@@ -151,11 +171,38 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
         dialogoInfo.showAndWait();
     }
     
-    public void alertaEscolha() {
+    public void alertaEscolhaXML() {
     	Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
         dialogoInfo.setTitle("MIVES");
         dialogoInfo.setHeaderText("Abertura de arquivo incompatível");
         dialogoInfo.setContentText("Esse arquivo escolhido não é um texto já processado!");
+        // dialogoInfo.
+        dialogoInfo.showAndWait();
+    }
+    
+    public void alertaEscolhaExtensao(String Extensao) {
+    	Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+        dialogoInfo.setTitle("MIVES");
+        dialogoInfo.setHeaderText("Abertura de arquivo incompatível");
+        dialogoInfo.setContentText("Esse arquivo escolhido não é "+Extensao);
+        // dialogoInfo.
+        dialogoInfo.showAndWait();
+    }
+    
+    public void alertaIO() {
+    	Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+        dialogoInfo.setTitle("MIVES");
+        dialogoInfo.setHeaderText("Erro de I/O");
+        dialogoInfo.setContentText("Falha na operação de leitura do caminho do arquivo");
+        // dialogoInfo.
+        dialogoInfo.showAndWait();
+    }
+    
+    public void alertaSeguranca() {
+    	Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+        dialogoInfo.setTitle("MIVES");
+        dialogoInfo.setHeaderText("Erro de Segurança");
+        dialogoInfo.setContentText("Acesso de leitura do arquivo negada");
         // dialogoInfo.
         dialogoInfo.showAndWait();
     }
