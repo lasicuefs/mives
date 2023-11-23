@@ -95,7 +95,6 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
     public void abrirArquivoProcessar() {
         LivroIO livroIO;
         livroIO = new LivroIO();
-
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("MIVES - Abrir livro processado.");
         //fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("XML", "xml"));
@@ -108,8 +107,9 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
 	                Livro.getInstance().setLivro(livroIO.ler(file));
 	                MapaConfiguracao.setMapaConfiguracao(Livro.getInstance().getMapaConfiguracao());
 	                nomeArquivo.setText(file.getName());
-	                MainControllerHelper.controller.nextPage();
 	                MainControllerHelper.controller.btnProximo.setDisable(true);
+	                MainControllerHelper.controller.btnVoltar.setDisable(true);
+	                MainControllerHelper.controller.nextPage();
             	} else {
             		alertaEscolhaExtensao(".xml");
             	}

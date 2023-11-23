@@ -41,42 +41,6 @@ public class FXMLProcessandoLivroController implements Initializable, PageWizard
         Mineracao.getInstance().registerObserver(this);
     }
 
-    private void minerarLivro() {
-
-        task.setOnFailed(evt -> {
-            System.err.println("Task failed, exception:");
-            task.getException().printStackTrace(System.err);
-        });
-
-        Thread t = new Thread(task);
-        t.start();
-    }
-
-    Task task = new Task<Void>() {
-        @Override
-        public Void call() {
-            try {
-                MivesController.getInstance().minerarVersosCustomizados(Livro.getInstance(), MivesWizardData.INICIOFRASE, MivesWizardData.FINALFRASE, MivesWizardData.FRASECOMPLETA,
-                        MivesWizardData.TIPODEVERSOINICIO, MivesWizardData.TIPODEVERSOFINAL,
-                        true, true, true, true, true);
-                btnAnalisarResultado.setDisable(false);
-                updateProgress(Mineracao.valorInicial, Livro.getInstance().getPaginas().size());
-            } catch (LivroException ex) {
-                Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            return null;
-
-        }
-
-        @Override
-        protected void succeeded() {
-            super.succeeded();
-            btnAnalisarResultado.setDisable(false);
-
-        }
-
-    };
 
     @Override
     public void update() {
@@ -103,51 +67,43 @@ public class FXMLProcessandoLivroController implements Initializable, PageWizard
     @FXML
     void processarLivro(ActionEvent event) {
 
-        task1.setOnFailed(evt -> {
-            System.err.println("Task failed, exception:");
-            task1.getException().printStackTrace(System.err);
-        });
+        Thread t = new Thread(new Task<Void>() {
+            @Override
+            public Void call() throws Exception {
+                try {
+                	Thread.sleep(500);
+                    System.out.println("Processando Livro...");
+                    MivesController.getInstance().minerarVersosCustomizados(Livro.getInstance(),
+                            MivesWizardData.INICIOFRASE, MivesWizardData.FINALFRASE, MivesWizardData.FRASECOMPLETA,
+                            MivesWizardData.TIPODEVERSOINICIO, MivesWizardData.TIPODEVERSOFINAL,
+                            true, true, true, true, true);
+                    System.out.println("Livro processado!");
+                } catch (LivroException ex) {
+                    Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                return null;
 
-        Thread t = new Thread(task1);
+            }
+
+            @Override
+            protected void succeeded() {
+                super.succeeded();
+                //controller.btnSair.setDisable(false);
+                MainControllerHelper.controller.nextPage(null);
+
+            }
+
+            @Override
+            protected void failed() {
+                super.failed();
+                System.out.println("(task failed) ERRO AO PROCESSAR TEXTO!");
+                //controller.btnSair.setDisable(true);
+
+            }
+
+        });
         t.start();
         
-        if(task1.getState().toString() == "SUCCEEDED") {
-        	MainControllerHelper.controller.nextPage(null);
-        }
     }
 
-    Task task1 = new Task<Void>() {
-        @Override
-        public Void call() throws Exception {
-            try {
-                System.out.println("Processando Livro...");
-                MivesController.getInstance().minerarVersosCustomizados(Livro.getInstance(),
-                        MivesWizardData.INICIOFRASE, MivesWizardData.FINALFRASE, MivesWizardData.FRASECOMPLETA,
-                        MivesWizardData.TIPODEVERSOINICIO, MivesWizardData.TIPODEVERSOFINAL,
-                        true, true, true, true, true);
-                System.out.println("Livro processado!");
-            } catch (LivroException ex) {
-                Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            return null;
-
-        }
-
-        @Override
-        protected void succeeded() {
-            super.succeeded();
-            //controller.btnSair.setDisable(false);
-            MainControllerHelper.controller.nextPage(null);
-
-        }
-
-        @Override
-        protected void failed() {
-            super.failed();
-            System.out.println("(task failed) ERRO AO PROCESSAR TEXTO!");
-            //controller.btnSair.setDisable(true);
-
-        }
-
-    };
 }

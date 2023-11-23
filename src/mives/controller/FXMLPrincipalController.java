@@ -264,7 +264,7 @@ public class FXMLPrincipalController implements Initializable {
     }
 
     public void apresentarResultados() {
-      
+    		
             helper.carregarHtml();
             helper.gerarArvores();
             helper.carregarGraficosOcorrencias();

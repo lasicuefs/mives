@@ -93,8 +93,11 @@ public class FXMLMainController implements Initializable, PageWizard {
     	}
     	
     	if(helper.getCurPageIdx() == 5) {
-    		this.minerarVersos();
     		btnProximo.setDisable(true);
+    	}
+    	
+    	if(helper.getCurPageIdx() == 6) {
+    		btnVoltar.setDisable(true);
     	}
     	
         helper.nextPage();
@@ -141,13 +144,7 @@ public class FXMLMainController implements Initializable, PageWizard {
     	Stage stage = (Stage) btnSair.getScene().getWindow(); //Obtendo a janela atual//
         stage.close();
     }
-    
-    protected void minerarVersos() {
-        helper.processarLivro();
-        MainControllerHelper.controller.nextPage();
         
-    }
-    
     @Override
     public void update() {
         if (MivesWizardData.isHabilitarBotaoFinalizar()) {

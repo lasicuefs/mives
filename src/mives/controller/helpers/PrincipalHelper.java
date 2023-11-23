@@ -136,6 +136,7 @@ public class PrincipalHelper {
 
     public void gerarGraficoDistancia() {
         Livro.getInstance().calcularDistancias();
+        
         ArrayList<Integer> distancias = Livro.getInstance().gerarVetorDistancia();
         ScatterChartSample graf = new ScatterChartSample(distancias);
         Stage secondStage = new Stage();
@@ -511,7 +512,7 @@ public class PrincipalHelper {
     }
 
     public void carregarGraficosOcorrencias() {
-
+    	
         principal.graficoBarras.setTitle("   ");
 
         int tipos[] = new int[estrutraArvore.size()];
