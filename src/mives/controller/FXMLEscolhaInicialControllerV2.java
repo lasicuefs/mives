@@ -47,6 +47,9 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
 
     @FXML
     Button ajudaNovoLivro;
+    
+    @FXML
+    Label arquivoEscolhido;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,6 +77,7 @@ public class FXMLEscolhaInicialControllerV2 implements Initializable {
                     nomeArquivo.setText(file.getName());
                     //MainControllerHelper.controller.nextPage(e);
                     MainControllerHelper.controller.btnProximo.setDisable(false);
+                    arquivoEscolhido.setVisible(true);
                     System.out.println("Já estou aqui");
             	}else {
             		alertaEscolhaExtensao(".txt");

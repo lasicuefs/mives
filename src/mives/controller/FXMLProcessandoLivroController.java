@@ -70,6 +70,7 @@ public class FXMLProcessandoLivroController implements Initializable, PageWizard
         Thread t = new Thread(new Task<Void>() {
             @Override
             public Void call() throws Exception {
+            	
                 try {
                 	Thread.sleep(500);
                     System.out.println("Processando Livro...");
@@ -80,6 +81,7 @@ public class FXMLProcessandoLivroController implements Initializable, PageWizard
                     System.out.println("Livro processado!");
                 } catch (LivroException ex) {
                     Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
+                    throw ex;
                 }
                 return null;
 

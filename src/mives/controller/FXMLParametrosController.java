@@ -56,6 +56,9 @@ public class FXMLParametrosController implements Initializable, Observer {
 
     @FXML
     Button ajudaDefinir;
+    
+    @FXML
+    Label escolha;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -102,6 +105,7 @@ public class FXMLParametrosController implements Initializable, Observer {
     @FXML
     protected void carregarRegrasSistema(ActionEvent e) {
         MivesController.getInstance().carregarRegraPadrao();
+        escolha.setVisible(true);
         labelEscolha.setText("Parâmetros padrões");
         definirParametros.setDisable(false);
         regraPadrao.getStylesheets().add("/mives/view/css/buttonutilizarparametro2.css");

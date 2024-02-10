@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #3F3F3F;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mives.controller.FXMLEscolhaInicialControllerV2">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #3F3F3F;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mives.controller.FXMLEscolhaInicialControllerV2">
    <bottom>
       <HBox alignment="CENTER" prefHeight="39.0" prefWidth="600.0" spacing="50.0" BorderPane.alignment="CENTER">
          <children>
@@ -70,7 +70,7 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="177.0" prefWidth="154.0" style="-fx-padding: 1em;">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="142.0" stylesheets="@css/label_botoes.css" text="Arquivo escolhido" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                        <Label fx:id="arquivoEscolhido" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="142.0" stylesheets="@css/label_botoes.css" text="Arquivo escolhido" textAlignment="CENTER" textFill="WHITE" visible="false" wrapText="true" />
                         <Label fx:id="nomeArquivo" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
                      </children>
                   </VBox>

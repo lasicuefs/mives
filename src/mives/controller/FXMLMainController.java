@@ -5,7 +5,10 @@
  */
 package mives.controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
+import java.util.*;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +29,7 @@ import mives.model.MapaConfiguracao;
  *
  * @author Ricardo
  */
-public class FXMLMainController implements Initializable, PageWizard {
+public class FXMLMainController implements Initializable, PageWizard, Observer {
     
     private MainControllerHelper helper;
     
@@ -54,8 +57,14 @@ public class FXMLMainController implements Initializable, PageWizard {
         btnVoltar.setDisable(true);
         btnVoltar.setOpacity(0);
         Revista.registrarAssinante(this);
-
+        
+        FXMLCarregarLivroController.helper.addObserver(this); //Adicionando essa classe como observadora da classe de carregar livro
         //   btnFinalizar.setDisable(true);
+    }
+    
+    public void update(Observable obj, Object arg) {
+    	System.out.println("Update");
+    	this.btnProximo.setDisable((Boolean)arg);
     }
     
     public void nextPage() {
@@ -80,6 +89,8 @@ public class FXMLMainController implements Initializable, PageWizard {
     	// Se a página for 1 e apertei avançar, carrega o livro selecionado
     	if(helper.getCurPageIdx() == 1) { 
     		FXMLCarregarLivroController.helper.iniciarCarregarLivro();
+    		btnProximo.setDisable(true);
+    		
     	}
     	
     	//Se estou na página 2 e avanço e não tem parâmetros definidos, botão de avançar desabilitado

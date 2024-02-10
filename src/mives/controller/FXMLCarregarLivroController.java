@@ -8,9 +8,12 @@ package mives.controller;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.*;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.input.MouseEvent;
@@ -49,8 +52,8 @@ public class FXMLCarregarLivroController implements Initializable {
     }
 
     @FXML
-    public void iniciarCarregarLivro(ActionEvent e) {
-        helper.iniciarCarregarLivro();
+    public void iniciarCarregarLivro() {
+		helper.iniciarCarregarLivro();
     }
 
     public ProgressBar getProgressBar() {
@@ -69,5 +72,29 @@ public class FXMLCarregarLivroController implements Initializable {
      */
     public Label getLabelProcessamentoConcluido() {
         return labelProcessamentoConcluido;
+    }
+    
+    public void livroEmCarregamento(ReadOnlyDoubleProperty progresso) {
+    	this.getLabelProcessamentoConcluido().setVisible(false);
+    	this.getProgressBar().progressProperty().bind(progresso);
+    }
+    
+    public void livroCarregadoComSucesso() {
+    	this.getLabelProcessamentoConcluido().setVisible(true);
+    	
+    }
+    
+    public void livroComErroDeCarregamento(String msg) {
+    	Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+        dialogoInfo.setTitle("MIVES");
+        dialogoInfo.setHeaderText("Erro ao carregar o livro");
+        if(msg != null) {
+        	dialogoInfo.setContentText(msg);
+        }
+        
+        // dialogoInfo.
+        dialogoInfo.showAndWait();
+    	this.labelProcessamentoConcluido.setText("Erro ao carregar o livro");
+    	this.labelProcessamentoConcluido.setVisible(true);
     }
 }
