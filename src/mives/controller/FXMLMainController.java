@@ -37,6 +37,8 @@ public class FXMLMainController implements Initializable, PageWizard, Observer {
     
     private FXMLCarregarLivroController carregarLivro;
     
+    private FXMLProcessandoLivroController processar;
+    
     @FXML
     protected StackPane stack;
     
@@ -104,6 +106,7 @@ public class FXMLMainController implements Initializable, PageWizard, Observer {
     	}
     	
     	if(helper.getCurPageIdx() == 5) {
+    		FXMLProcessandoLivroController.processarLivro();
     		btnProximo.setDisable(true);
     	}
     	

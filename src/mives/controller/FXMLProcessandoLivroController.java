@@ -13,7 +13,9 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import mives.controller.helpers.MainControllerHelper;
 import mives.controller.helpers.utils.MivesWizardData;
@@ -22,6 +24,7 @@ import mives.exceptions.LivroException;
 import mives.model.Livro;
 import mives.model.Mineracao;
 import mives.observable.Observer;
+import mives.controller.helpers.FXMLProcessandoLivroControllerHelper;
 
 /**
  *
@@ -34,11 +37,19 @@ public class FXMLProcessandoLivroController implements Initializable, PageWizard
 
     @FXML
     ProgressBar barraProcessarLivro;
+    
+    @FXML
+    Label label;
+    
+    public static FXMLProcessandoLivroControllerHelper helper;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         btnAnalisarResultado.setDisable(false);
         Mineracao.getInstance().registerObserver(this);
+        helper = new FXMLProcessandoLivroControllerHelper(this);
+        btnAnalisarResultado.setDisable(true);
+        label.setVisible(false);
     }
 
 
@@ -66,46 +77,29 @@ public class FXMLProcessandoLivroController implements Initializable, PageWizard
     }
     @FXML
     void processarLivro(ActionEvent event) {
-
-        Thread t = new Thread(new Task<Void>() {
-            @Override
-            public Void call() throws Exception {
-            	
-                try {
-                	Thread.sleep(500);
-                    System.out.println("Processando Livro...");
-                    MivesController.getInstance().minerarVersosCustomizados(Livro.getInstance(),
-                            MivesWizardData.INICIOFRASE, MivesWizardData.FINALFRASE, MivesWizardData.FRASECOMPLETA,
-                            MivesWizardData.TIPODEVERSOINICIO, MivesWizardData.TIPODEVERSOFINAL,
-                            true, true, true, true, true);
-                    System.out.println("Livro processado!");
-                } catch (LivroException ex) {
-                    Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
-                    throw ex;
-                }
-                return null;
-
-            }
-
-            @Override
-            protected void succeeded() {
-                super.succeeded();
-                //controller.btnSair.setDisable(false);
-                MainControllerHelper.controller.nextPage(null);
-
-            }
-
-            @Override
-            protected void failed() {
-                super.failed();
-                System.out.println("(task failed) ERRO AO PROCESSAR TEXTO!");
-                //controller.btnSair.setDisable(true);
-
-            }
-
-        });
-        t.start();
-        
+    	MainControllerHelper.controller.nextPage(null);
+    }
+    
+    public static void processarLivro() {
+    	helper.processarLivro();
+    }
+    
+    public void erroProcessamento(String msg) {
+    	Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+        dialogoInfo.setTitle("MIVES");
+        dialogoInfo.setHeaderText("Erro ao processar o livro");
+        if(msg != null) {
+        	dialogoInfo.setContentText(msg);
+        }
+    }
+    
+    public void processamentoEmAndamento() {
+    	label.setVisible(true);
+    }
+    
+    public void processamentoConcluido() {
+    	btnAnalisarResultado.setDisable(false);
+    	label.setText("Livro Processado!");
     }
 
 }
