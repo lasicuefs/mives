@@ -38,7 +38,7 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="398.0">
                      <children>
-                        <Button fx:id="btnAnalisarResultado" contentDisplay="CENTER" mnemonicParsing="false" onAction="#processarLivro" prefHeight="63.0" prefWidth="99.0" stylesheets="@css/botaowizard.css" text="ANALISAR RESULTADO" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <Button fx:id="btnAnalisarResultado" contentDisplay="CENTER" mnemonicParsing="false" onAction="#analisarResultados" prefHeight="63.0" prefWidth="99.0" stylesheets="@css/botaowizard.css" text="ANALISAR RESULTADO" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>

@@ -9,6 +9,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -64,19 +66,19 @@ public class FXMLProcessandoLivroController implements Initializable, PageWizard
 
     @Override
     public void update(int progresso) {
-        float total = Livro.getInstance().getNumeroDeSegmentos();
-//        System.out.println("TOTAL DE SEGMENTOS..........................: " + total);
-//        System.out.println("PROGRESSO: " + progresso);
-
-        barraProcessarLivro.setProgress((float) ((progresso * 100.0) / total));
-        // System.out.println("Progresso:.... " + ((progresso * 100.0) / total));
-        if (((progresso * 100.0) / total) == 100.0) {
-            btnAnalisarResultado.setDisable(false);
-        }
-//        System.out.println("ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO");
+//        float total = Livro.getInstance().getNumeroDeSegmentos();
+////        System.out.println("TOTAL DE SEGMENTOS..........................: " + total);
+////        System.out.println("PROGRESSO: " + progresso);
+//        barraProcessarLivro.setProgress((float) ((progresso * 100.0) / total));
+//        System.out.println(barraProcessarLivro.getProgress());
+//        // System.out.println("Progresso:.... " + ((progresso * 100.0) / total));
+//        if (((progresso * 100.0) / total) == 100.0) {
+//            btnAnalisarResultado.setDisable(false);
+//        }
+////        System.out.println("ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO");
     }
     @FXML
-    void processarLivro(ActionEvent event) {
+    void analisarResultados(ActionEvent event) {
     	MainControllerHelper.controller.nextPage(null);
     }
     
@@ -93,7 +95,10 @@ public class FXMLProcessandoLivroController implements Initializable, PageWizard
         }
     }
     
-    public void processamentoEmAndamento() {
+    public void processamentoEmAndamento(ReadOnlyDoubleProperty progresso) {
+    	barraProcessarLivro.progressProperty().bind(progresso);
+    	btnAnalisarResultado.setDisable(true);
+    	label.setText("Minerando texto ... Aguarde");
     	label.setVisible(true);
     }
     

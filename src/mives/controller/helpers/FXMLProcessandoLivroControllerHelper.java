@@ -33,6 +33,7 @@ public class FXMLProcessandoLivroControllerHelper{
                             MivesWizardData.INICIOFRASE, MivesWizardData.FINALFRASE, MivesWizardData.FRASECOMPLETA,
                             MivesWizardData.TIPODEVERSOINICIO, MivesWizardData.TIPODEVERSOFINAL,
                             true, true, true, true, true);
+                    updateProgress(1, 1);
                     System.out.println("Livro processado!");
                 } catch (LivroException ex) {
                     Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
@@ -45,7 +46,7 @@ public class FXMLProcessandoLivroControllerHelper{
             @Override
 			protected void running() {
             	super.running();
-            	processar.processamentoEmAndamento();;
+            	processar.processamentoEmAndamento(this.progressProperty());
             }
             
             @Override
