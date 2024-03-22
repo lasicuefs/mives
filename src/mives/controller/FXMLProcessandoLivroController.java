@@ -6,6 +6,7 @@
 package mives.controller;
 
 import java.net.URL;
+import java.util.Observable;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +33,7 @@ import mives.controller.helpers.FXMLProcessandoLivroControllerHelper;
  *
  * @author Ricardo
  */
-public class FXMLProcessandoLivroController implements Initializable, PageWizard, Observer {
+public class FXMLProcessandoLivroController extends Observable implements Initializable, PageWizard{
 
     @FXML
     Button btnAnalisarResultado;
@@ -43,17 +44,20 @@ public class FXMLProcessandoLivroController implements Initializable, PageWizard
     @FXML
     Label label;
     
+    public static FXMLProcessandoLivroController processar = null;
+    
     public static FXMLProcessandoLivroControllerHelper helper;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         btnAnalisarResultado.setDisable(false);
-        Mineracao.getInstance().registerObserver(this);
+        //Mineracao.getInstance().registerObserver(this);
+        processar = this; //Referência estática dessa classe
         helper = new FXMLProcessandoLivroControllerHelper(this);
         btnAnalisarResultado.setDisable(true);
         label.setVisible(false);
+        FXMLPrincipalController.addThisObserver(); //Add a classe FXMLPrincipalController como observadora desta
     }
-
 
     @Override
     public void update() {
@@ -64,8 +68,8 @@ public class FXMLProcessandoLivroController implements Initializable, PageWizard
     //    MainControllerHelper.controller.nextPage(null);
     //}
 
-    @Override
-    public void update(int progresso) {
+//    @Override
+//    public void update(int progresso) {
 //        float total = Livro.getInstance().getNumeroDeSegmentos();
 ////        System.out.println("TOTAL DE SEGMENTOS..........................: " + total);
 ////        System.out.println("PROGRESSO: " + progresso);
@@ -76,10 +80,13 @@ public class FXMLProcessandoLivroController implements Initializable, PageWizard
 //            btnAnalisarResultado.setDisable(false);
 //        }
 ////        System.out.println("ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO ATUALIZANDO");
-    }
+//    }
+    
     @FXML
     void analisarResultados(ActionEvent event) {
     	MainControllerHelper.controller.nextPage(null);
+    	setChanged();
+        notifyObservers(false);
     }
     
     public static void processarLivro() {

@@ -8,7 +8,8 @@ package mives.controller;
 import java.io.File;
 import mives.controller.helpers.PrincipalHelper;
 import java.net.URL;
-
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -45,7 +46,7 @@ import org.w3c.dom.events.EventTarget;
  *
  * @author Ricardo
  */
-public class FXMLPrincipalController implements Initializable {
+public class FXMLPrincipalController implements Initializable, Observer {
 
     @FXML
     public WebView browser;
@@ -85,7 +86,7 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     MenuItem menuSalvar;
 
-    private PrincipalHelper helper;
+    private static PrincipalHelper helper;
 
     @FXML
     public Label labelArquivo;
@@ -101,6 +102,8 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     public Label labelTipos;
+    
+    public static FXMLPrincipalController principal=null;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -108,15 +111,21 @@ public class FXMLPrincipalController implements Initializable {
         searchtext.setPromptText("Entre com o texto para realçar");
         carregando.setVisible(false);
         helper = new PrincipalHelper(this);
-
+        principal = this; //Referência estática desta classe
         exibirMargens();
 //        helper.carregarGraficosOcorrencias();
         helper.carregarAncoras();
         accordionEsquerdo.getPanes().clear();
         helper.montarArvore();
+        
 
         // carregarTextoExemplo();
         // apresentarResultados();
+    }
+    
+    //método para adicionar está classe como observadora da classe FXMLProcessandoLivroController
+    public static void addThisObserver() {
+    	FXMLProcessandoLivroController.processar.addObserver(principal);
     }
 
     int index = 0;
@@ -262,7 +271,7 @@ public class FXMLPrincipalController implements Initializable {
     public void versosClassificacao() {
         helper.versosClassificacao();
     }
-
+    
     public void apresentarResultados() {
     		
             helper.carregarHtml();
@@ -343,6 +352,11 @@ public class FXMLPrincipalController implements Initializable {
 //            livroIO.salvarComo(livro, caminho);
 //        }
     }
+
+	@Override
+	public void update(Observable o, Object arg) {
+		apresentarResultados();
+	}
 
 //    public void apagarArquivo() {
 //        helper.apagarArquivo();

@@ -112,6 +112,9 @@ public class FXMLMainController implements Initializable, PageWizard, Observer {
     	
     	if(helper.getCurPageIdx() == 6) {
     		btnVoltar.setDisable(true);
+    		btnVoltar.setVisible(false);
+    		btnProximo.setDisable(true);
+    		btnProximo.setVisible(false);
     	}
     	
         helper.nextPage();
