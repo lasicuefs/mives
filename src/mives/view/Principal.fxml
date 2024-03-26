@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.web.*?>
-<?import java.net.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
-<BorderPane id="pane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="753.0" style="-fx-background-color: #3F3F3F;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mives.controller.FXMLPrincipalController">
+<BorderPane id="pane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="753.0" style="-fx-background-color: #3F3F3F;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mives.controller.FXMLPrincipalController">
    <right>
       <Accordion fx:id="accordionDireito" stylesheets="@css/accordion_estilo.css" BorderPane.alignment="CENTER">
         <panes>
-          <TitledPane alignment="CENTER" animated="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="316.0" prefWidth="306.0" text="VERSOS ENCONTRADOS">
+          <TitledPane alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="316.0" prefWidth="306.0" text="VERSOS ENCONTRADOS">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="265.0" prefWidth="254.0">
                      <children>
@@ -41,7 +59,7 @@
                   <Insets />
                </opaqueInsets>
           </TitledPane>
-          <TitledPane alignment="CENTER" animated="false" nodeOrientation="RIGHT_TO_LEFT" text="ESTATÍSTICAS">
+          <TitledPane alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" text="ESTATÍSTICAS">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -120,7 +138,7 @@
                   <Insets />
                </opaqueInsets>
           </TitledPane>
-          <TitledPane alignment="CENTER" animated="false" nodeOrientation="RIGHT_TO_LEFT" text="HENDECASSÍLABOS">
+          <TitledPane alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" text="HENDECASSÍLABOS">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" />
             </content>
@@ -128,7 +146,7 @@
                   <Font size="14.0" />
                </font>
           </TitledPane>
-          <TitledPane alignment="CENTER" animated="false" nodeOrientation="RIGHT_TO_LEFT" style="-fx-background-color: #3F3F3F;" text="DECASSÍLABOS">
+          <TitledPane alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" style="-fx-background-color: #3F3F3F;" text="DECASSÍLABOS">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="461.0" prefWidth="309.0" style="-fx-background-color: #3F3F3F;">
                      <children>
